@@ -1,0 +1,81 @@
+.tab .tab-label {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER;
+    -fx-font: 16px "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#cnFont-header {
+    -fx-font: bold 50pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#enFont-exampleHeader {
+    -fx-font: bold 50pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#cnFont-button {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#enFont-button {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#cnFont-text {
+    -fx-font: 35pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#enFont-text {
+    -fx-font: 25pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#cnFont-timeLimit {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(255,0,0);
+}
+
+#enFont-timeLimit {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(255,0,0);
+}
+
+#cnFont-example {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#enFont-example{
+    -fx-font: bold 40pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#enFont-exampleWarning {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(255,0,0);
+}
+
+#cnFont-question{
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#enFont-question {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#enFont-timerButton {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+#font-timer {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}

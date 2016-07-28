@@ -1,0 +1,41 @@
+.tab .tab-label {
+    -fx-background-color: transparent;
+    -fx-alignment: CENTER;
+    -fx-font: 16px "Veranda";
+}
+
+#font-button {
+    -fx-font: bold 20pt "KaiTi";
+}
+
+#cnFont-roundTitle {
+    -fx-font: bold 90pt "KaiTi";
+}
+
+#enFont-roundTitle {
+    -fx-font: bold 40pt "Bell MT";
+}
+
+#cnFont-roundNumber {
+    -fx-font: bold 40pt "KaiTi";
+}
+
+#enFont-roundNumber {
+    -fx-font: bold 40pt "Bell MT";
+}
+
+#cnFont-roundDescription {
+    -fx-font: bold 50pt "KaiTi";
+}
+
+#enFont-roundDescription {
+    -fx-font: bold 40pt "Bell MT";
+}
+
+#cnFont-roundLevel {
+    -fx-font: bold 50pt "KaiTi";
+}
+
+#enFont-roundLevel {
+    -fx-font: bold 40pt "Bell MT";
+}

@@ -1,0 +1,52 @@
+[
+  {
+    "USER_NAME": "name_1",
+    "USER_LEVEL": 1,
+    "USER_ID": 1111111
+  },
+  {
+    "USER_NAME": "name_2",
+    "USER_LEVEL": 2,
+    "USER_ID": 2222222
+  },
+  {
+    "USER_NAME": "name_3",
+    "USER_LEVEL": 3,
+    "USER_ID": 3333333
+  },
+  {
+    "USER_NAME": "name_4",
+    "USER_LEVEL": 3,
+    "USER_ID": 4444444
+  },
+  {
+    "USER_NAME": "name_5",
+    "USER_LEVEL": 2,
+    "USER_ID": 5555555
+  },
+  {
+    "USER_NAME": "name_6",
+    "USER_LEVEL": 1,
+    "USER_ID": 6666666
+  },
+  {
+    "USER_NAME": "name_7",
+    "USER_LEVEL": 2,
+    "USER_ID": 7777777
+  },
+  {
+    "USER_NAME": "name_8",
+    "USER_LEVEL": 1,
+    "USER_ID": 8888888
+  },
+  {
+    "USER_NAME": "name_9",
+    "USER_LEVEL": 3,
+    "USER_ID": 9999999
+  },
+  {
+    "USER_NAME": "name_10",
+    "USER_LEVEL": 2,
+    "USER_ID": 10000000
+  }
+]

@@ -4,25 +4,19 @@ import java.io.Serializable;
 
 public class UserData implements Serializable {
     private static final long serialVersionUID = 3L;
-    private final String USER_ID;
     private final String USER_NAME;
-    private final String USER_LEVEL;
-    private final int _USER_LEVEL;
+    private final int USER_LEVEL;
+    private final String USER_ID;
+    private String userLevel;
     private String user_status;
     private boolean userStatus = false;
     private int threadID = -1;
 
     public UserData(String name, int level, int ID, boolean status) {
         USER_NAME = name;
-        _USER_LEVEL = level;
-        if (level == 1)
-            USER_LEVEL = "初级 Beginner";
-        else if (level == 2)
-            USER_LEVEL = "中级 Intermediate";
-        else
-            USER_LEVEL = "高级 Advance";
-
+        USER_LEVEL = level;
         USER_ID = Integer.toString(ID);
+        setUserLevel(level);
         setUserStatus(status);
     }
 
@@ -30,8 +24,8 @@ public class UserData implements Serializable {
         return user_status;
     }
 
-    public int get_USER_LEVEL() {
-        return _USER_LEVEL;
+    public int getUSER_LEVEL() {
+        return USER_LEVEL;
     }
 
     public int getUSER_ID() {
@@ -42,8 +36,8 @@ public class UserData implements Serializable {
         return USER_NAME;
     }
 
-    public String getUSER_LEVEL() {
-        return USER_LEVEL;
+    public String getUserLevel() {
+        return userLevel;
     }
 
     public boolean getUserStatus() {
@@ -58,6 +52,14 @@ public class UserData implements Serializable {
         return threadID;
     }
 
+    public void setUserLevel(int level) {
+        if (level == 1)
+            userLevel = "初级 Beginner";
+        else if (level == 2)
+            userLevel = "中级 Intermediate";
+        else
+            userLevel = "高级 Advance";
+    }
 
     public void setUserStatus(boolean status) {
         userStatus = status;
