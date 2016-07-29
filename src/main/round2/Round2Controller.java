@@ -7,12 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import network.ClientInteractionInterface;
 import tool.Constants;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Round2Controller implements Initializable, Runnable {
+public class Round2Controller implements Initializable, Runnable, ClientInteractionInterface {
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -70,8 +72,10 @@ public class Round2Controller implements Initializable, Runnable {
 
     private Thread thread;
 
-    public Round2Controller() {
+    private ClientInteractionInterface mainControllerNotify;
 
+    public void setNotify(ClientInteractionInterface notify){
+        mainControllerNotify = notify;
     }
 
     public void init() {
@@ -109,22 +113,48 @@ public class Round2Controller implements Initializable, Runnable {
         if(e.getSource() == bt_beginnerStart){
             ap_root.setVisible(false);
             ap_level1Interface.setVisible(true);
-
+            ap_level1InterfaceController.init();
+            mainControllerNotify.writeToClient(Constants.BEGIN_R1L1);
         }
         else if(e.getSource() == bt_intermediateStart){
             ap_root.setVisible(false);
             ap_level2Interface.setVisible(true);
+            mainControllerNotify.writeToClient(Constants.BEGIN_R1L2);
         }
         else if(e.getSource() == bt_advanceStart){
             ap_root.setVisible(false);
             ap_level3Interface.setVisible(true);
+            mainControllerNotify.writeToClient(Constants.BEGIN_R1L3);
         }
+    }
+
+    @Override
+    public void writeToClient(int command) {
+        switch (command){
+            case Constants.DIS_R1L1_EX:
+                mainControllerNotify.writeToClient(command);
+                break;
+        }
+    }
+
+    public void writeToClient(int command, Object data) {
+
+    }
+
+    @Override
+    public void writeToClient(int command, LinkedList<String> data) {
+
+    }
+
+    @Override
+    public void writeToClient(int command, LinkedList<String> data, int source) {
+
     }
 
     @Override
     public void run() {
         try {
-            Thread.sleep(0);
+            Thread.sleep(1000);
             lb_cnRoundTitle.setVisible(false);
             lb_enRoundTitle.setVisible(false);
             lb_cnRoundDescription.setVisible(false);
@@ -157,5 +187,9 @@ public class Round2Controller implements Initializable, Runnable {
         AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
         ap_level3Interface.setVisible(false);
+
+        ap_level1InterfaceController.setNotify(this);
     }
+
+
 }

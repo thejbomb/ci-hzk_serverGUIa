@@ -14,7 +14,7 @@
     <children>
         <TabPane fx:id="tp_mainTab" side="RIGHT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
-                <Tab closable="false" text="Instruction">
+                <Tab fx:id="tp_instruction" closable="false" text="Instruction">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -75,7 +75,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-                <Tab closable="false" text="Example">
+                <Tab fx:id="tp_example" closable="false" text="Example">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                             <children>
@@ -110,7 +110,7 @@
                         </AnchorPane>
                     </content>
                 </Tab>
-            <Tab fx:id="tb_tools" closable="false" text="Question">
+            <Tab fx:id="tp_questions" closable="false" text="Question">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

@@ -1,16 +1,14 @@
 package network;
 
-import data.*;
 import javafx.application.Platform;
 import tool.Constants;
 
 import java.io.*;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.SocketAddress;
-import java.net.SocketException;
+import java.util.LinkedList;
 
-public class ClientHandler extends Thread implements Notify {
+public class ClientHandler extends Thread implements ClientInteractionInterface {
 
     private BufferedReader in = null;
     private PrintWriter out = null;
@@ -18,16 +16,19 @@ public class ClientHandler extends Thread implements Notify {
     private boolean initialized = false;
     private ObjectOutputStream os = null;
     private ObjectInputStream is = null;
-    private Notify notify = null;
+    private ClientHandlerInterface mainControllerNotify = null;
     private InetAddress address = null;
+    private int currentCommand = -1;
     //private final int ID;
+    private LinkedList<String> inputQueue;
+    private LinkedList<String> outputQueue;
 
     public ClientHandler(Socket clientSocket) {
         CLIENT = clientSocket;
     }
 
-    public void setNotifyObject(Notify notify) {
-        this.notify = notify;
+    public void setNotify(ClientHandlerInterface notify) {
+        mainControllerNotify = notify;
     }
 
     private void init() {
@@ -42,7 +43,7 @@ public class ClientHandler extends Thread implements Notify {
         }
         address = CLIENT.getInetAddress();
         System.out.println("Remote address = " + address);
-        notify.takeNotice(Constants.ADD_CLIENT, this); // add new client to clients list
+        mainControllerNotify.addClient(this); // add new client to clients list
     }
 
     public long getThreadID() {
@@ -56,99 +57,57 @@ public class ClientHandler extends Thread implements Notify {
             return -1;
     }
 
-    public boolean isInitialized() {
-        return initialized;
-    }
-
-    public void writeToClient(String text) {
-        out.println(text);
-    }
-
-    public void writeToClient(int command) {
-        out.println(command);
-
-    }
-
-    private void writeToClient(Object data) {
-        try {
-            os.writeObject(data);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage() + " " + getClass());
-        }
-    }
-
-    public void writeToClient(int command, Object data) {
-        switch (command) {
-            case 1:
-                break;
-            case Constants.ERROR: // error message
-                out.println(command);
-                out.println((String) data);
-                break;
-            default:
-                break;
-        }
-    }
-
-
-    private String readMessageFromClient() {
-        try {
-            return in.readLine();
-        } catch (IOException e) {
-            System.out.println(e);
-            return "-1";
-        }
-
-
-    }
-
-    private int readIntFromClient() {
-        try {
-            return Integer.parseInt(in.readLine());
-        } catch (IOException e) {
-            System.out.println(e);
-            return -1;
-        }
-    }
-
     @Override
     public void run() {
         init();
+        boolean listening = true;
         try {
-            while (true) {
-                String response = in.readLine();
-                int command = Integer.parseInt(response);
+            while (listening) {
+                String response = readFromClient();
                 System.out.println("Thread " + getId() + " is working...");
-                if (command > 999) {
+                if (Integer.parseInt(response) == Constants.TRANMISSION_BEGIN) {
+                    out.println(Constants.CLIENT_SEND_NEXT);
+                    response = readFromClient();
+                    while (Integer.parseInt(response) != Constants.TRANSMISSION_END) {
+                        System.out.println("From client: " + response);
+                        if (inputQueue == null)
+                            inputQueue = new LinkedList<>();
+                        inputQueue.add(response);
+                        response = readFromClient();
+                    }
+                    int command = Integer.parseInt(inputQueue.getFirst());
+
+                    inputQueue.removeFirst();
+
                     switch (command) {
                         case Constants.USER_CONNECT:
-                            String data = in.readLine();
                             Platform.runLater(() -> {
-                                notify.takeNotice(Constants.SET_NOTIFY, this);
-                                notify.takeNotice(Constants.SET_ACTIVE_THREAD, getId());
-                                notify.takeNotice(command, data);
-
-
-                            });
-                            break;
-                        case 2:
-                            String sData = (String) is.readObject();
-                            Platform.runLater(() -> {
-                                notify.takeNotice(command, sData);
+                                mainControllerNotify.setClientInteractionInterface(this);
+                                mainControllerNotify.setActiveThread(getId());
+                                mainControllerNotify.connectUser(Integer.parseInt(inputQueue.getFirst()));
+                                inputQueue = null;
                             });
                             break;
                         default:
+                            Platform.runLater(() -> {
+                                mainControllerNotify.handleClientData(command, inputQueue);
+                                inputQueue = null;
+                            });
                             break;
                     }
-                } else {
-                    Platform.runLater(() -> {
-                        notify.takeNotice(command);
-                    });
+                } else if (Integer.parseInt(response) == Constants.SERVER_SEND_NEXT) {
+                    while (!outputQueue.isEmpty()) {
+                        System.out.println("To client: " + outputQueue.getFirst());
+                        out.println(outputQueue.getFirst());
+                        outputQueue.removeFirst();
+                        if (outputQueue.isEmpty())
+                            out.println(Constants.TRANSMISSION_END);
+                    }
+                    outputQueue = null;
                 }
 
-
             }
-        } catch (IOException | ClassNotFoundException ex) {
+        } catch (IOException ex) {
             ex.printStackTrace();
             System.out.println(ex.getMessage() + " " + getClass());
         } finally {
@@ -162,26 +121,29 @@ public class ClientHandler extends Thread implements Notify {
         }
     }
 
-    @Override
-    public void takeNotice() {
+    private String readFromClient() throws IOException {
+        return in.readLine();
+    }
 
+    private void writeToClient(String data) {
+        out.println(data);
+    }
+
+
+    @Override
+    public void writeToClient(int command) {
+        writeToClient(command, new LinkedList<>());
     }
 
     @Override
-    public void takeNotice(int command) {
-        writeToClient(command);
+    public void writeToClient(int command, LinkedList<String> data) {
+        data.addFirst(Integer.toString(command));
+        outputQueue = data;
+        out.println(Constants.TRANMISSION_BEGIN);
     }
 
     @Override
-    public void takeNotice(int command, Object data) {
-        switch (command) {
-            case 1:
-                break;
-            case Constants.ERROR:
-                writeToClient(command, data);
-                break;
-            default:
-                break;
-        }
+    public void writeToClient(int command, LinkedList<String> data, int source) {
+
     }
 }

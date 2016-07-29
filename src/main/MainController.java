@@ -1,6 +1,6 @@
 package main;
 
-import data.DataException;
+import data.HzkException;
 import data.UserData;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,7 +12,8 @@ import javafx.scene.layout.Pane;
 import main.round1.Round1Controller;
 import main.round2.Round2Controller;
 import network.ClientHandler;
-import network.Notify;
+import network.ClientHandlerInterface;
+import network.ClientInteractionInterface;
 import tool.Constants;
 
 import java.net.URL;
@@ -20,7 +21,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainController implements Notify, Initializable {
+public class MainController implements ClientInteractionInterface, Initializable, ClientHandlerInterface {
     @FXML
     private Button bt_start;
     @FXML
@@ -46,21 +47,15 @@ public class MainController implements Notify, Initializable {
     @FXML
     private Round2Controller ap_round2InterfaceController;
 
-    private Notify clientNotify;
+    private ClientInteractionInterface clientHandlerNotify;
 
     private List<ClientHandler> clients = null;
 
     private long activeThreadId = -1;
 
-
     public MainController() {
         //initUsersData();
     }
-
-    private void setClientNotify(Notify notify) {
-        this.clientNotify = notify;
-    }
-
 
     public void init() {
         Pane header = (Pane) tb_usersList.lookup("TableHeaderRow");
@@ -91,24 +86,24 @@ public class MainController implements Notify, Initializable {
         tb_usersList.setItems(Main.USERS_LIST);
     }
 
-    private void updateTable(int ID) throws DataException {
+    private void updateTable(int ID) throws HzkException {
         boolean found = false;
         for (int i = 0; i < Main.USERS_LIST.size(); i++) {
             if (Main.USERS_LIST.get(i).getUSER_ID() == ID) {
                 tb_usersList.getItems().get(i).setUserStatus(true);
                 tb_usersList.getItems().set(i, tb_usersList.getItems().get(i));
-                clientNotify.takeNotice(Constants.LOGIN_SUCCESS);
+                clientHandlerNotify.writeToClient(Constants.LOGIN_SUCCESS);
                 found = true;
             }
         }
         if (!found)
-            throw new DataException("Error 999");
+            throw new HzkException("User ID Not Found");
     }
 
     @FXML
     private void handleMouseClick(MouseEvent e) throws Exception {
         if (e.getSource() == bt_start) {
-            //sendDataToAllClients(Constants.BEGIN_COMP);
+            sendDataToAllClients(Constants.BEGIN_COMP);
             ap_root.setVisible(false);
             ap_round2Interface.setVisible(true);
             ap_round2InterfaceController.init();
@@ -118,50 +113,77 @@ public class MainController implements Notify, Initializable {
 
     private void sendDataToAllClients(int command) {
         for (ClientHandler ch : clients) {
-            ch.takeNotice(command);
+            ch.writeToClient(command);
         }
     }
 
     @Override
-    public void takeNotice() {
-
-    }
-
-    @Override
-    public void takeNotice(int command) {
-
-    }
-
-
-    @Override
-    public void takeNotice(int command, Object data) {
+    public void writeToClient(int command) {
         switch (command) {
-            case Constants.USER_CONNECT:
-                try {
-                    updateTable(Integer.parseInt((String) data));
-                } catch (DataException ex) {
-                    for (ClientHandler ch : clients) {
-                        if (ch.getThreadID() == activeThreadId)
-                            ch.takeNotice(Constants.ERROR, ex.getMessage());
-                    }
-                }
+            case Constants.BEGIN_R1L1:
+                sendDataToAllClients(command);
                 break;
-            case 2:
+            case Constants.BEGIN_R1L2:
+                sendDataToAllClients(command);
                 break;
-            case Constants.SET_ACTIVE_THREAD:
-                activeThreadId = (long) data;
+            case Constants.BEGIN_R1L3:
+                sendDataToAllClients(command);
                 break;
-            case Constants.SET_NOTIFY:
-                setClientNotify((Notify) data);
-                break;
-            case Constants.ADD_CLIENT:
-                if (clients == null)
-                    clients = new LinkedList<>();
-                clients.add((ClientHandler) data);
+            case Constants.DIS_R1L1_EX:
+                sendDataToAllClients(command);
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void writeToClient(int command, LinkedList<String> data) {
+
+    }
+
+    @Override
+    public void writeToClient(int command, LinkedList<String> data, int source) {
+
+    }
+
+    @Override
+    public void addClient(ClientHandler client) {
+        if (clients == null)
+            clients = new LinkedList<>();
+        clients.add(client);
+    }
+
+    @Override
+    public void setClientInteractionInterface(ClientInteractionInterface client) {
+        clientHandlerNotify = client;
+    }
+
+    @Override
+    public void connectUser(int userID) {
+        try {
+            updateTable(userID);
+        } catch (HzkException ex) {
+            for (ClientHandler client : clients) {
+                if (client.getThreadID() == activeThreadId)
+                    client.writeToClient(Constants.ERROR_ID_NOT_FOUND);
+            }
+        }
+    }
+
+    @Override
+    public void setActiveThread(long threadID) {
+        activeThreadId = threadID;
+    }
+
+    @Override
+    public void handleClientData(int command, LinkedList<String> data) {
+
+    }
+
+    @Override
+    public void handleClientData(int command, LinkedList<String> data, int source) {
+
     }
 
     @Override
@@ -171,5 +193,7 @@ public class MainController implements Notify, Initializable {
         AnchorPane.setLeftAnchor(ap_round2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
         ap_round2Interface.setVisible(false);
+
+        ap_round2InterfaceController.setNotify(this);
     }
 }

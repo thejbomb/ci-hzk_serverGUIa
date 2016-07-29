@@ -2,14 +2,12 @@ package network;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.LinkedList;
-import java.util.List;
 
 public class Server implements Runnable {
     private final int PORT_NUMBER;
     private boolean listening = false;
     private Thread serverThread = null;
-    private Notify notifyObject = null;
+    private ClientHandlerInterface mainControllerNotify = null;
 
     public Server(int portNumber, boolean listening) {
         PORT_NUMBER = portNumber;
@@ -17,8 +15,8 @@ public class Server implements Runnable {
         serverThread = new Thread(this);
     }
 
-    public void start(Notify notifyObject) {
-        this.notifyObject = notifyObject;
+    public void start(ClientHandlerInterface notify) {
+        mainControllerNotify = notify;
         serverThread.start();
     }
 
@@ -30,7 +28,7 @@ public class Server implements Runnable {
             while (listening) {
 
                 ClientHandler newClient = new ClientHandler(server.accept());
-                newClient.setNotifyObject(notifyObject);
+                newClient.setNotify(mainControllerNotify);
                 newClient.start();
                 System.out.println("Active Thread: " + Thread.activeCount());
 

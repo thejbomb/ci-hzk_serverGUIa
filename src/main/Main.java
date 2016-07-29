@@ -37,6 +37,7 @@ public class Main extends Application {
         MainController c = loader.getController();
         c.init();
         newServer.start(c);
+
     }
 
 
@@ -58,6 +59,8 @@ public class Main extends Application {
         for (UserData ud : result) {
             ud.setUserStatus(false);
             ud.setUserLevel(ud.getUSER_LEVEL());
+
+
         }
         return result;
     }
@@ -79,6 +82,7 @@ public class Main extends Application {
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
             return null;
+
         }
     }
 

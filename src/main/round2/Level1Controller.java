@@ -4,18 +4,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import main.Main;
+import network.ClientInteractionInterface;
 import tool.Constants;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level1Controller implements Initializable {
-    public Tab tb_tools;
+public class Level1Controller implements Initializable, Runnable, ClientInteractionInterface {
+
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -50,6 +51,19 @@ public class Level1Controller implements Initializable {
     private Button bt_startTimer;
     @FXML
     private Label lb_timer;
+
+    private Thread thread;
+
+    private ClientInteractionInterface round2ControllerNotify;
+
+    public void setNotify(ClientInteractionInterface notify) {
+        round2ControllerNotify = notify;
+    }
+
+    public void init() {
+        thread = new Thread(this);
+        thread.start();
+    }
 
     private void setStyleId() {
         lb_cnInstructionHeader.setId(Constants.CN_FONT_HEADER);
@@ -104,6 +118,37 @@ public class Level1Controller implements Initializable {
     }
 
     @Override
+    public void writeToClient(int command) {
+
+    }
+
+    public void writeToClient(int command, Object data) {
+
+    }
+
+    @Override
+    public void writeToClient(int command, LinkedList<String> data) {
+
+    }
+
+    @Override
+    public void writeToClient(int command, LinkedList<String> data, int source) {
+
+    }
+
+
+    @Override
+    public void run() {
+        while (true) {
+            if (tp_mainTab.getTabs().get(1).isSelected()) {
+                round2ControllerNotify.writeToClient(Constants.DIS_R1L1_EX);
+                break;
+            }
+        }
+        thread.interrupt();
+    }
+
+    @Override
     public void initialize(URL location, ResourceBundle resources) {
         setStyleId();
         //setData();
@@ -115,4 +160,7 @@ public class Level1Controller implements Initializable {
         lb_question5.setVisible(false);
         bt_startTimer.setVisible(true);
     }
+
 }
+
+
