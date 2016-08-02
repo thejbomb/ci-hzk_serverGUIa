@@ -1,5 +1,6 @@
 package main.round2;
 
+import data.UserDataLevel1;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import main.MainController;
 import network.ClientInteractionInterface;
 import tool.Constants;
 
@@ -14,7 +16,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Round2Controller implements Initializable, Runnable, ClientInteractionInterface {
+public class Round2Controller extends MainController implements Initializable, Runnable, ClientInteractionInterface {
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -72,13 +74,10 @@ public class Round2Controller implements Initializable, Runnable, ClientInteract
 
     private Thread thread;
 
-    private ClientInteractionInterface mainControllerNotify;
+    private int currentLevel = 0;
 
-    public void setNotify(ClientInteractionInterface notify){
-        mainControllerNotify = notify;
-    }
-
-    public void init() {
+    public void init(LinkedList<UserDataLevel1> level1Users) {
+        this.level1Users = level1Users;
         thread = new Thread(this);
         thread.start();
 
@@ -108,37 +107,38 @@ public class Round2Controller implements Initializable, Runnable, ClientInteract
 
     }
 
+    public void setLevel1Users(LinkedList<UserDataLevel1> users) {
+        level1Users = users;
+    }
+
     @FXML
-    private void handleMouseClick(MouseEvent e){
-        if(e.getSource() == bt_beginnerStart){
+    private void handleMouseClick(MouseEvent e) {
+        if (e.getSource() == bt_beginnerStart) {
+            currentLevel = Constants.LEVEL1;
             ap_root.setVisible(false);
             ap_level1Interface.setVisible(true);
-            ap_level1InterfaceController.init();
-            mainControllerNotify.writeToClient(Constants.BEGIN_R1L1);
-        }
-        else if(e.getSource() == bt_intermediateStart){
+            ap_level1InterfaceController.init(level1Users);
+            writeToClient(Constants.BEGIN_R2L1);
+        } else if (e.getSource() == bt_intermediateStart) {
+            currentLevel = Constants.LEVEL2;
             ap_root.setVisible(false);
             ap_level2Interface.setVisible(true);
-            mainControllerNotify.writeToClient(Constants.BEGIN_R1L2);
-        }
-        else if(e.getSource() == bt_advanceStart){
+            writeToClient(Constants.BEGIN_R1L2);
+        } else if (e.getSource() == bt_advanceStart) {
+            currentLevel = Constants.LEVEL3;
             ap_root.setVisible(false);
             ap_level3Interface.setVisible(true);
-            mainControllerNotify.writeToClient(Constants.BEGIN_R1L3);
+            writeToClient(Constants.BEGIN_R1L3);
         }
     }
 
     @Override
     public void writeToClient(int command) {
-        switch (command){
-            case Constants.DIS_R1L1_EX:
-                mainControllerNotify.writeToClient(command);
+        switch (command) {
+            default:
+                super.writeToClient(command);
                 break;
         }
-    }
-
-    public void writeToClient(int command, Object data) {
-
     }
 
     @Override
@@ -147,7 +147,24 @@ public class Round2Controller implements Initializable, Runnable, ClientInteract
     }
 
     @Override
-    public void writeToClient(int command, LinkedList<String> data, int source) {
+    public void handleClientData(int command, LinkedList<String> data) {
+        switch (command) {
+            default:
+                switch (currentLevel) {
+                    case Constants.LEVEL1:
+                        ap_level1InterfaceController.handleClientData(command, data);
+                        break;
+                    case Constants.LEVEL2:
+                        ap_level2InterfaceController.handleClientData(command, data);
+                        break;
+                    case Constants.LEVEL3:
+                        ap_level3InterfaceController.handleClientData(command, data);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+        }
 
     }
 
@@ -187,8 +204,6 @@ public class Round2Controller implements Initializable, Runnable, ClientInteract
         AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
         ap_level3Interface.setVisible(false);
-
-        ap_level1InterfaceController.setNotify(this);
     }
 
 

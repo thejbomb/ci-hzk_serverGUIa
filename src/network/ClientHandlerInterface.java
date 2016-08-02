@@ -12,6 +12,4 @@ public interface ClientHandlerInterface {
     void setActiveThread(long threadID);
 
     void handleClientData(int command, LinkedList<String> data);
-
-    void handleClientData(int command, LinkedList<String> data, int source);
 }

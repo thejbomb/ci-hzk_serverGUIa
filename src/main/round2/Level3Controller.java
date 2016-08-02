@@ -9,9 +9,10 @@ import main.Main;
 import tool.Constants;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level3Controller implements Initializable{
+public class Level3Controller extends Round2Controller implements Initializable{
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -46,12 +47,18 @@ public class Level3Controller implements Initializable{
     }
 
     private void setData(){
-        lb_cnInstruction.setText(Main.R2L3_DATA.CN_INSTRUCTION);
-        lb_enInstruction.setText(Main.R2L3_DATA.EN_INSTRUCTION);
+        lb_cnInstruction.setText(Main.R2L3_DATA.INSTRUCTION_ZH);
+        lb_enInstruction.setText(Main.R2L3_DATA.INSTRUCTION_EN);
         String cnTimeLimit = "限时" + Main.R2L3_DATA.TIME_LIMIT + "分钟";
         String enTimeLimit = "Time Limit: " + Main.R2L3_DATA.TIME_LIMIT + ((Main.R2L3_DATA.TIME_LIMIT > 1) ? " minutes" : " minute");
         lb_cnTimeLimit.setText(cnTimeLimit);
         lb_enTimeLimit.setText(enTimeLimit);
+    }
+
+    @Override
+    public void handleClientData(int command, LinkedList<String> data) {
+
+
     }
 
     @Override

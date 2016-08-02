@@ -12,6 +12,4 @@ public interface ClientInteractionInterface {
 
     void writeToClient(int command, LinkedList<String> data);
 
-    void writeToClient(int command, LinkedList<String> data, int source);
-
 }

@@ -1,0 +1,34 @@
+{
+  "INSTRUCTION_ZH": "根据所给的简体字（或繁体字）找出对应的繁体字（或简体字）。找对一个得1分，找错不扣分。",
+  "INSTRUCTION_EN": "Find the corresponding simplified Chinese characters (traditional Chinese characters) according to the given traditional Chinese characters (simplified Chinese characters). 1 point will be given per correct character and no points will be deducted for incorrect characters.",
+  "TIME_LIMIT": 2,
+  "EXAMPLES": [
+    "左右结构：和 江 _ _",
+    "上下结构：思 感 _ _",
+    "内外结构：国 问 _ _"
+  ],
+  "QUESTIONS": [
+    "为",
+    "乐",
+    "書",
+    "坏",
+    "报",
+    "邊",
+    "從",
+    "後",
+    "这",
+    "点"
+  ],
+  "ANSWERS":[
+    "為",
+    "樂",
+    "樂",
+    "樂",
+    "報",
+    "边",
+    "从",
+    "后",
+    "這",
+    "點"
+  ]
+}

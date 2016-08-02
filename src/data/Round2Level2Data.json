@@ -1,0 +1,16 @@
+{
+  "INSTRUCTION_ZH": "根据要求写出相同结构的汉字，例如左右结构、上下结构、内外结构。写对一个字得1分，写错不扣分。",
+  "INSTRUCTION_EN": "Write out identically structured characters, such as characters with the same left and right components, upper and lower components, or inner and outer components. 1 point will be given per correct character and no points will be deducted for incorrect characters.",
+  "TIME_LIMIT": 3,
+  "EXAMPLES": [
+    "左右结构：和 江 _ _",
+    "上下结构：思 感 _ _",
+    "内外结构：国 问 _ _"
+  ],
+  "QUESTIONS": [
+    "左右结构",
+    "上下结构",
+    "内外结构",
+    "半包围结构"
+  ]
+}

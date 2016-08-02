@@ -1,6 +1,5 @@
 package main.round2;
 
-import data.round2.Round2Level2Data;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -10,9 +9,10 @@ import main.Main;
 import tool.Constants;
 
 import java.net.URL;
+import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level2Controller implements Initializable {
+public class Level2Controller extends Round2Controller implements Initializable {
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -47,8 +47,8 @@ public class Level2Controller implements Initializable {
     }
 
     private void setData() {
-        lb_cnInstruction.setText(Main.R2L2_DATA.CN_INSTRUCTION);
-        lb_enInstruction.setText(Main.R2L2_DATA.EN_INSTRUCTION);
+        lb_cnInstruction.setText(Main.R2L2_DATA.INSTRUCTION_ZH);
+        lb_enInstruction.setText(Main.R2L2_DATA.INSTRUCTION_EN);
         String cnTimeLimit = "限时" + Main.R2L2_DATA.TIME_LIMIT + "分钟";
         String enTimeLimit = "Time Limit: " + Main.R2L2_DATA.TIME_LIMIT + ((Main.R2L2_DATA.TIME_LIMIT > 1) ? " minutes" : " minute");
         lb_cnTimeLimit.setText(cnTimeLimit);
@@ -59,6 +59,11 @@ public class Level2Controller implements Initializable {
             cnExample += data + "\n";
         }
         lb_cnExample.setText(cnExample);
+    }
+
+    @Override
+    public void handleClientData(int command, LinkedList<String> data) {
+
     }
 
     @Override

@@ -1,23 +1,33 @@
 package tool;
 
 public class Constants {
+    public static final int ROUND1 = 1;
+    public static final int ROUND2 = 2;
+    public static final int ROUND3 = 3;
+    public static final int ROUND4 = 4;
+    public static final int ROUND5 = 5;
+
+    public static final int LEVEL1 = 1;
+    public static final int LEVEL2 = 2;
+    public static final int LEVEL3 = 3;
+
     public static final int BEGIN_COMP = 0x1;
     public static final int LOGIN_SUCCESS = 0x7;
     public static final int ERROR_ID_NOT_FOUND = 0x600;
     public static final int USER_CONNECT = 0x5;
 
-    public static final int SERVER_SEND_NEXT = 0x700;
-    public static final int CLIENT_SEND_NEXT = 0x701;
-    public static final int SERVER_RECEIVED = 0x702;
-    public static final int CLIENT_RECEIVED = 0x703;
-    public static final int TRANMISSION_BEGIN = 0x7C0;
-    public static final int TRANSMISSION_END = 0x7D0;
+    public static final String SERVER_SEND_NEXT = "SERV_SND_NXT";
+    public static final String CLIENT_SEND_NEXT = "CLNT_SND_NXT";
+    public static final String TRANSMISSION_BEGIN = "TRANS_BEGIN";
+    public static final String TRANSMISSION_END = "TRANS_END";
 
-    public static final int BEGIN_R1L1 = 0x110;
+    public static final int BEGIN_R2L1 = 0x110;
     public static final int BEGIN_R1L2 = 0x120;
     public static final int BEGIN_R1L3 = 0x130;
 
     public static final int DIS_R1L1_EX = 0x112;
+    public static final int DIS_R1L1_QS = 0x113;
+    public static final int SND_R1L1_RS = 0x114;
 
     public static final String CN_FONT_HEADER = "cnFont-header";
     public static final String FONT_BUTTON = "font-button";
