@@ -1,10 +1,13 @@
 package data;
 
+import data.round2.Round2Level1Data;
+
 import java.util.LinkedList;
 
 public class UserDataLevel1 extends UserData {
     private long threadId = -1;
     private LinkedList<String> round2Answers;
+    private LinkedList<Integer> round2Points;
 
     public UserDataLevel1(String name, int level, int ID) {
         super(name, level, ID);
@@ -42,5 +45,31 @@ public class UserDataLevel1 extends UserData {
 
     public LinkedList<String> getRound2Answers() {
         return round2Answers;
+    }
+
+    public void setPointRound2(int point, int index) {
+        if (round2Points == null) {
+            round2Points = new LinkedList<>();
+            for (int i = 0; i < Round2Level1Data.NUM_OF_QUESTIONS; i++)
+                round2Points.add(0);
+        }
+
+        round2Points.set(index, point);
+
+        int total = 0;
+
+        for (int i = 0; i < Round2Level1Data.NUM_OF_QUESTIONS; i++)
+                total += round2Points.get(i);
+        if (round2Points.size() == Round2Level1Data.NUM_OF_QUESTIONS)
+            round2Points.add(total);
+        else {
+            round2Points.removeLast();
+            round2Points.add(total);
+        }
+
+    }
+
+    public LinkedList<Integer> getPoints() {
+        return round2Points;
     }
 }

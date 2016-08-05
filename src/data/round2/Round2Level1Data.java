@@ -8,6 +8,7 @@ public class Round2Level1Data {
     public final int TIME_LIMIT;
     public final ArrayList<String> EXAMPLES;
     public final ArrayList<String> QUESTIONS;
+    public static final int NUM_OF_QUESTIONS = 5;
 
     public Round2Level1Data(String cnInstruction, String enInstruction, int timeLimit, ArrayList<String> examples, ArrayList<String> questions) {
         INSTRUCTION_ZH = cnInstruction;

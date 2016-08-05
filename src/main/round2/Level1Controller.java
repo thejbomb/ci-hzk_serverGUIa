@@ -5,15 +5,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.Main;
-import main.MainController;
 import tool.Constants;
 
 import java.net.URL;
@@ -80,6 +77,20 @@ public class Level1Controller extends Round2Controller implements Initializable,
     private Label lb_answer4;
     @FXML
     private Label lb_answer5;
+    @FXML
+    private Label lb_total;
+    @FXML
+    private TextField tf_point1;
+    @FXML
+    private TextField tf_point2;
+    @FXML
+    private TextField tf_point3;
+    @FXML
+    private TextField tf_point4;
+    @FXML
+    private TextField tf_point5;
+    @FXML
+    private Label lb_pointTotal;
 
     private Thread thread;
 
@@ -97,7 +108,9 @@ public class Level1Controller extends Round2Controller implements Initializable,
         }
         ObservableList<String> name = FXCollections.observableArrayList(studentName);
         cb_users.setItems(name);
+        cb_users.setValue(cb_users.getItems().get(0));
     }
+
     private void setStyleId() {
         lb_cnInstructionHeader.setId(Constants.CN_FONT_HEADER);
         lb_instructionBody_zh.setId(Constants.CN_FONT_TEXT);
@@ -141,6 +154,8 @@ public class Level1Controller extends Round2Controller implements Initializable,
         lb_question3_st.setText(lb_question3.getText());
         lb_question4_st.setText(lb_question4.getText());
         lb_question5_st.setText(lb_question5.getText());
+
+        lb_pointTotal.setText("0"); // the initial total point is 0
     }
 
     @FXML
@@ -162,9 +177,31 @@ public class Level1Controller extends Round2Controller implements Initializable,
                     lb_answer3.setText(ud.getRound2Answers().get(2));
                     lb_answer4.setText(ud.getRound2Answers().get(3));
                     lb_answer5.setText(ud.getRound2Answers().get(4));
+
+                    tf_point1.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(0)));
+                    tf_point2.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(1)));
+                    tf_point3.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(2)));
+                    tf_point4.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(3)));
+                    tf_point5.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(4)));
+                    lb_pointTotal.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().getLast()));
                 }
             }
         }
+    }
+
+    @FXML
+    private void handleKeyboard(KeyEvent e) {
+        if (cb_users != null)
+            for (UserDataLevel1 ud : level1Users) {
+                if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
+                    ud.setPointRound2((tf_point1.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point1.getText()),0);
+                    ud.setPointRound2((tf_point2.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point2.getText()),1);
+                    ud.setPointRound2((tf_point3.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point3.getText()),2);
+                    ud.setPointRound2((tf_point4.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point4.getText()),3);
+                    ud.setPointRound2((tf_point5.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point5.getText()),4);
+                    lb_pointTotal.setText(Integer.toString(ud.getPoints().getLast()));
+                }
+            }
     }
 
     @Override
