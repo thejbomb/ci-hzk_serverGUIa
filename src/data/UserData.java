@@ -1,11 +1,14 @@
 package data;
 
+import java.util.LinkedList;
+
 public class UserData {
     protected final String USER_NAME;
     protected final int USER_LEVEL;
     protected final int USER_ID;
     private String userLevel;
     private String user_status;
+    protected long threadId = -1;
 
     public UserData(String name, int level, int ID) {
         USER_NAME = name;
@@ -45,7 +48,7 @@ public class UserData {
         return USER_ID;
     }
 
-    public int getUSER_LEVEL(){
+    public int getUSER_LEVEL() {
         return USER_LEVEL;
     }
 
@@ -57,4 +60,19 @@ public class UserData {
         return user_status;
     }
 
+    public long getThreadId() {
+        return threadId;
+    }
+
+    public LinkedList<String> getBasicInfo() {
+        LinkedList<String> result = new LinkedList<>();
+        result.add(USER_NAME);
+        result.add(userLevel);
+        return result;
+    }
+
+    public void setThreadId(long id) {
+        threadId = id;
+        System.out.println("User with ID " + USER_ID + " threadId is " + threadId);
+    }
 }

@@ -22,12 +22,23 @@ public class Constants {
     public static final String TRANSMISSION_END = "TRANS_END";
 
     public static final int BEGIN_R2L1 = 0x110;
-    public static final int BEGIN_R1L2 = 0x120;
-    public static final int BEGIN_R1L3 = 0x130;
+    public static final int BEGIN_R2L2 = 0x120;
+    public static final int BEGIN_R2L3 = 0x130;
 
-    public static final int DIS_R1L1_EX = 0x112;
-    public static final int DIS_R1L1_QS = 0x113;
-    public static final int SND_R1L1_RS = 0x114;
+    public static final int DIS_R2L1_EXP = 0x112;
+    public static final int DIS_R2L1_QST = 0x113;
+    public static final int C2S_R2L1_ANS = 0x114;
+    public static final int S2C_R2L1_SCR = 0x115;
+
+    public static final int DIS_R2L2_EXP = 0x122;
+    public static final int DIS_R2L2_QST = 0x123;
+    public static final int C2S_R2L2_ANS = 0x124;
+    public static final int S2C_R2L2_SCR = 0x125;
+
+    public static final int DIS_R2L3_EXP = 0x132;
+    public static final int DIS_R2L3_QST = 0x133;
+    public static final int C2S_R2L3_ANS = 0x134;
+    public static final int S2C_R2L3_SCR = 0x135;
 
     public static final String CN_FONT_HEADER = "cnFont-header";
     public static final String FONT_BUTTON = "font-button";

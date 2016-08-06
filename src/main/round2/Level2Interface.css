@@ -2,51 +2,70 @@
     -fx-background-color: transparent;
     -fx-alignment: CENTER;
     -fx-font: 16px "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
 }
 
-#cnFont-header {
+#font-instructionHeader{
     -fx-font: bold 50pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
 }
 
-#enFont-exampleHeader {
+#font-instructionBody-zh{
+    -fx-font: bold 50pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-instructionBody-en{
     -fx-font: bold 50pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-instructionTime-zh{
+    -fx-font: bold 50pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-instructionTime-en{
+    -fx-font: bold 50pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-exampleHeader{
+    -fx-font: bold 50pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-exampleBody{
+    -fx-font: bold 50pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-exampleWarning{
+    -fx-font: bold 50pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-roundTimer {
+    -fx-font: bold 50pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-roundQuestions {
+    -fx-font: bold 50pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+#font-roundAnswers {
+    -fx-font: bold 15pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
 }
 
 #cnFont-button {
     -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
 }
 
 #enFont-button {
-    -fx-font: bold 30pt "Bell MT";
-}
-
-#cnFont-text {
-    -fx-font: 35pt "KaiTi";
-}
-
-#enFont-text {
-    -fx-font: 25pt "Bell MT";
-}
-
-#cnFont-timeLimit {
-    -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(255,0,0);
-}
-
-#enFont-timeLimit {
-    -fx-font: bold 30pt "Bell MT";
-    -fx-text-fill: rgb(255,0,0);
-}
-
-#cnFont-example {
-    -fx-font: bold 40pt "KaiTi";
-}
-
-#enFont-example{
-    -fx-font: bold 40pt "Bell MT";
-}
-
-#enFont-exampleWarning {
-    -fx-font: bold 30pt "Bell MT";
-    -fx-text-fill: rgb(255,0,0);
-}
+     -fx-font: bold 30pt "Bell MT";
+     -fx-text-fill: rgb(0,0,0);
+ }

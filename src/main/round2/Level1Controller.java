@@ -12,6 +12,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import main.Main;
 import tool.Constants;
+import tool.StyleId;
 
 import java.net.URL;
 import java.util.LinkedList;
@@ -24,7 +25,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @FXML
     private TabPane tp_mainTab;
     @FXML
-    private Label lb_cnInstructionHeader;
+    private Label lb_instructionHeader;
     @FXML
     private Label lb_instructionBody_zh;
     @FXML
@@ -34,11 +35,11 @@ public class Level1Controller extends Round2Controller implements Initializable,
     @FXML
     private Label lb_instructionTime_en;
     @FXML
-    private Label lb_enExampleHeader;
+    private Label lb_exampleHeader;
     @FXML
     private Label lb_exampleBody;
     @FXML
-    private Label lb_enWarning;
+    private Label lb_exampleWarning;
     @FXML
     private Label lb_question1;
     @FXML
@@ -91,11 +92,16 @@ public class Level1Controller extends Round2Controller implements Initializable,
     private TextField tf_point5;
     @FXML
     private Label lb_pointTotal;
+    @FXML
+    private Button bt_home;
+
+    private Round2Controller round2Controller;
 
     private Thread thread;
 
-    public void init(LinkedList<UserDataLevel1> level1Users) {
+    public void init(LinkedList<UserDataLevel1> level1Users, Round2Controller controller) {
         this.level1Users = level1Users;
+        round2Controller = controller;
         thread = new Thread(this);
         thread.start();
         initComboBox();
@@ -112,25 +118,22 @@ public class Level1Controller extends Round2Controller implements Initializable,
     }
 
     private void setStyleId() {
-        lb_cnInstructionHeader.setId(Constants.CN_FONT_HEADER);
-        lb_instructionBody_zh.setId(Constants.CN_FONT_TEXT);
-        lb_instructionBody_en.setId(Constants.EN_FONT_TEXT);
-        lb_instructionTime_zh.setId(Constants.CN_FONT_TIME_LIMIT);
-        lb_instructionTime_en.setId(Constants.EN_FONT_TIME_LIMIT);
+        lb_instructionHeader.setId(StyleId.INSTRUCTION_HEADER);
+        lb_instructionBody_zh.setId(StyleId.INSTRUCTION_BODY_ZH);
+        lb_instructionBody_en.setId(StyleId.INSTRUCTION_BODY_EN);
+        lb_instructionTime_zh.setId(StyleId.INSTRUCTION_TIME_ZH);
+        lb_instructionTime_en.setId(StyleId.INSTRUCTION_TIME_EN);
 
-        lb_enExampleHeader.setId(Constants.EN_FONT_EXAMPLE_HEADER);
-        lb_exampleBody.setId(Constants.CN_FONT_EXAMPLE);
-        lb_enWarning.setId(Constants.EN_FONT_EXAMPLE_WARNING);
+        lb_exampleHeader.setId(StyleId.EXAMPLE_HEADER);
+        lb_exampleBody.setId(StyleId.EXAMPLE_BODY);
+        lb_exampleWarning.setId(StyleId.EXAMPLE_WARNING);
 
-        lb_timer.setId(Constants.FONT_TIMER);
-
-        lb_question1.setId(Constants.CN_FONT_QUESTION);
-        lb_question2.setId(Constants.CN_FONT_QUESTION);
-        lb_question3.setId(Constants.CN_FONT_QUESTION);
-        lb_question4.setId(Constants.CN_FONT_QUESTION);
-        lb_question5.setId(Constants.CN_FONT_QUESTION);
-
-        bt_startTimer.setId(Constants.EN_FONT_START_TIMER);
+        lb_timer.setId(StyleId.ROUND_TIMER);
+        lb_question1.setId(StyleId.ROUND_QUESTIONS);
+        lb_question2.setId(StyleId.ROUND_QUESTIONS);
+        lb_question3.setId(StyleId.ROUND_QUESTIONS);
+        lb_question4.setId(StyleId.ROUND_QUESTIONS);
+        lb_question5.setId(StyleId.ROUND_QUESTIONS);
     }
 
     private void setData() {
@@ -162,7 +165,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
     private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_startTimer) {
             bt_startTimer.setVisible(false);
-            super.writeToClient(Constants.DIS_R1L1_QS);
+            super.writeToClient(Constants.DIS_R2L1_QST);
             lb_timer.setVisible(true);
             lb_question1.setVisible(true);
             lb_question2.setVisible(true);
@@ -186,7 +189,18 @@ public class Level1Controller extends Round2Controller implements Initializable,
                     lb_pointTotal.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().getLast()));
                 }
             }
+        }else if(e.getSource() == bt_home){
+            hide();
+            round2Controller.show();
         }
+    }
+
+    public void show(){
+        ap_root.setVisible(true);
+    }
+
+    private void hide(){
+        ap_root.setVisible(false);
     }
 
     @FXML
@@ -194,30 +208,31 @@ public class Level1Controller extends Round2Controller implements Initializable,
         if (cb_users != null)
             for (UserDataLevel1 ud : level1Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
-                    ud.setPointRound2((tf_point1.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point1.getText()),0);
-                    ud.setPointRound2((tf_point2.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point2.getText()),1);
-                    ud.setPointRound2((tf_point3.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point3.getText()),2);
-                    ud.setPointRound2((tf_point4.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point4.getText()),3);
-                    ud.setPointRound2((tf_point5.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point5.getText()),4);
+                    ud.setPointRound2((tf_point1.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point1.getText()), 0);
+                    ud.setPointRound2((tf_point2.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point2.getText()), 1);
+                    ud.setPointRound2((tf_point3.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point3.getText()), 2);
+                    ud.setPointRound2((tf_point4.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point4.getText()), 3);
+                    ud.setPointRound2((tf_point5.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point5.getText()), 4);
                     lb_pointTotal.setText(Integer.toString(ud.getPoints().getLast()));
+                    writeToClient(Constants.S2C_R2L1_SCR);
                 }
             }
     }
 
     @Override
     public void writeToClient(int command) {
-
+        super.writeToClient(command);
     }
 
     @Override
     public void writeToClient(int command, LinkedList<String> data) {
-
+        super.writeToClient(command, data);
     }
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
-            case Constants.SND_R1L1_RS:
+            case Constants.C2S_R2L1_ANS:
                 lb_answer1.setText(level1Users.getFirst().getRound2Answers().get(0));
                 lb_answer2.setText(level1Users.getFirst().getRound2Answers().get(1));
                 lb_answer3.setText(level1Users.getFirst().getRound2Answers().get(2));
@@ -234,7 +249,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
     public void run() {
         while (true) {
             if (tp_mainTab.getTabs().get(1).isSelected()) {
-                super.writeToClient(Constants.DIS_R1L1_EX);
+                super.writeToClient(Constants.DIS_R2L1_EXP);
                 break;
             }
         }
@@ -245,6 +260,7 @@ public class Level1Controller extends Round2Controller implements Initializable,
     public void initialize(URL location, ResourceBundle resources) {
         setStyleId();
         setData();
+        tp_mainTab.setVisible(true);
         lb_timer.setVisible(false);
         lb_question1.setVisible(false);
         lb_question2.setVisible(false);

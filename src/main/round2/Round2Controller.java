@@ -1,6 +1,8 @@
 package main.round2;
 
 import data.UserDataLevel1;
+import data.UserDataLevel2;
+import data.UserDataLevel3;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -76,11 +78,18 @@ public class Round2Controller extends MainController implements Initializable, R
 
     private int currentLevel = 0;
 
-    public void init(LinkedList<UserDataLevel1> level1Users) {
-        this.level1Users = level1Users;
+    public void init() {
         thread = new Thread(this);
         thread.start();
 
+    }
+
+    public void show(){
+        ap_root.setVisible(true);
+    }
+
+    private void hide(){
+        ap_root.setVisible(false);
     }
 
     public void setStyle() {
@@ -107,43 +116,44 @@ public class Round2Controller extends MainController implements Initializable, R
 
     }
 
-    public void setLevel1Users(LinkedList<UserDataLevel1> users) {
-        level1Users = users;
+    public void setUsers(LinkedList<UserDataLevel1> level1, LinkedList<UserDataLevel2> level2, LinkedList<UserDataLevel3> level3) {
+        level1Users = level1;
+        level2Users = level2;
+        level3Users = level3;
     }
 
     @FXML
     private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_beginnerStart) {
             currentLevel = Constants.LEVEL1;
-            ap_root.setVisible(false);
-            ap_level1Interface.setVisible(true);
-            ap_level1InterfaceController.init(level1Users);
+            hide();
+            ap_level1InterfaceController.init(level1Users, this);
+            ap_level1InterfaceController.show();
             writeToClient(Constants.BEGIN_R2L1);
         } else if (e.getSource() == bt_intermediateStart) {
             currentLevel = Constants.LEVEL2;
-            ap_root.setVisible(false);
-            ap_level2Interface.setVisible(true);
-            writeToClient(Constants.BEGIN_R1L2);
+            hide();
+            ap_level2InterfaceController.init(level2Users,this);
+            ap_level2InterfaceController.show();
+            writeToClient(Constants.BEGIN_R2L2);
         } else if (e.getSource() == bt_advanceStart) {
             currentLevel = Constants.LEVEL3;
-            ap_root.setVisible(false);
-            ap_level3Interface.setVisible(true);
-            writeToClient(Constants.BEGIN_R1L3);
+            hide();
+            ap_level3InterfaceController.show();
+            writeToClient(Constants.BEGIN_R2L3);
         }
     }
 
     @Override
     public void writeToClient(int command) {
-        switch (command) {
-            default:
-                super.writeToClient(command);
-                break;
-        }
+
+        super.writeToClient(command);
+
     }
 
     @Override
     public void writeToClient(int command, LinkedList<String> data) {
-
+        super.writeToClient(command, data);
     }
 
     @Override
@@ -185,7 +195,7 @@ public class Round2Controller extends MainController implements Initializable, R
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ap_root.setVisible(false);
+        hide();
 
         AnchorPane.setBottomAnchor(ap_level1Interface, 0.0);
         AnchorPane.setTopAnchor(ap_level1Interface, 0.0);

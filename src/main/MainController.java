@@ -1,8 +1,6 @@
 package main;
 
-import data.HzkException;
-import data.UserData;
-import data.UserDataLevel1;
+import data.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -22,7 +20,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class MainController implements ClientInteractionInterface, Initializable, ClientHandlerInterface {
+public class MainController implements Initializable, ClientHandlerInterface {
     @FXML
     private Button bt_start;
     @FXML
@@ -53,8 +51,8 @@ public class MainController implements ClientInteractionInterface, Initializable
     private static List<ClientHandler> clients = null;
 
     protected LinkedList<UserDataLevel1> level1Users = null;
-    protected LinkedList<UserDataLevel1> level2Users = null;
-    protected LinkedList<UserDataLevel1> level3Users = null;
+    protected LinkedList<UserDataLevel2> level2Users = null;
+    protected LinkedList<UserDataLevel3> level3Users = null;
 
     private long activeThreadId = -1;
 
@@ -96,7 +94,7 @@ public class MainController implements ClientInteractionInterface, Initializable
             if (Main.USERS_LIST.get(i).getUSER_ID() == ID) {
                 tb_usersList.getItems().get(i).setUserStatus(true);
                 tb_usersList.getItems().set(i, tb_usersList.getItems().get(i));
-                clientHandlerNotify.writeToClient(Constants.LOGIN_SUCCESS);
+                clientHandlerNotify.writeToClient(Constants.LOGIN_SUCCESS, tb_usersList.getItems().get(i).getBasicInfo());
                 found = true;
             }
         }
@@ -115,41 +113,69 @@ public class MainController implements ClientInteractionInterface, Initializable
             if (ud.getUSER_LEVEL() == 1)
                 level1Users.add(new UserDataLevel1(ud.getUSER_NAME(), ud.getUSER_LEVEL(), ud.getUSER_ID()));
             else if (ud.getUSER_LEVEL() == 2)
-                level2Users.add(new UserDataLevel1(ud.getUSER_NAME(), ud.getUSER_LEVEL(), ud.getUSER_ID()));
+                level2Users.add(new UserDataLevel2(ud.getUSER_NAME(), ud.getUSER_LEVEL(), ud.getUSER_ID()));
             else
-                level3Users.add(new UserDataLevel1(ud.getUSER_NAME(), ud.getUSER_LEVEL(), ud.getUSER_ID()));
+                level3Users.add(new UserDataLevel3(ud.getUSER_NAME(), ud.getUSER_LEVEL(), ud.getUSER_ID()));
         }
-        ap_round2InterfaceController.setLevel1Users(level1Users);
     }
 
     @FXML
     private void handleMouseClick(MouseEvent e) throws Exception {
         if (e.getSource() == bt_start) {
-            sendDataToAllClients(Constants.BEGIN_COMP);
+            sendCommandToAllClients(Constants.BEGIN_COMP);
             ap_root.setVisible(false);
             ap_round2Interface.setVisible(true);
-            ap_round2InterfaceController.init(level1Users);
+            ap_round2InterfaceController.init();
             ap_round2InterfaceController.setStyle();
+            ap_round2InterfaceController.setUsers(level1Users, level2Users, level3Users);
             System.out.println(clients);
         }
     }
 
-    private void sendDataToAllClients(int command) {
+    private LinkedList<String> packageData(Object data) {
+        LinkedList<String> result = new LinkedList<>();
+        if (data.getClass() == Integer.class)
+            result.add(Integer.toString((int) data));
+        else if (data.getClass() == String.class)
+            result.add((String) data);
+        else
+            result.add(null);
+        return result;
+    }
+
+    private void sendCommandToAllClients(int command) {
         for (ClientHandler ch : MainController.clients) {
             ch.writeToClient(command);
         }
     }
 
-    @Override
+    private void sendDataToClient(int command, LinkedList<String> data, UserData user) {
+        for (ClientHandler ch : MainController.clients) {
+            if (ch.getThreadID() == user.getThreadId())
+                ch.writeToClient(command, data);
+        }
+    }
+
     public void writeToClient(int command) {
         switch (command) {
+            case Constants.S2C_R2L1_SCR:
+                for (UserDataLevel1 ud : level1Users) {
+                    if (ud.getPoints() != null)
+                        sendDataToClient(command, packageData(ud.getPoints().getLast()), ud);
+                }
+                break;
+            case Constants.S2C_R2L2_SCR:
+                for (UserDataLevel2 ud : level2Users) {
+                    if (ud.getPoints() != null)
+                        sendDataToClient(command, packageData(ud.getPoints().getLast()), ud);
+                }
+                break;
             default:
-                sendDataToAllClients(command);
+                sendCommandToAllClients(command);
                 break;
         }
     }
 
-    @Override
     public void writeToClient(int command, LinkedList<String> data) {
 
     }
@@ -169,9 +195,13 @@ public class MainController implements ClientInteractionInterface, Initializable
     @Override
     public void connectUser(int userID) {
         try {
-
             updateTable(userID);
             for (UserDataLevel1 ud : level1Users) {
+                if (ud.getUSER_ID() == userID)
+                    ud.setThreadId(activeThreadId);
+
+            }
+            for (UserDataLevel2 ud : level2Users) {
                 if (ud.getUSER_ID() == userID)
                     ud.setThreadId(activeThreadId);
 
@@ -192,8 +222,15 @@ public class MainController implements ClientInteractionInterface, Initializable
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
-            case Constants.SND_R1L1_RS:
+            case Constants.C2S_R2L1_ANS:
                 for (UserDataLevel1 ud : level1Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound2Answers(data);
+                }
+                ap_round2InterfaceController.handleClientData(command, null);
+                break;
+            case Constants.C2S_R2L2_ANS:
+                for (UserDataLevel2 ud : level2Users) {
                     if (ud.getThreadId() == activeThreadId)
                         ud.setRound2Answers(data);
                 }
@@ -231,7 +268,6 @@ public class MainController implements ClientInteractionInterface, Initializable
         AnchorPane.setLeftAnchor(ap_round2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
         ap_round2Interface.setVisible(false);
-        ap_round2InterfaceController.init(level1Users);
 
         currentRound = Constants.ROUND2;
 
