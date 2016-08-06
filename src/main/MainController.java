@@ -170,6 +170,12 @@ public class MainController implements Initializable, ClientHandlerInterface {
                         sendDataToClient(command, packageData(ud.getPoints().getLast()), ud);
                 }
                 break;
+            case Constants.S2C_R2L3_SCR:
+                for (UserDataLevel3 ud : level3Users) {
+                    if (ud.getPoints() != null)
+                        sendDataToClient(command, packageData(ud.getPoints().getLast()), ud);
+                }
+                break;
             default:
                 sendCommandToAllClients(command);
                 break;
@@ -206,6 +212,11 @@ public class MainController implements Initializable, ClientHandlerInterface {
                     ud.setThreadId(activeThreadId);
 
             }
+            for (UserDataLevel3 ud : level3Users) {
+                if (ud.getUSER_ID() == userID)
+                    ud.setThreadId(activeThreadId);
+
+            }
         } catch (HzkException ex) {
             for (ClientHandler client : MainController.clients) {
                 if (client.getThreadID() == activeThreadId)
@@ -231,6 +242,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 break;
             case Constants.C2S_R2L2_ANS:
                 for (UserDataLevel2 ud : level2Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound2Answers(data);
+                }
+                ap_round2InterfaceController.handleClientData(command, null);
+                break;
+            case Constants.C2S_R2L3_ANS:
+                for (UserDataLevel3 ud : level3Users) {
                     if (ud.getThreadId() == activeThreadId)
                         ud.setRound2Answers(data);
                 }

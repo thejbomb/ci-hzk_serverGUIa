@@ -9,6 +9,7 @@ public class Round2Level3Data {
     public final ArrayList<String> EXAMPLES;
     public final ArrayList<String> QUESTIONS;
     public final ArrayList<String> ANSWERS;
+    public static final int NUM_OF_QUESTIONS = 10;
 
     public Round2Level3Data(String cnInstruction, String enInstruction, int timeLimit, ArrayList<String> examples, ArrayList<String> questions, ArrayList<String> answers) {
         INSTRUCTION_ZH = cnInstruction;

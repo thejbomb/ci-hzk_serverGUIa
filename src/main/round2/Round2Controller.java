@@ -139,6 +139,7 @@ public class Round2Controller extends MainController implements Initializable, R
         } else if (e.getSource() == bt_advanceStart) {
             currentLevel = Constants.LEVEL3;
             hide();
+            ap_level3InterfaceController.init(level3Users,this);
             ap_level3InterfaceController.show();
             writeToClient(Constants.BEGIN_R2L3);
         }

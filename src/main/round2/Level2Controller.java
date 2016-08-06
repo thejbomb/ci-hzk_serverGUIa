@@ -90,6 +90,11 @@ public class Level2Controller extends Round2Controller implements Initializable,
 
     private Round2Controller round2Controller;
 
+    private LinkedList<Label> questions;
+    private LinkedList<Label> questions_st;
+    private LinkedList<Label> answers;
+    private LinkedList<TextField> points;
+
     private Thread thread;
 
     public void init(LinkedList<UserDataLevel2> level2Users, Round2Controller controller) {
@@ -122,10 +127,15 @@ public class Level2Controller extends Round2Controller implements Initializable,
         lb_exampleWarning.setId(StyleId.EXAMPLE_WARNING);
 
         lb_timer.setId(StyleId.ROUND_TIMER);
-        lb_question1.setId(StyleId.ROUND_QUESTIONS);
-        lb_question2.setId(StyleId.ROUND_QUESTIONS);
-        lb_question3.setId(StyleId.ROUND_QUESTIONS);
-        lb_question4.setId(StyleId.ROUND_QUESTIONS);
+        for (int i = 0; i < questions.size(); i++) {
+            questions.get(i).setId(StyleId.ROUND_QUESTIONS);
+            questions_st.get(i).setId(StyleId.ROUND_QUESTIONS);
+            answers.get(i).setId(StyleId.ROUND_ANSWERS);
+            points.get(i).setId(StyleId.SCORE_POINT);
+        }
+
+        lb_total.setId(StyleId.SCORE_TOTAL_LABEL);
+        lb_pointTotal.setId(StyleId.SCORE_TOTAL_POINT);
     }
 
     private void setData() {
@@ -142,15 +152,11 @@ public class Level2Controller extends Round2Controller implements Initializable,
         }
         lb_exampleBody.setText(cnExample);
 
-        lb_question1.setText(Main.R2L2_DATA.QUESTIONS.get(0));
-        lb_question2.setText(Main.R2L2_DATA.QUESTIONS.get(1));
-        lb_question3.setText(Main.R2L2_DATA.QUESTIONS.get(2));
-        lb_question4.setText(Main.R2L2_DATA.QUESTIONS.get(3));
+        for (int i = 0; i < questions.size(); i++) {
+            questions.get(i).setText(Main.R2L2_DATA.QUESTIONS.get(i));
 
-        lb_question1_st.setText(lb_question1.getText());
-        lb_question2_st.setText(lb_question2.getText());
-        lb_question3_st.setText(lb_question3.getText());
-        lb_question4_st.setText(lb_question4.getText());
+            questions_st.get(i).setText(questions.get(i).getText());
+        }
 
         lb_pointTotal.setText("0"); // the initial total point is 0
     }
@@ -161,36 +167,28 @@ public class Level2Controller extends Round2Controller implements Initializable,
             bt_startTimer.setVisible(false);
             super.writeToClient(Constants.DIS_R2L2_QST);
             lb_timer.setVisible(true);
-            lb_question1.setVisible(true);
-            lb_question2.setVisible(true);
-            lb_question3.setVisible(true);
-            lb_question4.setVisible(true);
+            for (Label question : questions) question.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
             for (UserDataLevel2 ud : level2Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
-                    lb_answer1.setText(ud.getRound2Answers().get(0));
-                    lb_answer2.setText(ud.getRound2Answers().get(1));
-                    lb_answer3.setText(ud.getRound2Answers().get(2));
-                    lb_answer4.setText(ud.getRound2Answers().get(3));
-
-                    tf_point1.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(0)));
-                    tf_point2.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(1)));
-                    tf_point3.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(2)));
-                    tf_point4.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(3)));
+                    for (int i = 0; i < answers.size(); i++) {
+                        answers.get(i).setText(ud.getRound2Answers().get(i));
+                        points.get(i).setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(i)));
+                    }
                     lb_pointTotal.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().getLast()));
                 }
             }
-        }else if(e.getSource() == bt_home){
+        } else if (e.getSource() == bt_home) {
             hide();
             round2Controller.show();
         }
     }
 
-    public void show(){
+    public void show() {
         ap_root.setVisible(true);
     }
 
-    private void hide(){
+    private void hide() {
         ap_root.setVisible(false);
     }
 
@@ -199,10 +197,8 @@ public class Level2Controller extends Round2Controller implements Initializable,
         if (cb_users != null)
             for (UserDataLevel2 ud : level2Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
-                    ud.setPointRound2((tf_point1.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point1.getText()), 0);
-                    ud.setPointRound2((tf_point2.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point2.getText()), 1);
-                    ud.setPointRound2((tf_point3.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point3.getText()), 2);
-                    ud.setPointRound2((tf_point4.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point4.getText()), 3);
+                    for (int i = 0; i < points.size(); i++)
+                        ud.setPointRound2((points.get(i).getText().compareTo("") == 0) ? 0 : Integer.parseInt(points.get(i).getText()), i);
                     lb_pointTotal.setText(Integer.toString(ud.getPoints().getLast()));
                     writeToClient(Constants.S2C_R2L2_SCR);
                 }
@@ -223,10 +219,8 @@ public class Level2Controller extends Round2Controller implements Initializable,
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
             case Constants.C2S_R2L2_ANS:
-                lb_answer1.setText(level2Users.getFirst().getRound2Answers().get(0));
-                lb_answer2.setText(level2Users.getFirst().getRound2Answers().get(1));
-                lb_answer3.setText(level2Users.getFirst().getRound2Answers().get(2));
-                lb_answer4.setText(level2Users.getFirst().getRound2Answers().get(3));
+                for (int i = 0; i < answers.size(); i++)
+                    answers.get(i).setText(level2Users.getFirst().getRound2Answers().get(i));
                 System.out.println(level2Users.getFirst().getRound2Answers());
                 break;
             default:
@@ -247,14 +241,41 @@ public class Level2Controller extends Round2Controller implements Initializable,
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        if (questions == null)
+            questions = new LinkedList<>();
+        if (questions_st == null)
+            questions_st = new LinkedList<>();
+        if (answers == null)
+            answers = new LinkedList<>();
+        if (points == null)
+            points = new LinkedList<>();
+
+        questions.add(lb_question1);
+        questions.add(lb_question2);
+        questions.add(lb_question3);
+        questions.add(lb_question4);
+
+        questions_st.add(lb_question1_st);
+        questions_st.add(lb_question2_st);
+        questions_st.add(lb_question3_st);
+        questions_st.add(lb_question4_st);
+
+        answers.add(lb_answer1);
+        answers.add(lb_answer2);
+        answers.add(lb_answer3);
+        answers.add(lb_answer4);
+
+        points.add(tf_point1);
+        points.add(tf_point2);
+        points.add(tf_point3);
+        points.add(tf_point4);
+
         setStyleId();
         setData();
         tp_mainTab.setVisible(true);
         lb_timer.setVisible(false);
-        lb_question1.setVisible(false);
-        lb_question2.setVisible(false);
-        lb_question3.setVisible(false);
-        lb_question4.setVisible(false);
+        for(Label q : questions)
+            q.setVisible(false);
         bt_startTimer.setVisible(true);
     }
 

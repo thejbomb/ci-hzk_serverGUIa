@@ -20,4 +20,8 @@ public class StyleId {
     public static final String ROUND_TIMER = "font-roundTimer";
     public static final String ROUND_QUESTIONS = "font-roundQuestions";
     public static final String ROUND_ANSWERS = "font-roundAnswers";
+
+    public static final String SCORE_POINT = "font-scorePoint";
+    public static final String SCORE_TOTAL_LABEL = "font-scoreTotalLabel";
+    public static final String SCORE_TOTAL_POINT = "font-scorePointTotal";
 }

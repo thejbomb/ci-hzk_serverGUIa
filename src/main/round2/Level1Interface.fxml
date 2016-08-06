@@ -307,6 +307,6 @@
         </TabPane>
     </children>
     <stylesheets>
-        <URL value="@../round2/Level1Interface.css" />
+        <URL value="@Level1Style.css" />
     </stylesheets>
 </AnchorPane>

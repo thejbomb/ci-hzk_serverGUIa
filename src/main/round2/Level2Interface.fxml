@@ -285,6 +285,6 @@
         </TabPane>
     </children>
     <stylesheets>
-        <URL value="@Level2Interface.css" />
+        <URL value="@Level2Style.css" />
     </stylesheets>
 </AnchorPane>
