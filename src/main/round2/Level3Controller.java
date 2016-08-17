@@ -5,18 +5,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Point2D;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Line;
 import main.Main;
 import tool.Constants;
-import tool.StyleId;
 
 import java.net.URL;
-import java.util.LinkedList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Level3Controller extends Round2Controller implements Initializable, Runnable {
     @FXML
@@ -39,6 +41,8 @@ public class Level3Controller extends Round2Controller implements Initializable,
     private Label lb_exampleBody;
     @FXML
     private Label lb_exampleWarning;
+    @FXML
+    private BorderPane bp_start;
     @FXML
     private Button bt_startTimer;
     @FXML
@@ -89,6 +93,26 @@ public class Level3Controller extends Round2Controller implements Initializable,
     private ComboBox cb_users;
     @FXML
     private Button bt_home;
+    @FXML
+    private Label lb_answer1;
+    @FXML
+    private Label lb_answer2;
+    @FXML
+    private Label lb_answer3;
+    @FXML
+    private Label lb_answer4;
+    @FXML
+    private Label lb_answer5;
+    @FXML
+    private Label lb_answer6;
+    @FXML
+    private Label lb_answer7;
+    @FXML
+    private Label lb_answer8;
+    @FXML
+    private Label lb_answer9;
+    @FXML
+    private Label lb_answer10;
     @FXML
     private Label lb_question1_st;
     @FXML
@@ -153,6 +177,26 @@ public class Level3Controller extends Round2Controller implements Initializable,
     private Label lb_total;
     @FXML
     private Label lb_pointTotal;
+    @FXML
+    private Line line1;
+    @FXML
+    private Line line2;
+    @FXML
+    private Line line3;
+    @FXML
+    private Line line4;
+    @FXML
+    private Line line5;
+    @FXML
+    private Line line6;
+    @FXML
+    private Line line7;
+    @FXML
+    private Line line8;
+    @FXML
+    private Line line9;
+    @FXML
+    private Line line10;
 
     private LinkedList<Label> questions;
     private LinkedList<Label> choices;
@@ -160,6 +204,9 @@ public class Level3Controller extends Round2Controller implements Initializable,
     private LinkedList<Label> choices_st;
     private LinkedList<TextField> points;
     private LinkedList<Label> answers;
+    private LinkedList<Line> lines;
+
+    private LinkedList<String> randomizedAnswers;
 
     private Round2Controller round2Controller;
 
@@ -168,6 +215,7 @@ public class Level3Controller extends Round2Controller implements Initializable,
     public void init(LinkedList<UserDataLevel3> level3Users, Round2Controller controller) {
         this.level3Users = level3Users;
         round2Controller = controller;
+
         thread = new Thread(this);
         thread.start();
         initComboBox();
@@ -183,6 +231,16 @@ public class Level3Controller extends Round2Controller implements Initializable,
         cb_users.setValue(cb_users.getItems().get(0));
     }
 
+    private LinkedList<String> randomizeAnswers(ArrayList<String> data) {
+        LinkedList<String> result = new LinkedList<>(data);
+
+        long seed = System.nanoTime();
+
+        Collections.shuffle(result, new Random(seed));
+
+        return result;
+    }
+
     public void show() {
         ap_root.setVisible(true);
     }
@@ -192,36 +250,41 @@ public class Level3Controller extends Round2Controller implements Initializable,
     }
 
     @FXML
-    private void handleKeyboard(KeyEvent e){
+    private void handleKeyboard(KeyEvent e) {
         if (cb_users != null)
             for (UserDataLevel3 ud : level3Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     for (int i = 0; i < points.size(); i++)
                         ud.setPointRound2((points.get(i).getText().compareTo("") == 0) ? 0 : Integer.parseInt(points.get(i).getText()), i);
-                    lb_pointTotal.setText(Integer.toString(ud.getPoints().getLast()));
+                    lb_pointTotal.setText(Integer.toString(ud.getRound2Points().getLast()));
                     writeToClient(Constants.S2C_R2L3_SCR);
                 }
             }
     }
 
     @FXML
-    private void handleMouseClick(MouseEvent e){
+    private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_startTimer) {
             bt_startTimer.setVisible(false);
+            bp_start.setVisible(false);
             super.writeToClient(Constants.DIS_R2L3_QST);
             lb_timer.setVisible(true);
-            for(Label q : questions)
+            for (Label q : questions)
                 q.setVisible(true);
-            for(Label c : choices)
+            for (Label c : choices)
                 c.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
+            LinkedList<String> choices = new LinkedList<>(Main.R2L3_DATA.ANSWERS);
             for (UserDataLevel3 ud : level3Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
+                    Collections.shuffle(choices, new Random(ud.getSeed()));
                     for (int i = 0; i < answers.size(); i++) {
+                        choices_st.get(i).setText((char) (i + 0x41) + "." + choices.get(i));
                         answers.get(i).setText(ud.getRound2Answers().get(i));
-                        points.get(i).setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().get(i)));
+                        points.get(i).setText((ud.getRound2Points() == null) ? "0" : Integer.toString(ud.getRound2Points().get(i)));
                     }
-                    lb_pointTotal.setText((ud.getPoints() == null) ? "0" : Integer.toString(ud.getPoints().getLast()));
+                    drawLine();
+                    lb_pointTotal.setText((ud.getRound2Points() == null) ? "0" : Integer.toString(ud.getRound2Points().getLast()));
                 }
             }
         } else if (e.getSource() == bt_home) {
@@ -230,27 +293,46 @@ public class Level3Controller extends Round2Controller implements Initializable,
         }
     }
 
-    private void setStyleId() {
-        lb_instructionHeader.setId(StyleId.INSTRUCTION_HEADER);
-        lb_instructionBody_zh.setId(StyleId.INSTRUCTION_BODY_ZH);
-        lb_instructionBody_en.setId(StyleId.INSTRUCTION_BODY_EN);
-        lb_instructionTime_zh.setId(StyleId.INSTRUCTION_TIME_ZH);
-        lb_instructionTime_en.setId(StyleId.INSTRUCTION_TIME_EN);
+    private void drawLine(){
+        for (int j = 0; j < answers.size(); j++) {
+            Label answer = answers.get(j);
+            String input = answer.getText();
+            if (input.compareTo("") != 0) {
+                input = input.toUpperCase();
+                if (input.length() > 1)
+                    answer.setText(input.substring(0, 1));
+                else if(input.charAt(0) >= answers.size() + 0x41)
+                    answer.setText("");
+                else
+                    answer.setText(input);
 
-        lb_exampleHeader.setId(StyleId.EXAMPLE_HEADER);
-        lb_exampleBody.setId(StyleId.EXAMPLE_BODY);
-        lb_exampleWarning.setId(StyleId.EXAMPLE_WARNING);
+                int _input = input.charAt(0);
 
-        for (int i = 0; i < questions.size(); i++) {
-            questions.get(i).setId(StyleId.ROUND_QUESTIONS);
-            choices.get(i).setId(StyleId.ROUND_QUESTIONS);
-            questions_st.get(i).setId(StyleId.ROUND_QUESTIONS);
-            choices_st.get(i).setId(StyleId.ROUND_QUESTIONS);
-            points.get(i).setId(StyleId.SCORE_POINT);
+                for (int i = 0; i < answers.size(); i++) {
+                    if (_input == i + 0x41) {
+                        // ONLY WORK IN MAXIMIZED SCREEN MODE RIGHT NOW
+                        Scene scene = choices_st.get(i).getScene();
+                        Point2D windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
+                        Point2D sceneC = new Point2D(scene.getX(),scene.getY());
+                        Point2D node = choices_st.get(i).localToScene(0.0,0.0);
+                        double x = windowC.getX() + sceneC.getX() + node.getX();
+                        double y = windowC.getY() + sceneC.getY() + node.getY();
+                        lines.get(j).setStartX(x);
+                        lines.get(j).setStartY(y);
+                        scene = questions_st.get(j).getScene();
+                        windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
+                        sceneC = new Point2D(scene.getX(),scene.getY());
+                        node = questions_st.get(j).localToScene(0.0,0.0);
+                        x = windowC.getX() + sceneC.getX() + node.getX();
+                        y = windowC.getY() + sceneC.getY() + node.getY();
+                        lines.get(j).setEndX(x + questions_st.get(i).getWidth());
+                        lines.get(j).setEndY(y);
+
+                        lines.get(j).setVisible(true);
+                    }
+                }
+            }
         }
-
-        lb_total.setId(StyleId.SCORE_TOTAL_LABEL);
-        lb_pointTotal.setId(StyleId.SCORE_TOTAL_POINT);
     }
 
     private void setData() {
@@ -265,10 +347,9 @@ public class Level3Controller extends Round2Controller implements Initializable,
             questions.get(i).setText((i + 1 > 9) ?
                     (i + 1) + "." + Main.R2L3_DATA.QUESTIONS.get(i) :
                     " " + (i + 1) + "." + Main.R2L3_DATA.QUESTIONS.get(i));
-            choices.get(i).setText((char) (i + 0x41) + "." + Main.R2L3_DATA.ANSWERS.get(i));
+            choices.get(i).setText((char) (i + 0x41) + "." + randomizedAnswers.get(i));
 
-            questions_st.get(i).setText(questions.get(i).getText());
-            choices_st.get(i).setText(choices.get(i).getText());
+            questions_st.get(i).setText(Main.R2L3_DATA.QUESTIONS.get(i));
 
             points.get(i).setText("0");
             lb_pointTotal.setText("0");
@@ -277,7 +358,20 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
-
+        switch (command) {
+            case Constants.C2S_R2L3_SEED:
+                LinkedList<String> choices = new LinkedList<>(Main.R2L3_DATA.ANSWERS);
+                Collections.shuffle(choices, new Random(level3Users.getFirst().getSeed()));
+                for (int i = 0; i < choices.size(); i++)
+                    choices_st.get(i).setText((char) (i + 0x41) + "." + choices.get(i));
+                break;
+            case Constants.C2S_R2L3_ANS:
+                for (int i = 0; i < answers.size(); i++)
+                    answers.get(i).setText(level3Users.getFirst().getRound2Answers().get(i));
+                drawLine();
+                System.out.println(level3Users.getFirst().getRound2Answers());
+                break;
+        }
 
     }
 
@@ -354,15 +448,41 @@ public class Level3Controller extends Round2Controller implements Initializable,
         points.add(tf_point9);
         points.add(tf_point10);
 
-        setStyleId();
+        answers = new LinkedList<>();
+        answers.add(lb_answer1);
+        answers.add(lb_answer2);
+        answers.add(lb_answer3);
+        answers.add(lb_answer4);
+        answers.add(lb_answer5);
+        answers.add(lb_answer6);
+        answers.add(lb_answer7);
+        answers.add(lb_answer8);
+        answers.add(lb_answer9);
+        answers.add(lb_answer10);
+
+        lines = new LinkedList<>();
+        lines.add(line1);
+        lines.add(line2);
+        lines.add(line3);
+        lines.add(line4);
+        lines.add(line5);
+        lines.add(line6);
+        lines.add(line7);
+        lines.add(line8);
+        lines.add(line9);
+        lines.add(line10);
+
+        randomizedAnswers = randomizeAnswers(Main.R2L3_DATA.ANSWERS);
+        System.out.println("Randomized answer order: " + randomizedAnswers);
+
         setData();
 
         tp_mainTab.setVisible(true);
         lb_timer.setVisible(false);
-        for(Label q : questions)
-            q.setVisible(false);
-        for(Label c : choices)
-            c.setVisible(false);
+        for (Label question : questions)
+            question.setVisible(false);
+        for (Label choice : choices)
+            choice.setVisible(false);
         bt_startTimer.setVisible(true);
     }
 }

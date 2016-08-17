@@ -59,9 +59,19 @@
     -fx-text-fill: rgb(0,255,0);
 }
 
-.label-questionsQuestion {
+.label-questionsText {
     -fx-font: bold 40pt "KaiTi";
     -fx-text-fill: rgb(0,255,0);
+}
+
+.label-scoreWrongText {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(0,255,255);
+}
+
+.label-scoreCorrectedText {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(100,255,0);
 }
 
 .label-scoreAnswer {

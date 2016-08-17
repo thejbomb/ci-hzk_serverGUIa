@@ -8,8 +8,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import main.round1.Round1Controller;
 import main.round2.Round2Controller;
+import main.round5.Round5Controller;
 import network.ClientHandler;
 import network.ClientHandlerInterface;
 import network.ClientInteractionInterface;
@@ -30,6 +30,12 @@ public class MainController implements Initializable, ClientHandlerInterface {
     @FXML
     private AnchorPane ap_round2Interface;
     @FXML
+    private Round2Controller ap_round2InterfaceController;
+    @FXML
+    private AnchorPane ap_round5Interface;
+    @FXML
+    private Round5Controller ap_round5InterfaceController;
+    @FXML
     private AnchorPane ap_root;
     @FXML
     private Label lb_cnTitle;
@@ -41,10 +47,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
     private Label lb_level;
     @FXML
     private Label lb_status;
-    @FXML
-    private Round1Controller ap_round1InterfaceController;
-    @FXML
-    private Round2Controller ap_round2InterfaceController;
+
 
     private ClientInteractionInterface clientHandlerNotify;
 
@@ -76,15 +79,6 @@ public class MainController implements Initializable, ClientHandlerInterface {
         levelColumn.setCellValueFactory(new PropertyValueFactory<UserData, String>("userLevel"));
         idColumn.setCellValueFactory(new PropertyValueFactory<UserData, Integer>("USER_ID"));
         statusColumn.setCellValueFactory(new PropertyValueFactory<UserData, String>("user_status"));
-
-        bt_start.setId(Constants.FONT_BUTTON);
-        lb_name.setId(Constants.FONT_TABLE_HEADER);
-        lb_level.setId(Constants.FONT_TABLE_HEADER);
-        lb_level.setId(Constants.FONT_TABLE_HEADER);
-        lb_status.setId(Constants.FONT_TABLE_HEADER);
-        lb_cnTitle.setId(Constants.CN_FONT_TITLE);
-        lb_enTitle.setId(Constants.EN_FONT_TITLE);
-
         tb_usersList.setItems(Main.USERS_LIST);
     }
 
@@ -92,6 +86,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
         boolean found = false;
         for (int i = 0; i < Main.USERS_LIST.size(); i++) {
             if (Main.USERS_LIST.get(i).getUSER_ID() == ID) {
+                TableColumn statusColumn = (TableColumn) tb_usersList.getColumns().get(3);
                 tb_usersList.getItems().get(i).setUserStatus(true);
                 tb_usersList.getItems().set(i, tb_usersList.getItems().get(i));
                 clientHandlerNotify.writeToClient(Constants.LOGIN_SUCCESS, tb_usersList.getItems().get(i).getBasicInfo());
@@ -124,10 +119,9 @@ public class MainController implements Initializable, ClientHandlerInterface {
         if (e.getSource() == bt_start) {
             sendCommandToAllClients(Constants.BEGIN_COMP);
             ap_root.setVisible(false);
-            ap_round2Interface.setVisible(true);
-            ap_round2InterfaceController.init();
-            ap_round2InterfaceController.setStyle();
-            ap_round2InterfaceController.setUsers(level1Users, level2Users, level3Users);
+            ap_round5Interface.setVisible(true);
+            ap_round5InterfaceController.init();
+            ap_round5InterfaceController.setUsers(level1Users, level2Users, level3Users);
             System.out.println(clients);
         }
     }
@@ -160,20 +154,36 @@ public class MainController implements Initializable, ClientHandlerInterface {
         switch (command) {
             case Constants.S2C_R2L1_SCR:
                 for (UserDataLevel1 ud : level1Users) {
-                    if (ud.getPoints() != null)
-                        sendDataToClient(command, packageData(ud.getPoints().getLast()), ud);
+                    if (ud.getRound2Points() != null)
+                        sendDataToClient(command, packageData(ud.getRound2Points().getLast()), ud);
                 }
                 break;
             case Constants.S2C_R2L2_SCR:
                 for (UserDataLevel2 ud : level2Users) {
-                    if (ud.getPoints() != null)
-                        sendDataToClient(command, packageData(ud.getPoints().getLast()), ud);
+                    if (ud.getRound2Points() != null)
+                        sendDataToClient(command, packageData(ud.getRound2Points().getLast()), ud);
                 }
                 break;
             case Constants.S2C_R2L3_SCR:
                 for (UserDataLevel3 ud : level3Users) {
-                    if (ud.getPoints() != null)
-                        sendDataToClient(command, packageData(ud.getPoints().getLast()), ud);
+                    if (ud.getRound2Points() != null)
+                        sendDataToClient(command, packageData(ud.getRound2Points().getLast()), ud);
+                }
+                break;
+            case Constants.S2C_R5L1_SCR:
+                for (UserDataLevel1 ud : level1Users) {
+                    sendDataToClient(command, packageData(ud.getRound5Points()), ud);
+                }
+                break;
+            case Constants.S2C_R5L2_SCR:
+                for (UserDataLevel2 ud : level2Users) {
+
+                    sendDataToClient(command, packageData(ud.getRound5Points()), ud);
+                }
+                break;
+            case Constants.S2C_R5L3_SCR:
+                for (UserDataLevel3 ud : level3Users) {
+                    sendDataToClient(command, packageData(ud.getRound5Points()), ud);
                 }
                 break;
             default:
@@ -254,6 +264,34 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 }
                 ap_round2InterfaceController.handleClientData(command, null);
                 break;
+            case Constants.C2S_R5L1_ANS:
+                for (UserDataLevel1 ud : level1Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound5Answers(data);
+                }
+                ap_round5InterfaceController.handleClientData(command, null);
+                break;
+            case Constants.C2S_R5L2_ANS:
+                for (UserDataLevel2 ud : level2Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound5Answers(data);
+                }
+                ap_round5InterfaceController.handleClientData(command, null);
+                break;
+            case Constants.C2S_R5L3_ANS:
+                for (UserDataLevel3 ud : level3Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound5Answers(data);
+                }
+                ap_round5InterfaceController.handleClientData(command, null);
+                break;
+            case Constants.C2S_R2L3_SEED:
+                for (UserDataLevel3 ud : level3Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setSeed(data);
+                }
+                ap_round5InterfaceController.handleClientData(command, null);
+                break;
             default:
                 switch (currentRound) {
                     case Constants.ROUND1:
@@ -269,7 +307,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
                         // ap_round2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND5:
-                        // ap_round2InterfaceController.handleClientData(command, data);
+                        ap_round5InterfaceController.handleClientData(command, data);
                         break;
                     default:
                         break;
@@ -287,7 +325,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
         ap_round2Interface.setVisible(false);
 
-        currentRound = Constants.ROUND2;
+        AnchorPane.setBottomAnchor(ap_round5Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_round5Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_round5Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_round5Interface, 0.0);
+        ap_round5Interface.setVisible(false);
+
+        currentRound = Constants.ROUND5;
 
         initUserData();
     }

@@ -1,0 +1,11 @@
+{
+  "INSTRUCTION_ZH": "请在一段话内找出错误的汉字并把正确的汉字写在答题纸上。改对一个汉字得1分，改错不扣分。",
+  "INSTRUCTION_EN": "There is an essay with incorrect characters. Please find the incorrect characters and write their correct forms on the paper. 1 point will be given per correct character and no points will be deducted for incorrect characters.",
+  "TIME_LIMIT": 10,
+  "EXAMPLES": [
+    "ROUND_5_LEVEL_1_EXAMPLE_PLACEHOLDER"
+  ],
+  "QUESTIONS": [
+    "近年来，隋着社会的改变，中国的大学发生了一些变化，主要在四个方面。一是收费方面。以前，学生上大学不比交费，所有的学费都是国家题供。因为国家在教育方面的泾费不够，无法改善教学坏境，所以要像大学生收费。二是分酷工作方面。以前大学生毕业后工作由国家充一安排，但观在毕业生得自己找工作。三是课外生活方面。以前大学生课内课外都只是唸书。可现在不少学生厉用课外时间工作。这样即能赚一点儿线，又得到了一定的工作经险，有人甚至在毕业前就以经有了自己的公司。四是大学肉部的改变。为了适应社会的须要，许多大学都开办了新的专业和课称。大学的烤试制度、毕业条件等都有了很多改变，学校馆理也在发生变化。"
+  ]
+}
