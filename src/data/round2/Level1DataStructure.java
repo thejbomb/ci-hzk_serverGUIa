@@ -2,15 +2,15 @@ package data.round2;
 
 import java.util.ArrayList;
 
-public class Round2Level2Data {
+public class Level1DataStructure {
     public final String INSTRUCTION_ZH;
     public final String INSTRUCTION_EN;
     public final int TIME_LIMIT;
     public final ArrayList<String> EXAMPLES;
     public final ArrayList<String> QUESTIONS;
-    public static final int NUM_OF_QUESTIONS = 4;
+    public static final int NUM_OF_QUESTIONS = 5;
 
-    public Round2Level2Data(String cnInstruction, String enInstruction, int timeLimit, ArrayList<String> examples, ArrayList<String> questions) {
+    public Level1DataStructure(String cnInstruction, String enInstruction, int timeLimit, ArrayList<String> examples, ArrayList<String> questions) {
         INSTRUCTION_ZH = cnInstruction;
         INSTRUCTION_EN = enInstruction;
         TIME_LIMIT = timeLimit;

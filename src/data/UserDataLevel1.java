@@ -1,6 +1,6 @@
 package data;
 
-import data.round2.Round2Level1Data;
+import data.round2.Level1DataStructure;
 
 import java.util.LinkedList;
 
@@ -77,7 +77,7 @@ public class UserDataLevel1 extends UserData {
     public void setPointRound2(int point, int index) {
         if (round2Points == null) {
             round2Points = new LinkedList<>();
-            for (int i = 0; i < Round2Level1Data.NUM_OF_QUESTIONS; i++)
+            for (int i = 0; i < Level1DataStructure.NUM_OF_QUESTIONS; i++)
                 round2Points.add(0);
         }
 
@@ -85,9 +85,9 @@ public class UserDataLevel1 extends UserData {
 
         int total = 0;
 
-        for (int i = 0; i < Round2Level1Data.NUM_OF_QUESTIONS; i++)
+        for (int i = 0; i < Level1DataStructure.NUM_OF_QUESTIONS; i++)
             total += round2Points.get(i);
-        if (round2Points.size() == Round2Level1Data.NUM_OF_QUESTIONS)
+        if (round2Points.size() == Level1DataStructure.NUM_OF_QUESTIONS)
             round2Points.add(total);
         else {
             round2Points.removeLast();

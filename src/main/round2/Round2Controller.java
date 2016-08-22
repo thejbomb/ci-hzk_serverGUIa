@@ -11,14 +11,13 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import main.MainController;
-import network.ClientInteractionInterface;
 import tool.Constants;
 
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Round2Controller extends MainController implements Initializable, Runnable, ClientInteractionInterface {
+public class Round2Controller extends MainController implements Initializable, Runnable {
     @FXML
     private AnchorPane ap_root;
     @FXML

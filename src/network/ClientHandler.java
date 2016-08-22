@@ -6,8 +6,9 @@ import tool.Constants;
 import java.io.*;
 import java.net.Socket;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
-public class ClientHandler extends Thread implements ClientInteractionInterface {
+public class ClientHandler extends Thread {
 
     private BufferedReader in = null;
     private PrintWriter out = null;
@@ -33,7 +34,6 @@ public class ClientHandler extends Thread implements ClientInteractionInterface 
         }
         int address = CLIENT.getPort();
         System.out.println("Remote address = " + address);
-        mainController.addClient(this); // add new client to clients list
     }
 
     public long getThreadID() {
@@ -47,8 +47,8 @@ public class ClientHandler extends Thread implements ClientInteractionInterface 
         try {
             while (listening) {
                 String response = readFromClient();
-                System.out.println(response);
-                System.out.println("Thread " + getId() + " is working...");
+
+                System.out.println("RESPONSE FROM CLIENT: " + response + " on thread " + getThreadID());
                 if (response.compareTo(Constants.TRANSMISSION_BEGIN) == 0) {
                     out.println(Constants.CLIENT_SEND_NEXT);
                     response = readFromClient();
@@ -60,14 +60,12 @@ public class ClientHandler extends Thread implements ClientInteractionInterface 
                         response = readFromClient();
                     }
                     int command = Integer.parseInt(inputQueue.getFirst());
-                    System.out.println("Client command: " + Integer.toHexString(command));
+                    System.out.println("Client command: " + Integer.toHexString(command) + " on thread " + getThreadID());
                     inputQueue.removeFirst();
 
                     switch (command) {
                         case Constants.USER_CONNECT:
                             Platform.runLater(() -> {
-                                mainController.setClientInteractionInterface(this);
-                                System.out.println("Thread " + getId() + " is working..1.");
                                 mainController.setActiveThread(getId());
                                 mainController.connectUser(Integer.parseInt(inputQueue.getFirst()));
                                 inputQueue = null;
@@ -81,16 +79,27 @@ public class ClientHandler extends Thread implements ClientInteractionInterface 
                             });
                             break;
                     }
-                } else if (response.compareTo(Constants.SERVER_SEND_NEXT) == 0) {
-                    while (!outputQueue.isEmpty()) {
-                        System.out.println("To client: " + outputQueue.getFirst());
-                        out.println(outputQueue.getFirst());
+
+                } else if (outputQueue != null && response.compareTo(Constants.SERVER_SEND_NEXT) == 0) {
+
+                    while (outputQueue != null && !outputQueue.isEmpty()) {
+                        System.out.println("Thread " + getThreadID() + " is trying to transmit...");
+                        try {
+                            System.out.println("To client: " + outputQueue.getFirst());
+                            out.println(outputQueue.getFirst());
+                        } catch (NoSuchElementException ex) {
+                            ex.printStackTrace();
+                        }
                         outputQueue.removeFirst();
-                        if (outputQueue.isEmpty())
+                        if (outputQueue.isEmpty()) {
                             out.println(Constants.TRANSMISSION_END);
+                            System.out.println("TRANSMISSION_END");
+
+                        }
                     }
                     outputQueue = null;
                 }
+
 
             }
         } catch (IOException ex) {
@@ -98,7 +107,7 @@ public class ClientHandler extends Thread implements ClientInteractionInterface 
             System.out.println(ex.getMessage() + " " + getClass());
         } finally {
             try {
-                System.out.println("Closing network " + CLIENT.getInetAddress());
+                System.out.println("Closing network " + CLIENT.getInetAddress() + " with thread " + getThreadID());
                 CLIENT.close();
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -111,17 +120,17 @@ public class ClientHandler extends Thread implements ClientInteractionInterface 
         return in.readLine();
     }
 
-    @Override
     public void writeToClient(int command) {
         writeToClient(command, new LinkedList<>());
     }
 
-    @Override
     public void writeToClient(int command, LinkedList<String> data) {
-        data.addFirst(Integer.toString(command));
-        outputQueue = data;
-        System.out.println("SERVER -> CLIENT BEGIN TRANSMISSION");
-        out.println(Constants.TRANSMISSION_BEGIN);
-    }
+            outputQueue = new LinkedList<>();
+            outputQueue.addFirst(Integer.toString(command));
+            outputQueue.addAll(data);
+            System.out.println("SERVER -> CLIENT BEGIN TRANSMISSION" + " on thread " + getThreadID());
+            System.out.println("CH To Client: command = " + Integer.toHexString(command) + " | data = " + data + " on thread " + getThreadID());
+            out.println(Constants.TRANSMISSION_BEGIN);
 
+    }
 }

@@ -3,7 +3,7 @@ package data.round5;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Round5Level1Data {
+public class Level1DataStructure {
     public final String INSTRUCTION_ZH;
     public final String INSTRUCTION_EN;
     public final int TIME_LIMIT;
@@ -11,7 +11,7 @@ public class Round5Level1Data {
     public final ArrayList<String> QUESTIONS;
     public static final int NUM_OF_QUESTIONS = 5;
 
-    public Round5Level1Data(String cnInstruction, String enInstruction, int timeLimit, ArrayList<String> examples, ArrayList<String> questions) {
+    public Level1DataStructure(String cnInstruction, String enInstruction, int timeLimit, ArrayList<String> examples, ArrayList<String> questions) {
         INSTRUCTION_ZH = cnInstruction;
         INSTRUCTION_EN = enInstruction;
         TIME_LIMIT = timeLimit;

@@ -9,15 +9,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import main.round2.Round2Controller;
+import main.round4.Round4Controller;
 import main.round5.Round5Controller;
-import network.ClientHandler;
 import network.ClientHandlerInterface;
 import network.ClientInteractionInterface;
 import tool.Constants;
 
 import java.net.URL;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable, ClientHandlerInterface {
@@ -31,6 +30,10 @@ public class MainController implements Initializable, ClientHandlerInterface {
     private AnchorPane ap_round2Interface;
     @FXML
     private Round2Controller ap_round2InterfaceController;
+    @FXML
+    private AnchorPane ap_round4Interface;
+    @FXML
+    private Round4Controller ap_round4InterfaceController;
     @FXML
     private AnchorPane ap_round5Interface;
     @FXML
@@ -48,21 +51,18 @@ public class MainController implements Initializable, ClientHandlerInterface {
     @FXML
     private Label lb_status;
 
-
-    private ClientInteractionInterface clientHandlerNotify;
-
-    private static List<ClientHandler> clients = null;
+    private static ClientInteractionInterface clientHandler;
 
     protected LinkedList<UserDataLevel1> level1Users = null;
     protected LinkedList<UserDataLevel2> level2Users = null;
     protected LinkedList<UserDataLevel3> level3Users = null;
 
-    private long activeThreadId = -1;
+    protected long activeThreadId = -1;
 
     private int currentRound = 0;
 
-
-    public void init() {
+    public void init(ClientInteractionInterface handler) {
+        clientHandler = handler;
         Pane header = (Pane) tb_usersList.lookup("TableHeaderRow");
         if (header.isVisible()) {
             header.setMaxHeight(0);
@@ -89,7 +89,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 TableColumn statusColumn = (TableColumn) tb_usersList.getColumns().get(3);
                 tb_usersList.getItems().get(i).setUserStatus(true);
                 tb_usersList.getItems().set(i, tb_usersList.getItems().get(i));
-                clientHandlerNotify.writeToClient(Constants.LOGIN_SUCCESS, tb_usersList.getItems().get(i).getBasicInfo());
+                clientHandler.sendDataToClient(activeThreadId, Constants.LOGIN_SUCCESS, tb_usersList.getItems().get(i).getBasicInfo());
                 found = true;
             }
         }
@@ -119,10 +119,9 @@ public class MainController implements Initializable, ClientHandlerInterface {
         if (e.getSource() == bt_start) {
             sendCommandToAllClients(Constants.BEGIN_COMP);
             ap_root.setVisible(false);
-            ap_round5Interface.setVisible(true);
-            ap_round5InterfaceController.init();
-            ap_round5InterfaceController.setUsers(level1Users, level2Users, level3Users);
-            System.out.println(clients);
+            ap_round4Interface.setVisible(true);
+            ap_round4InterfaceController.init();
+            ap_round4InterfaceController.setUsers(level1Users, level2Users, level3Users);
         }
     }
 
@@ -137,20 +136,25 @@ public class MainController implements Initializable, ClientHandlerInterface {
         return result;
     }
 
+    private void sendCommandToClient(int command, long threadId) {
+        MainController.clientHandler.sendCommandToClient(threadId, command);
+    }
+
     private void sendCommandToAllClients(int command) {
-        for (ClientHandler ch : MainController.clients) {
-            ch.writeToClient(command);
-        }
+        MainController.clientHandler.sendCommandToAllClients(command);
     }
 
     private void sendDataToClient(int command, LinkedList<String> data, UserData user) {
-        for (ClientHandler ch : MainController.clients) {
-            if (ch.getThreadID() == user.getThreadId())
-                ch.writeToClient(command, data);
-        }
+        MainController.clientHandler.sendDataToClient(user.getThreadId(), command, data);
+    }
+
+    private void sendDataToAllClient(int command, LinkedList<String> data) {
+        System.out.println("M DATA SET: " + data);
+        MainController.clientHandler.sendDataToAllClients(command, data);
     }
 
     public void writeToClient(int command) {
+        System.out.println("M TO: command = " + Integer.toHexString(command) + " | data = ");
         switch (command) {
             case Constants.S2C_R2L1_SCR:
                 for (UserDataLevel1 ud : level1Users) {
@@ -177,7 +181,6 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 break;
             case Constants.S2C_R5L2_SCR:
                 for (UserDataLevel2 ud : level2Users) {
-
                     sendDataToClient(command, packageData(ud.getRound5Points()), ud);
                 }
                 break;
@@ -193,20 +196,17 @@ public class MainController implements Initializable, ClientHandlerInterface {
     }
 
     public void writeToClient(int command, LinkedList<String> data) {
-
+        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
+        sendDataToAllClient(command, data);
     }
 
-    @Override
-    public void addClient(ClientHandler client) {
-        if (MainController.clients == null)
-            MainController.clients = new LinkedList<>();
-        MainController.clients.add(client);
+    public void writeToClient(int command, long threadId) {
+        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
+        for (UserDataLevel1 ud : level1Users)
+            if (ud.getThreadId() != threadId)
+                sendCommandToClient(command, ud.getThreadId());
     }
 
-    @Override
-    public void setClientInteractionInterface(ClientInteractionInterface client) {
-        clientHandlerNotify = client;
-    }
 
     @Override
     public void connectUser(int userID) {
@@ -228,17 +228,18 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
             }
         } catch (HzkException ex) {
-            for (ClientHandler client : MainController.clients) {
-                if (client.getThreadID() == activeThreadId)
-                    client.writeToClient(Constants.ERROR_ID_NOT_FOUND);
-            }
+            clientHandler.sendCommandToClient(activeThreadId, Constants.ERROR_ID_NOT_FOUND);
+
         }
     }
 
     @Override
     public void setActiveThread(long threadID) {
         activeThreadId = threadID;
+        if (ap_round4InterfaceController != null)
+            ap_round4InterfaceController.setActiveThread(threadID);
     }
+
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
@@ -304,7 +305,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
                         //ap_round2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND4:
-                        // ap_round2InterfaceController.handleClientData(command, data);
+                        ap_round4InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND5:
                         ap_round5InterfaceController.handleClientData(command, data);
@@ -325,13 +326,19 @@ public class MainController implements Initializable, ClientHandlerInterface {
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
         ap_round2Interface.setVisible(false);
 
+        AnchorPane.setBottomAnchor(ap_round4Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_round4Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_round4Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_round4Interface, 0.0);
+        ap_round4Interface.setVisible(false);
+
         AnchorPane.setBottomAnchor(ap_round5Interface, 0.0);
         AnchorPane.setTopAnchor(ap_round5Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_round5Interface, 0.0);
         AnchorPane.setRightAnchor(ap_round5Interface, 0.0);
         ap_round5Interface.setVisible(false);
 
-        currentRound = Constants.ROUND5;
+        currentRound = Constants.ROUND4;
 
         initUserData();
     }

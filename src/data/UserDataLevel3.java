@@ -1,11 +1,8 @@
 package data;
 
-import data.round2.Round2Level3Data;
-import main.Main;
+import data.round2.Level3DataStructure;
 
-import java.util.Collections;
 import java.util.LinkedList;
-import java.util.Random;
 
 /**
  * Created by quang on 08/06/16.
@@ -50,7 +47,7 @@ public class UserDataLevel3 extends UserData {
     public void setPointRound2(int point, int index) {
         if (round2Points == null) {
             round2Points = new LinkedList<>();
-            for (int i = 0; i < Round2Level3Data.NUM_OF_QUESTIONS; i++)
+            for (int i = 0; i < Level3DataStructure.NUM_OF_QUESTIONS; i++)
                 round2Points.add(0);
         }
 
@@ -58,9 +55,9 @@ public class UserDataLevel3 extends UserData {
 
         int total = 0;
 
-        for (int i = 0; i < Round2Level3Data.NUM_OF_QUESTIONS; i++)
+        for (int i = 0; i < Level3DataStructure.NUM_OF_QUESTIONS; i++)
             total += round2Points.get(i);
-        if (round2Points.size() == Round2Level3Data.NUM_OF_QUESTIONS)
+        if (round2Points.size() == Level3DataStructure.NUM_OF_QUESTIONS)
             round2Points.add(total);
         else {
             round2Points.removeLast();

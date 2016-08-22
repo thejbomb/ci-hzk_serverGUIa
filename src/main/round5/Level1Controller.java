@@ -23,7 +23,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level1Controller extends Round2Controller implements Initializable, Runnable {
+public class Level1Controller extends Round5Controller implements Initializable, Runnable {
 
     @FXML
     private AnchorPane ap_root;
@@ -147,8 +147,8 @@ public class Level1Controller extends Round2Controller implements Initializable,
             label1.getStyleClass().set(0, "label-scoreWrongText");
             Label label2 = new Label(user.getRound5Answers().get(i));
             label2.getStyleClass().set(0, "label-scoreCorrectedText");
-            Image image = new Image(getClass().getResourceAsStream("green_v.png"));
-            Image image2 = new Image(getClass().getResourceAsStream("red_x.png"));
+            Image image = new Image("file:src/asset/green_v.png");
+            Image image2 = new Image("file:src/asset/red_x.png");
             ImageView imageView = new ImageView(image);
             ImageView imageView2 = new ImageView(image2);
             imageView.setFitHeight(label2.getFont().getSize());

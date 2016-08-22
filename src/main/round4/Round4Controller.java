@@ -1,4 +1,4 @@
-package main.round5;
+package main.round4;
 
 import data.UserDataLevel1;
 import data.UserDataLevel2;
@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import main.Main;
 import main.MainController;
 import tool.Constants;
 
@@ -17,21 +18,21 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Round5Controller extends MainController implements Initializable, Runnable {
+public class Round4Controller extends MainController implements Initializable, Runnable {
     @FXML
     private AnchorPane ap_root;
     @FXML
     private AnchorPane ap_level1Interface;
     @FXML
     private Level1Controller ap_level1InterfaceController;
-    @FXML
-    private AnchorPane ap_level2Interface;
-    @FXML
-    private Level2Controller ap_level2InterfaceController;
-    @FXML
-    private AnchorPane ap_level3Interface;
-    @FXML
-    private Level3Controller ap_level3InterfaceController;
+    /* @FXML
+     private AnchorPane ap_level2Interface;
+    /@FXML
+     private Level2Controller ap_level2InterfaceController;
+     @FXML
+     private AnchorPane ap_level3Interface;
+     @FXML
+     private Level3Controller ap_level3InterfaceController;*/
     @FXML
     private TabPane tp_mainTab;
     @FXML
@@ -83,11 +84,11 @@ public class Round5Controller extends MainController implements Initializable, R
 
     }
 
-    public void show(){
+    public void show() {
         ap_root.setVisible(true);
     }
 
-    private void hide(){
+    private void hide() {
         ap_root.setVisible(false);
     }
 
@@ -97,6 +98,23 @@ public class Round5Controller extends MainController implements Initializable, R
         level3Users = level3;
     }
 
+    public void setActiveThread(long threadId) {
+        super.setActiveThread(threadId);
+        if (ap_level1InterfaceController != null)
+            ap_level1InterfaceController.setActiveThread(threadId);
+    }
+
+    private LinkedList<String> packageData(Object data) {
+        LinkedList<String> result = new LinkedList<>();
+
+        if (data.getClass() == Integer.class) {
+            result.add(Integer.toString((int) data));
+        } else if (data.getClass() == Long.class)
+            result.add(Long.toString((long) data));
+
+        return result;
+    }
+
     @FXML
     private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_beginnerStart) {
@@ -104,31 +122,33 @@ public class Round5Controller extends MainController implements Initializable, R
             hide();
             ap_level1InterfaceController.init(level1Users, this);
             ap_level1InterfaceController.show();
-            writeToClient(Constants.BEGIN_R5L1);
+            writeToClient(Constants.BEGIN_R4L1);
+            writeToClient(Constants.S2C_R4L1_SEED, packageData(Main.R4L1_DATA.getSeed()));
         } else if (e.getSource() == bt_intermediateStart) {
             currentLevel = Constants.LEVEL2;
             hide();
-            ap_level2InterfaceController.init(level2Users,this);
-            ap_level2InterfaceController.show();
-            writeToClient(Constants.BEGIN_R5L2);
+            //ap_level2InterfaceController.init(level2Users,this);
+            //ap_level2InterfaceController.show();
+            writeToClient(Constants.BEGIN_R4L2);
         } else if (e.getSource() == bt_advanceStart) {
             currentLevel = Constants.LEVEL3;
             hide();
-            ap_level3InterfaceController.init(level3Users,this);
-            ap_level3InterfaceController.show();
-            writeToClient(Constants.BEGIN_R5L3);
+            //ap_level3InterfaceController.init(level3Users,this);
+            //ap_level3InterfaceController.show();
+            writeToClient(Constants.BEGIN_R4L3);
         }
     }
 
     @Override
     public void writeToClient(int command) {
-
+        System.out.println("R4 TO: command = " + Integer.toHexString(command) + " | data = ");
         super.writeToClient(command);
 
     }
 
     @Override
     public void writeToClient(int command, LinkedList<String> data) {
+        System.out.println("R4 To Client: command = " + Integer.toHexString(command) + " | data = " + data);
         super.writeToClient(command, data);
     }
 
@@ -141,10 +161,10 @@ public class Round5Controller extends MainController implements Initializable, R
                         ap_level1InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.LEVEL2:
-                        ap_level2InterfaceController.handleClientData(command, data);
+                        // ap_level2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.LEVEL3:
-                        ap_level3InterfaceController.handleClientData(command, data);
+                        //ap_level3InterfaceController.handleClientData(command, data);
                         break;
                     default:
                         break;
@@ -179,17 +199,17 @@ public class Round5Controller extends MainController implements Initializable, R
         AnchorPane.setRightAnchor(ap_level1Interface, 0.0);
         ap_level1Interface.setVisible(false);
 
-        AnchorPane.setBottomAnchor(ap_level2Interface, 0.0);
+    /*    AnchorPane.setBottomAnchor(ap_level2Interface, 0.0);
         AnchorPane.setTopAnchor(ap_level2Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_level2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level2Interface, 0.0);
-        ap_level2Interface.setVisible(false);
-
+        ap_level2Interface.setVisible(false);*/
+/*
         AnchorPane.setBottomAnchor(ap_level3Interface, 0.0);
         AnchorPane.setTopAnchor(ap_level3Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
-        ap_level3Interface.setVisible(false);
+        ap_level3Interface.setVisible(false);*/
     }
 
 
