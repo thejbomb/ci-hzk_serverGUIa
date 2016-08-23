@@ -59,11 +59,9 @@ public class Server implements Runnable, ClientInteractionInterface {
 
     @Override
     public void sendDataToClient(long threadId, int command, LinkedList<String> data) {
-        System.out.println("S DATA SET: " + data);
-        for (ClientHandler ch : clients)
-            if (ch.getThreadID() == threadId)
-                ch.writeToClient(command, data);
-
+            for (ClientHandler ch : clients)
+                if (ch.getThreadID() == threadId)
+                    ch.writeToClient(command, data);
 
     }
 
@@ -71,7 +69,6 @@ public class Server implements Runnable, ClientInteractionInterface {
     public void sendDataToAllClients(int command, LinkedList<String> data) {
         System.out.println("BEGINNING TO SEND DATA TO ALL CLIENTS");
         for (ClientHandler ch : clients)
-            //sendDataToClient(ch.getThreadID(), command, data);
             ch.writeToClient(command, data);
         System.out.println("DATA SENT TO ALL CLIENTS");
     }

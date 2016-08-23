@@ -16,6 +16,9 @@ public class ClientHandler extends Thread {
     private ClientHandlerInterface mainController = null;
     private LinkedList<String> inputQueue;
     private LinkedList<String> outputQueue;
+    private LinkedList<LinkedList<String>> dataQueue;
+
+    private boolean tranmissionOver = true;
 
     public ClientHandler(Socket clientSocket) {
         CLIENT = clientSocket;
@@ -94,6 +97,10 @@ public class ClientHandler extends Thread {
                         if (outputQueue.isEmpty()) {
                             out.println(Constants.TRANSMISSION_END);
                             System.out.println("TRANSMISSION_END");
+                            if (dataQueue != null && dataQueue.size() != 0)
+                                sendDataInQueue();
+                            else
+                                tranmissionOver = true;
 
                         }
                     }
@@ -125,12 +132,36 @@ public class ClientHandler extends Thread {
     }
 
     public void writeToClient(int command, LinkedList<String> data) {
+        if (tranmissionOver) {
+            System.out.println("SERVER IS FREE");
+            tranmissionOver = false;
             outputQueue = new LinkedList<>();
             outputQueue.addFirst(Integer.toString(command));
             outputQueue.addAll(data);
+            System.out.println("CONTENT IN OUTPUT QUEUE: " + outputQueue);
             System.out.println("SERVER -> CLIENT BEGIN TRANSMISSION" + " on thread " + getThreadID());
             System.out.println("CH To Client: command = " + Integer.toHexString(command) + " | data = " + data + " on thread " + getThreadID());
             out.println(Constants.TRANSMISSION_BEGIN);
+        } else {
+            System.out.println("SERVER IS BUSY. ADDING DATA TO DATA QUEUE");
+            if (dataQueue == null)
+                dataQueue = new LinkedList<>();
+            LinkedList<String> ll = new LinkedList<>();
+            ll.addFirst(Integer.toString(command));
+            ll.addAll(data);
+            dataQueue.add(ll);
+        }
+    }
 
+    private void sendDataInQueue() {
+        if (dataQueue != null && dataQueue.size() != 0) {
+            outputQueue = new LinkedList<>();
+            LinkedList<String> data = dataQueue.removeFirst();
+            outputQueue.addAll(data);
+            System.out.println("CONTENT IN OUTPUT QUEUE: " + outputQueue);
+            System.out.println("SERVER -> CLIENT BEGIN TRANSMISSION (IN DATA QUEUE)" + " on thread " + getThreadID());
+            System.out.println("CH To Client: command = " + Integer.toHexString(Integer.parseInt(data.getFirst())) + " | data = " + data.getLast() + " on thread " + getThreadID());
+            out.println(Constants.TRANSMISSION_BEGIN);
+        }
     }
 }

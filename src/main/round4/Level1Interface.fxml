@@ -135,9 +135,10 @@
                           <rowConstraints>
                             <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
                               <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
-                              <RowConstraints percentHeight="23.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="18.0" vgrow="SOMETIMES" />
                               <RowConstraints percentHeight="4.0" vgrow="SOMETIMES" />
-                            <RowConstraints percentHeight="23.0" vgrow="SOMETIMES" />
+                            <RowConstraints percentHeight="18.0" vgrow="SOMETIMES" />
                               <RowConstraints vgrow="SOMETIMES" />
                             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
                           </rowConstraints>
@@ -146,15 +147,20 @@
                                  <children>
                                     <Label fx:id="lb_timer" alignment="CENTER" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children></AnchorPane>
-                              <AnchorPane fx:id="ap_question" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" GridPane.rowSpan="3" />
-                              <FlowPane fx:id="fp_choices" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                              <Button fx:id="bt_back" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                              <Button fx:id="bt_next" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Next" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                              <BorderPane fx:id="bp_start" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                              <AnchorPane fx:id="ap_question" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.rowSpan="3" />
+                              <FlowPane fx:id="fp_choices" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                              <Button fx:id="bt_back" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Back" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <Button fx:id="bt_next" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Next" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                              <BorderPane fx:id="bp_start" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
                                  <center>
                                     <Button fx:id="bt_startTimer" alignment="CENTER" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Start" BorderPane.alignment="CENTER" />
                                  </center>
                               </BorderPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label fx:id="lb_instruction" alignment="CENTER" text="INSTRUCTION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </GridPane>
                      </children>

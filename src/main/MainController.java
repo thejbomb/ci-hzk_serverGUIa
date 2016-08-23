@@ -115,7 +115,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
     }
 
     @FXML
-    private void handleMouseClick(MouseEvent e) throws Exception {
+    private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_start) {
             sendCommandToAllClients(Constants.BEGIN_COMP);
             ap_root.setVisible(false);

@@ -10,7 +10,6 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import main.Main;
-import network.ClientHandler;
 import tool.Constants;
 
 import java.net.URL;
@@ -49,6 +48,8 @@ public class Level1Controller extends Round4Controller implements Initializable,
     private Button bt_startTimer;
     @FXML
     private Label lb_timer;
+    @FXML
+    private Label lb_instruction;
     @FXML
     private Button bt_back;
     @FXML
@@ -103,10 +104,6 @@ public class Level1Controller extends Round4Controller implements Initializable,
         return result;
     }
 
-    private void setData() {
-
-    }
-
     private void displayQuestion(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L1_DATA.getQuestions().size())
             throw new Exception("R4L1: No such question exist");
@@ -154,7 +151,8 @@ public class Level1Controller extends Round4Controller implements Initializable,
         if (e.getSource() == bt_startTimer) {
             bp_start.setVisible(false);
             bt_next.setVisible(true);
-
+            lb_timer.setVisible(true);
+            lb_instruction.setVisible(true);
             try {
                 displayQuestion(currentQuestion);
                 displayChoices(currentQuestion);
@@ -248,9 +246,9 @@ public class Level1Controller extends Round4Controller implements Initializable,
     public void initialize(URL location, ResourceBundle resources) {
         Main.R4L1_DATA.init();
 
-        setData();
         tp_mainTab.setVisible(true);
         lb_timer.setVisible(false);
+        lb_instruction.setVisible(false);
         bt_startTimer.setVisible(true);
 
         bt_next.setVisible(false);
