@@ -10,6 +10,16 @@ public class UserData {
     private String user_status;
     protected long threadId = -1;
 
+    protected LinkedList<String> round2Answers;
+    protected LinkedList<Integer> round2Points; // last element is the total point
+
+    protected int round4Points = 0;
+
+    protected LinkedList<Integer> round5AnswerIndices;
+    protected LinkedList<String> round5Answers;
+    protected int[] round5PointState;
+    protected int round5Points = 0;
+
     public UserData(String name, int level, int ID) {
         USER_NAME = name;
         USER_LEVEL = level;
@@ -74,5 +84,28 @@ public class UserData {
     public void setThreadId(long id) {
         threadId = id;
         System.out.println("User with ID " + USER_ID + " threadId is " + threadId);
+    }
+
+    public void setRound4Points(int point) {
+        round4Points += point;
+    }
+
+    public int getRound4Points() {
+        return round4Points;
+    }
+
+    public void setRound5Points(int point) {
+        round5Points += point;
+    }
+
+    public void setRound5PointState(int index, int state) {
+        if (round5PointState == null)
+            round5PointState = new int[round5AnswerIndices.size()];
+
+        round5PointState[index] = state;
+    }
+
+    public int getRound5Points() {
+        return round5Points;
     }
 }

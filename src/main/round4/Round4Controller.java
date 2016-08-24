@@ -10,7 +10,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import main.Main;
 import main.MainController;
 import tool.Constants;
 
@@ -25,22 +24,22 @@ public class Round4Controller extends MainController implements Initializable, R
     private AnchorPane ap_level1Interface;
     @FXML
     private Level1Controller ap_level1InterfaceController;
-    /* @FXML
-     private AnchorPane ap_level2Interface;
-    /@FXML
-     private Level2Controller ap_level2InterfaceController;
-     @FXML
-     private AnchorPane ap_level3Interface;
-     @FXML
-     private Level3Controller ap_level3InterfaceController;*/
+    @FXML
+    private AnchorPane ap_level2Interface;
+    @FXML
+    private Level2Controller ap_level2InterfaceController;
+    @FXML
+    private AnchorPane ap_level3Interface;
+    @FXML
+    private Level3Controller ap_level3InterfaceController;
     @FXML
     private TabPane tp_mainTab;
     @FXML
-    private Label lb_cnRoundDescription;
+    private Label lb_roundDescription;
     @FXML
-    private Label lb_cnRoundTitle;
+    private Label lb_roundNumber_zh;
     @FXML
-    private Label lb_enRoundTitle;
+    private Label lb_roundNumber_en;
     @FXML
     private Button bt_beginnerStart;
     @FXML
@@ -48,35 +47,35 @@ public class Round4Controller extends MainController implements Initializable, R
     @FXML
     private Button bt_advanceStart;
     @FXML
-    private Label lb_cnRoundNumber1;
+    private Label lb_roundNumberS1_zh;
     @FXML
-    private Label lb_cnRoundNumber2;
+    private Label lb_roundNumberS2_zh;
     @FXML
-    private Label lb_cnRoundNumber3;
+    private Label lb_roundNumberS3_zh;
     @FXML
-    private Label lb_enRoundNumber1;
+    private Label lb_roundNumberS1_en;
     @FXML
-    private Label lb_enRoundNumber2;
+    private Label lb_roundNumberS2_en;
     @FXML
-    private Label lb_enRoundNumber3;
+    private Label lb_roundNumberS3_en;
     @FXML
-    private Label lb_cnRoundBeginner;
+    private Label lb_roundLevel1_zh;
     @FXML
-    private Label lb_cnRoundIntermediate;
+    private Label lb_roundLevel2_zh;
     @FXML
-    private Label lb_cnRoundAdvance;
+    private Label lb_roundLevel3_zh;
     @FXML
-    private Label lb_enRoundBeginner;
+    private Label lb_roundLevel1_en;
     @FXML
-    private Label lb_enRoundIntermediate;
+    private Label lb_roundLevel2_en;
     @FXML
-    private Label lb_enRoundAdvance;
+    private Label lb_roundLevel3_en;
     @FXML
     private AnchorPane ap_parent;
 
     private Thread thread;
 
-    private int currentLevel = 0;
+    static int currentLevel = 0;
 
     public void init() {
         thread = new Thread(this);
@@ -120,36 +119,44 @@ public class Round4Controller extends MainController implements Initializable, R
         if (e.getSource() == bt_beginnerStart) {
             currentLevel = Constants.LEVEL1;
             hide();
+
+
+            writeToClient(Constants.BEGIN_R4L1);
             ap_level1InterfaceController.init(level1Users, this);
             ap_level1InterfaceController.show();
-            writeToClient(Constants.BEGIN_R4L1);
-            writeToClient(Constants.S2C_R4L1_SEED, packageData(Main.R4L1_DATA.getSeed()));
+
         } else if (e.getSource() == bt_intermediateStart) {
             currentLevel = Constants.LEVEL2;
             hide();
-            //ap_level2InterfaceController.init(level2Users,this);
-            //ap_level2InterfaceController.show();
             writeToClient(Constants.BEGIN_R4L2);
+            ap_level2InterfaceController.init(level2Users, this);
+            ap_level2InterfaceController.show();
+
+
         } else if (e.getSource() == bt_advanceStart) {
-            currentLevel = Constants.LEVEL3;
             hide();
-            //ap_level3InterfaceController.init(level3Users,this);
-            //ap_level3InterfaceController.show();
             writeToClient(Constants.BEGIN_R4L3);
+            ap_level3InterfaceController.init(level3Users, this);
+            ap_level3InterfaceController.show();
+
         }
     }
 
-    @Override
-    public void writeToClient(int command) {
-        System.out.println("R4 TO: command = " + Integer.toHexString(command) + " | data = ");
-        super.writeToClient(command);
+    public void writeToClient(int command, LinkedList<String> data) {
+        super.writeToClient(command, data);
+    }
+
+    public void writeToClient(int command, LinkedList<String> data, long threadId) {
+        super.writeToClient(command, data, threadId);
+    }
+
+    public void writeToClient(int command, long threadId) {
+        super.writeToClient(command, threadId);
 
     }
 
-    @Override
-    public void writeToClient(int command, LinkedList<String> data) {
-        System.out.println("R4 To Client: command = " + Integer.toHexString(command) + " | data = " + data);
-        super.writeToClient(command, data);
+    public void writeToAllClientsExcept(int command, long threadId) {
+        super.writeToAllClientsExcept(command, threadId);
     }
 
     @Override
@@ -161,10 +168,10 @@ public class Round4Controller extends MainController implements Initializable, R
                         ap_level1InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.LEVEL2:
-                        // ap_level2InterfaceController.handleClientData(command, data);
+                        ap_level2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.LEVEL3:
-                        //ap_level3InterfaceController.handleClientData(command, data);
+                        ap_level3InterfaceController.handleClientData(command, data);
                         break;
                     default:
                         break;
@@ -178,9 +185,9 @@ public class Round4Controller extends MainController implements Initializable, R
     public void run() {
         try {
             Thread.sleep(1000);
-            lb_cnRoundTitle.setVisible(false);
-            lb_enRoundTitle.setVisible(false);
-            lb_cnRoundDescription.setVisible(false);
+            lb_roundNumber_zh.setVisible(false);
+            lb_roundNumber_en.setVisible(false);
+            lb_roundDescription.setVisible(false);
             ap_root.setVisible(true);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
@@ -199,17 +206,17 @@ public class Round4Controller extends MainController implements Initializable, R
         AnchorPane.setRightAnchor(ap_level1Interface, 0.0);
         ap_level1Interface.setVisible(false);
 
-    /*    AnchorPane.setBottomAnchor(ap_level2Interface, 0.0);
+        AnchorPane.setBottomAnchor(ap_level2Interface, 0.0);
         AnchorPane.setTopAnchor(ap_level2Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_level2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level2Interface, 0.0);
-        ap_level2Interface.setVisible(false);*/
-/*
+        ap_level2Interface.setVisible(false);
+
         AnchorPane.setBottomAnchor(ap_level3Interface, 0.0);
         AnchorPane.setTopAnchor(ap_level3Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
-        ap_level3Interface.setVisible(false);*/
+        ap_level3Interface.setVisible(false);
     }
 
 

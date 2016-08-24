@@ -53,19 +53,26 @@ public class Constants {
     public static final int S2C_R4L1_SEED = 0x41B;
     public static final int C2S_R4L1_BUZZ = 0x41C;
     public static final int S2C_R4L1_BUZZ = 0x41D;
-    public static final int S2C_R4L1_QNUM = 0x41E;
     public static final int DIS_R4L2_EXP = 0x422;
     public static final int DIS_R4L2_QST = 0x423;
     public static final int C2S_R4L2_ANS = 0x424;
     public static final int S2C_R4L2_SCR = 0x425;
     public static final int C2S_R4L2_SEED = 0x42A;
     public static final int S2C_R4L2_SEED = 0x42B;
+    public static final int C2S_R4L2_BUZZ = 0x42C;
+    public static final int S2C_R4L2_BUZZ = 0x42D;
     public static final int DIS_R4L3_EXP = 0x432;
     public static final int DIS_R4L3_QST = 0x433;
     public static final int C2S_R4L3_ANS = 0x434;
     public static final int S2C_R4L3_SCR = 0x435;
     public static final int C2S_R4L3_SEED = 0x43A;
     public static final int S2C_R4L3_SEED = 0x43B;
+    public static final int C2S_R4L3_BUZZ = 0x43C;
+    public static final int S2C_R4L3_BUZZ = 0x43D;
+    public static final int S2C_R4LX_CRCT = 0x470;
+    public static final int S2C_R4LX_WRNG = 0x471;
+    public static final int C2S_R4LX_TMUP = 0x472;
+
 
     public static final int DIS_R5L1_EXP = 0x512;
     public static final int DIS_R5L1_QST = 0x513;

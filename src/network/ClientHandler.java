@@ -56,7 +56,7 @@ public class ClientHandler extends Thread {
                     out.println(Constants.CLIENT_SEND_NEXT);
                     response = readFromClient();
                     while (response.compareTo(Constants.TRANSMISSION_END) != 0) {
-                        System.out.println("From client: " + response);
+                        System.out.println("From client on thread " + getThreadID() + ": " + response);
                         if (inputQueue == null)
                             inputQueue = new LinkedList<>();
                         inputQueue.add(response);
@@ -88,7 +88,7 @@ public class ClientHandler extends Thread {
                     while (outputQueue != null && !outputQueue.isEmpty()) {
                         System.out.println("Thread " + getThreadID() + " is trying to transmit...");
                         try {
-                            System.out.println("To client: " + outputQueue.getFirst());
+                            System.out.println("To client on thread " + getThreadID() +": " + outputQueue.getFirst());
                             out.println(outputQueue.getFirst());
                         } catch (NoSuchElementException ex) {
                             ex.printStackTrace();
@@ -96,7 +96,7 @@ public class ClientHandler extends Thread {
                         outputQueue.removeFirst();
                         if (outputQueue.isEmpty()) {
                             out.println(Constants.TRANSMISSION_END);
-                            System.out.println("TRANSMISSION_END");
+                            System.out.println("TRANSMISSION_END ON THREAD" + getThreadID());
                             if (dataQueue != null && dataQueue.size() != 0)
                                 sendDataInQueue();
                             else
@@ -133,17 +133,17 @@ public class ClientHandler extends Thread {
 
     public void writeToClient(int command, LinkedList<String> data) {
         if (tranmissionOver) {
-            System.out.println("SERVER IS FREE");
+            System.out.println("SERVER IS FREE ON THREAD " + getThreadID());
             tranmissionOver = false;
             outputQueue = new LinkedList<>();
             outputQueue.addFirst(Integer.toString(command));
             outputQueue.addAll(data);
-            System.out.println("CONTENT IN OUTPUT QUEUE: " + outputQueue);
+            System.out.println("CONTENT IN OUTPUT QUEUE ON THREAD " + getThreadID() + ": " + outputQueue);
             System.out.println("SERVER -> CLIENT BEGIN TRANSMISSION" + " on thread " + getThreadID());
-            System.out.println("CH To Client: command = " + Integer.toHexString(command) + " | data = " + data + " on thread " + getThreadID());
+            System.out.println("CH To Client: command = " + Integer.toHexString(command) + " | levelData = " + data + " on thread " + getThreadID());
             out.println(Constants.TRANSMISSION_BEGIN);
         } else {
-            System.out.println("SERVER IS BUSY. ADDING DATA TO DATA QUEUE");
+            System.out.println("SERVER IS BUSY. ADDING DATA TO DATA QUEUE ON THREAD" + getThreadID());
             if (dataQueue == null)
                 dataQueue = new LinkedList<>();
             LinkedList<String> ll = new LinkedList<>();
@@ -158,9 +158,9 @@ public class ClientHandler extends Thread {
             outputQueue = new LinkedList<>();
             LinkedList<String> data = dataQueue.removeFirst();
             outputQueue.addAll(data);
-            System.out.println("CONTENT IN OUTPUT QUEUE: " + outputQueue);
+            System.out.println("CONTENT IN OUTPUT QUEUE ON THREAD "  + getThreadID() + ": " + outputQueue);
             System.out.println("SERVER -> CLIENT BEGIN TRANSMISSION (IN DATA QUEUE)" + " on thread " + getThreadID());
-            System.out.println("CH To Client: command = " + Integer.toHexString(Integer.parseInt(data.getFirst())) + " | data = " + data.getLast() + " on thread " + getThreadID());
+            System.out.println("CH To Client: command = " + Integer.toHexString(Integer.parseInt(data.getFirst())) + " | levelData = " + data.getLast() + " on thread " + getThreadID());
             out.println(Constants.TRANSMISSION_BEGIN);
         }
     }

@@ -35,11 +35,11 @@ public class Round5Controller extends MainController implements Initializable, R
     @FXML
     private TabPane tp_mainTab;
     @FXML
-    private Label lb_cnRoundDescription;
+    private Label lb_roundDescription;
     @FXML
-    private Label lb_cnRoundTitle;
+    private Label lb_roundNumber_zh;
     @FXML
-    private Label lb_enRoundTitle;
+    private Label lb_roundNumber_en;
     @FXML
     private Button bt_beginnerStart;
     @FXML
@@ -47,29 +47,29 @@ public class Round5Controller extends MainController implements Initializable, R
     @FXML
     private Button bt_advanceStart;
     @FXML
-    private Label lb_cnRoundNumber1;
+    private Label lb_roundNumberS1_zh;
     @FXML
-    private Label lb_cnRoundNumber2;
+    private Label lb_roundNumberS2_zh;
     @FXML
-    private Label lb_cnRoundNumber3;
+    private Label lb_roundNumberS3_zh;
     @FXML
-    private Label lb_enRoundNumber1;
+    private Label lb_roundNumberS1_en;
     @FXML
-    private Label lb_enRoundNumber2;
+    private Label lb_roundNumberS2_en;
     @FXML
-    private Label lb_enRoundNumber3;
+    private Label lb_roundNumberS3_en;
     @FXML
-    private Label lb_cnRoundBeginner;
+    private Label lb_roundLevel1_zh;
     @FXML
-    private Label lb_cnRoundIntermediate;
+    private Label lb_roundLevel2_zh;
     @FXML
-    private Label lb_cnRoundAdvance;
+    private Label lb_roundLevel3_zh;
     @FXML
-    private Label lb_enRoundBeginner;
+    private Label lb_roundLevel1_en;
     @FXML
-    private Label lb_enRoundIntermediate;
+    private Label lb_roundLevel2_en;
     @FXML
-    private Label lb_enRoundAdvance;
+    private Label lb_roundLevel3_en;
     @FXML
     private AnchorPane ap_parent;
 
@@ -158,9 +158,9 @@ public class Round5Controller extends MainController implements Initializable, R
     public void run() {
         try {
             Thread.sleep(1000);
-            lb_cnRoundTitle.setVisible(false);
-            lb_enRoundTitle.setVisible(false);
-            lb_cnRoundDescription.setVisible(false);
+            lb_roundNumber_zh.setVisible(false);
+            lb_roundNumber_en.setVisible(false);
+            lb_roundDescription.setVisible(false);
             ap_root.setVisible(true);
         } catch (InterruptedException ex) {
             ex.printStackTrace();

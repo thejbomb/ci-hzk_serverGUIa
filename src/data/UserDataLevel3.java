@@ -11,13 +11,7 @@ public class UserDataLevel3 extends UserData {
 
     private long seed;
 
-    private LinkedList<String> round2Answers;
-    private LinkedList<Integer> round2Points; // last element is the total point
-
-    private LinkedList<Integer> round5AnswerIndices;
-    private LinkedList<String> round5Answers;
     private int[] round5PointState;
-    private int round5Points;
 
     public UserDataLevel3(String name, int level, int ID) {
         super(name, level, ID);
@@ -99,16 +93,6 @@ public class UserDataLevel3 extends UserData {
         return round2Points;
     }
 
-    public void setRound5Points(int point) {
-        round5Points += point;
-    }
-
-    public void setRound5PointState(int index, int state) {
-        if (round5PointState == null)
-            round5PointState = new int[round5AnswerIndices.size()];
-
-        round5PointState[index] = state;
-    }
 
     public int[] getRound5PointState() {
         if (round5PointState == null)
@@ -116,7 +100,4 @@ public class UserDataLevel3 extends UserData {
         return round5PointState;
     }
 
-    public int getRound5Points() {
-        return round5Points;
-    }
 }

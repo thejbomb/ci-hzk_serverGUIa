@@ -1,0 +1,43 @@
+{
+  "INSTRUCTION_ZH": "10分钟内，选手答对一题得1分，答错扣1分。抢答开始5秒内，选手必须开始答题，若超过5秒未回答，扣1分，进入下一题。",
+  "INSTRUCTION_EN": "The first contestant who hits the buzzer has to answer the question. 1 point will be given if the contestant answers it correctly within 5 seconds. 1 point will be deducted if the contestant answers it wrong or later than 5 seconds.",
+  "TIME_LIMIT": 10,
+  "EXAMPLES": [
+    "ROUND_4_LEVEL_1_EXAMPLE_BODY"
+  ],
+  "QUESTIONS1": [
+    "我的手机被（偷）了。",
+    "你知道开车去波士顿的路（线）吗？",
+    "王老师对学生很严（厉）。",
+    "你买的是哪家（航）空公司的机票？",
+    "这件事情，我到现在也不（清）楚。"
+  ],
+  "CHOICES": [
+    "愉,喻，偷，榆",
+    "浅,贱，线，钱",
+    "历,厉，利，力",
+    "杭,航，吭，忼",
+    "清，睛，晴，情"
+  ],
+  "QUESTIONS2": [
+    "复习 预习 练习",
+    "年级 年纪 年轻",
+    "糟糕 蛋糕 雪糕",
+    "新娘 新鲜 新闻",
+    "安静 安全 安排"
+  ],
+  "QUESTIONS3": [
+    "img1.png",
+    "img2.png",
+    "img3.png",
+    "img4.png",
+    "img5.png"
+  ],
+  "CHOICES3": [
+    "笨鸟先飞,(一石二鸟)，小鸟依人",
+    "(对牛弹琴),牛高马大，琴棋书画",
+    "画龙点睛,画地为牢，(画蛇添足)",
+    "七手八脚,(七上八下)，七老八十",
+    "木已成舟,逆水行舟，(刻舟求剑)"
+  ]
+}

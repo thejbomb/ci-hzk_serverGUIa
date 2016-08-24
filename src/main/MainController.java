@@ -136,6 +136,33 @@ public class MainController implements Initializable, ClientHandlerInterface {
         return result;
     }
 
+    protected UserDataLevel1 getLevel1User(long threadId) {
+        UserDataLevel1 result = null;
+        for (UserDataLevel1 ud : level1Users)
+            if (ud.getThreadId() == threadId)
+                result = ud;
+
+        return result;
+    }
+
+    protected UserDataLevel2 getLevel2User(long threadId) {
+        UserDataLevel2 result = null;
+        for (UserDataLevel2 ud : level2Users)
+            if (ud.getThreadId() == threadId)
+                result = ud;
+
+        return result;
+    }
+
+    protected UserDataLevel3 getLevel3User(long threadId) {
+        UserDataLevel3 result = null;
+        for (UserDataLevel3 ud : level3Users)
+            if (ud.getThreadId() == threadId)
+                result = ud;
+
+        return result;
+    }
+
     private void sendCommandToClient(int command, long threadId) {
         MainController.clientHandler.sendCommandToClient(threadId, command);
     }
@@ -145,7 +172,11 @@ public class MainController implements Initializable, ClientHandlerInterface {
     }
 
     private void sendDataToClient(int command, LinkedList<String> data, UserData user) {
-        MainController.clientHandler.sendDataToClient(user.getThreadId(), command, data);
+        sendDataToClient(command, data, user.getThreadId());
+    }
+
+    private void sendDataToClient(int command, LinkedList<String> data, long threadId) {
+        MainController.clientHandler.sendDataToClient(threadId, command, data);
     }
 
     private void sendDataToAllClient(int command, LinkedList<String> data) {
@@ -153,8 +184,9 @@ public class MainController implements Initializable, ClientHandlerInterface {
         MainController.clientHandler.sendDataToAllClients(command, data);
     }
 
+
     public void writeToClient(int command) {
-        System.out.println("M TO: command = " + Integer.toHexString(command) + " | data = ");
+        System.out.println("M TO: command = " + Integer.toHexString(command) + " | levelData = ");
         switch (command) {
             case Constants.S2C_R2L1_SCR:
                 for (UserDataLevel1 ud : level1Users) {
@@ -200,7 +232,17 @@ public class MainController implements Initializable, ClientHandlerInterface {
         sendDataToAllClient(command, data);
     }
 
+    public void writeToClient(int command, LinkedList<String> data, long threadId) {
+        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
+        sendDataToClient(command, data, threadId);
+    }
+
     public void writeToClient(int command, long threadId) {
+        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
+        sendCommandToClient(command, threadId);
+    }
+
+    public void writeToAllClientsExcept(int command, long threadId) {
         System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
         for (UserDataLevel1 ud : level1Users)
             if (ud.getThreadId() != threadId)
@@ -296,13 +338,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
             default:
                 switch (currentRound) {
                     case Constants.ROUND1:
-                        //ap_round2InterfaceController.handleClientData(command, data);
+                        //ap_round2InterfaceController.handleClientData(command, levelData);
                         break;
                     case Constants.ROUND2:
                         ap_round2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND3:
-                        //ap_round2InterfaceController.handleClientData(command, data);
+                        //ap_round2InterfaceController.handleClientData(command, levelData);
                         break;
                     case Constants.ROUND4:
                         ap_round4InterfaceController.handleClientData(command, data);

@@ -14,7 +14,7 @@
 
 <AnchorPane fx:id="ap_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background"
             xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="main.round4.Level1Controller">
+            fx:controller="main.round4.Level2Controller">
     <children>
         <TabPane fx:id="tp_mainTab" side="RIGHT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0"
                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -252,6 +252,6 @@
         </TabPane>
     </children>
     <stylesheets>
-        <URL value="@Level1Style.css"/>
+        <URL value="@Level2Style.css"/>
     </stylesheets>
 </AnchorPane>

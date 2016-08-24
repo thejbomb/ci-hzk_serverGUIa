@@ -6,13 +6,6 @@ import java.util.LinkedList;
 
 public class UserDataLevel1 extends UserData {
 
-    private LinkedList<String> round2Answers;
-    private LinkedList<Integer> round2Points; // last element is the total point
-
-    private LinkedList<Integer> round5AnswerIndices;
-    private LinkedList<String> round5Answers;
-    private int[] round5PointState;
-    private int round5Points = 0;
 
     public UserDataLevel1(String name, int level, int ID) {
         super(name, level, ID);
@@ -96,15 +89,9 @@ public class UserDataLevel1 extends UserData {
 
     }
 
-    public void setRound5Points(int point) {
-        round5Points += point;
-    }
 
-    public void setRound5PointState(int index, int state) {
-        if (round5PointState == null)
-            round5PointState = new int[round5AnswerIndices.size()];
-
-        round5PointState[index] = state;
+    public LinkedList<Integer> getRound2Points() {
+        return round2Points;
     }
 
     public int[] getRound5PointState() {
@@ -112,14 +99,5 @@ public class UserDataLevel1 extends UserData {
             round5PointState = new int[round5AnswerIndices.size()];
         return round5PointState;
     }
-
-    public LinkedList<Integer> getRound2Points() {
-        return round2Points;
-    }
-
-    public int getRound5Points() {
-        return round5Points;
-    }
-
 
 }

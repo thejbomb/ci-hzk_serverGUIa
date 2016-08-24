@@ -30,7 +30,7 @@
          <children>
             <AnchorPane>
                <children>
-                  <Label fx:id="lb_cnRoundTitle" alignment="CENTER" styleClass="label-roundNumber-zh" text="淘汰赛&#10;第二关" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                  <Label fx:id="lb_roundNumber_zh" alignment="CENTER" styleClass="label-roundNumber-zh" text="淘汰赛&#10;第二关" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
                      <font>
                         <Font name="KaiTi" size="49.0" />
                      </font>
@@ -39,7 +39,7 @@
             </AnchorPane>
             <AnchorPane GridPane.rowIndex="1">
                <children>
-                  <Label fx:id="lb_enRoundTitle" alignment="CENTER" styleClass="label-roundNumber-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <Label fx:id="lb_roundNumber_en" alignment="CENTER" styleClass="label-roundNumber-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <font>
                         <Font name="Bell MT" size="30.0" />
                      </font>
@@ -48,7 +48,7 @@
             </AnchorPane>
             <AnchorPane GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="lb_cnRoundDescription" alignment="CENTER" styleClass="label-roundDescription" text="ROUND_DESCRIPTION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label fx:id="lb_roundDescription" alignment="CENTER" styleClass="label-roundDescription" text="ROUND_DESCRIPTION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>
@@ -75,22 +75,22 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="lb_cnRoundNumber1" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundNumberS1_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="lb_enRoundNumber1" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundNumberS1_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="lb_cnRoundBeginner" alignment="CENTER" styleClass="label-roundLevel-zh" text="初级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundLevel1_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="初级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="lb_enRoundBeginner" alignment="CENTER" styleClass="label-roundLevel-en" text="Beginner Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundLevel1_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Beginner Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
@@ -126,22 +126,22 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="lb_cnRoundNumber2" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundNumberS2_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="lb_enRoundNumber2" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundNumberS2_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="lb_cnRoundIntermediate" alignment="CENTER" styleClass="label-roundLevel-zh" text="中级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundLevel2_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="中级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="lb_enRoundIntermediate" alignment="CENTER" styleClass="label-roundLevel-en" text="Intermediate Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundLevel2_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Intermediate Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
@@ -177,22 +177,22 @@
                                  <children>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                        <children>
-                                          <Label fx:id="lb_cnRoundNumber3" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundNumberS3_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第二关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
                                        <children>
-                                          <Label fx:id="lb_enRoundNumber3" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundNumberS3_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                                        <children>
-                                          <Label fx:id="lb_cnRoundAdvance" alignment="CENTER" styleClass="label-roundLevel-zh" text="高级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundLevel3_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="高级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
                                        <children>
-                                          <Label fx:id="lb_enRoundAdvance" alignment="CENTER" styleClass="label-roundLevel-en" text="Advance Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                          <Label fx:id="lb_roundLevel3_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Advance Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
