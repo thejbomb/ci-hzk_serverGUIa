@@ -98,7 +98,7 @@ public class Round4Controller extends MainController implements Initializable, R
     }
 
     public void setActiveThread(long threadId) {
-        super.setActiveThread(threadId);
+        activeThreadId = threadId;
         if (ap_level1InterfaceController != null)
             ap_level1InterfaceController.setActiveThread(threadId);
     }

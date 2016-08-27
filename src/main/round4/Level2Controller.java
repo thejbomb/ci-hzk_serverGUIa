@@ -92,7 +92,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
 
     public void setActiveThread(long threadId) {
-        super.setActiveThread(threadId);
+        activeThreadId = threadId;
     }
 
     private void initComboBox() {

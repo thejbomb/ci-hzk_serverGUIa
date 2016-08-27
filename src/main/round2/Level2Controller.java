@@ -106,6 +106,10 @@ public class Level2Controller extends Round2Controller implements Initializable,
         initComboBox();
     }
 
+    public void setActiveThread(long threadId){
+        activeThreadId = threadId;
+    }
+
     private void initComboBox() {
         LinkedList<String> studentName = new LinkedList<>();
         for (UserDataLevel2 ud : level2Users) {

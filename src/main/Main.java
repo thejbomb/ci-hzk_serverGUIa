@@ -32,23 +32,23 @@ public class Main extends Application {
 
     static {
         try {
-            String fileName = "src/data/Round2Level1Data.json";
+            String fileName = System.getProperty("user.dir") + "/src/data/Round2Level1Data.json";
             R2L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round2.Level1DataStructure.class);
-            fileName = "src/data/Round2Level2Data.json";
+            fileName = System.getProperty("user.dir") + "/src/data/Round2Level2Data.json";
             R2L2_DATA = new Gson().fromJson(new FileReader(fileName), data.round2.Level2DataStructure.class);
-            fileName = "src/data/Round2Level3Data.json";
+            fileName = System.getProperty("user.dir") +"/src/data/Round2Level3Data.json";
             R2L3_DATA = new Gson().fromJson(new FileReader(fileName), data.round2.Level3DataStructure.class);
-            fileName = "src/data/Round4Level1Data.json";
+            fileName = System.getProperty("user.dir") +"/src/data/Round4Level1Data.json";
             R4L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round4.DataStructure.class);
-            fileName = "src/data/Round4Level2Data.json";
+            fileName = System.getProperty("user.dir") +"/src/data/Round4Level2Data.json";
             R4L2_DATA = new Gson().fromJson(new FileReader(fileName), data.round4.DataStructure.class);
-            fileName = "src/data/Round4Level3Data.json";
+            fileName = System.getProperty("user.dir") +"/src/data/Round4Level3Data.json";
             R4L3_DATA = new Gson().fromJson(new FileReader(fileName), data.round4.Level3DataStructure.class);
-            fileName = "src/data/Round5Level1Data.json";
+            fileName = System.getProperty("user.dir") +"/src/data/Round5Level1Data.json";
             R5L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round5.Level1DataStructure.class);
-            fileName = "src/data/Round5Level2Data.json";
+            fileName = System.getProperty("user.dir") +"/src/data/Round5Level2Data.json";
             R5L2_DATA = new Gson().fromJson(new FileReader(fileName), data.round5.Level2DataStructure.class);
-            fileName = "src/data/Round5Level3Data.json";
+            fileName = System.getProperty("user.dir") +"/src/data/Round5Level3Data.json";
             R5L3_DATA = new Gson().fromJson(new FileReader(fileName), data.round5.Level3DataStructure.class);
         } catch (FileNotFoundException ex) {
             ex.printStackTrace();
@@ -61,6 +61,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainInterface.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("HZK_server");
+        //primaryStage.setFullScreen(true);
         primaryStage.setScene(new Scene(root, 1280, 720));
         primaryStage.show();
         Server newServer = new Server(9999, true);

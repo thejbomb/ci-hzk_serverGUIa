@@ -41,11 +41,17 @@ public class Round2Controller extends MainController implements Initializable, R
     @FXML
     private Label lb_roundNumber_en;
     @FXML
-    private Button bt_beginnerStart;
+    private Button bt_level1Instruction;
     @FXML
-    private Button bt_intermediateStart;
+    private Button bt_level1Example;
     @FXML
-    private Button bt_advanceStart;
+    private Button bt_level2Instruction;
+    @FXML
+    private Button bt_level2Example;
+    @FXML
+    private Button bt_level3Instruction;
+    @FXML
+    private Button bt_level3Example;
     @FXML
     private Label lb_roundNumberS1_zh;
     @FXML
@@ -83,11 +89,21 @@ public class Round2Controller extends MainController implements Initializable, R
 
     }
 
-    public void show(){
+    public void setActiveThread(long threadId) {
+        activeThreadId = threadId;
+        if (ap_level1InterfaceController != null)
+            ap_level1InterfaceController.setActiveThread(threadId);
+        if(ap_level2InterfaceController != null)
+            ap_level2InterfaceController.setActiveThread(threadId);
+        if(ap_level3InterfaceController != null)
+            ap_level3InterfaceController.setActiveThread(threadId);
+    }
+
+    public void show() {
         ap_root.setVisible(true);
     }
 
-    private void hide(){
+    private void hide() {
         ap_root.setVisible(false);
     }
 
@@ -99,22 +115,22 @@ public class Round2Controller extends MainController implements Initializable, R
 
     @FXML
     private void handleMouseClick(MouseEvent e) {
-        if (e.getSource() == bt_beginnerStart) {
+        if (e.getSource() == bt_level1Instruction) {
             currentLevel = Constants.LEVEL1;
             hide();
             ap_level1InterfaceController.init(level1Users, this);
             ap_level1InterfaceController.show();
             writeToClient(Constants.BEGIN_R2L1);
-        } else if (e.getSource() == bt_intermediateStart) {
+        } else if (e.getSource() == bt_level2Instruction) {
             currentLevel = Constants.LEVEL2;
             hide();
-            ap_level2InterfaceController.init(level2Users,this);
+            ap_level2InterfaceController.init(level2Users, this);
             ap_level2InterfaceController.show();
             writeToClient(Constants.BEGIN_R2L2);
-        } else if (e.getSource() == bt_advanceStart) {
+        } else if (e.getSource() == bt_level3Instruction) {
             currentLevel = Constants.LEVEL3;
             hide();
-            ap_level3InterfaceController.init(level3Users,this);
+            ap_level3InterfaceController.init(level3Users, this);
             ap_level3InterfaceController.show();
             writeToClient(Constants.BEGIN_R2L3);
         }

@@ -18,7 +18,7 @@
       <fx:include fx:id="ap_level1Interface" source="Level1Interface.fxml" />
       <fx:include fx:id="ap_level2Interface" source="Level2Interface.fxml" />
        <fx:include fx:id="ap_level3Interface" source="Level3Interface.fxml" />
-      <GridPane mouseTransparent="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+      <GridPane mouseTransparent="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="100.0" />
          </columnConstraints>
@@ -94,13 +94,16 @@
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
-                                       <center>
-                                          <Button fx:id="bt_beginnerStart" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="开始&#10;Begin" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                       <left>
+                                          <Button fx:id="bt_level1Instruction" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Instruction" textAlignment="CENTER" BorderPane.alignment="CENTER">
                                              <font>
                                                 <Font name="KaiTi" size="48.0" />
                                              </font>
                                           </Button>
-                                       </center>
+                                       </left>
+                                       <right>
+                                          <Button fx:id="bt_level1Example" mnemonicParsing="false" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                       </right>
                                     </BorderPane>
                                  </children>
                               </GridPane>
@@ -145,13 +148,16 @@
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
-                                       <center>
-                                          <Button fx:id="bt_intermediateStart" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="开始&#10;Begin" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                       <left>
+                                          <Button fx:id="bt_level2Instruction" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Instruction" textAlignment="CENTER" BorderPane.alignment="CENTER">
                                              <font>
                                                 <Font name="KaiTi" size="48.0" />
                                              </font>
                                           </Button>
-                                       </center>
+                                       </left>
+                                       <right>
+                                          <Button fx:id="bt_level2Example" mnemonicParsing="false" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                       </right>
                                     </BorderPane>
                                  </children>
                               </GridPane>
@@ -196,13 +202,16 @@
                                        </children>
                                     </AnchorPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
-                                       <center>
-                                          <Button fx:id="bt_advanceStart" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="开始&#10;Begin" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                       <left>
+                                          <Button fx:id="bt_level3Instruction" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Instruction" textAlignment="CENTER" BorderPane.alignment="CENTER">
                                              <font>
                                                 <Font name="KaiTi" size="48.0" />
                                              </font>
                                           </Button>
-                                       </center>
+                                       </left>
+                                       <right>
+                                          <Button fx:id="bt_level3Example" mnemonicParsing="false" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                       </right>
                                     </BorderPane>
                                  </children>
                               </GridPane>
@@ -223,11 +232,6 @@
                                 </items>
                               </ToolBar>
                            </children></AnchorPane>
-                    </content>
-                  </Tab>
-                  <Tab text="Untitled Tab">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                   </Tab>
               </tabs>

@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
@@ -207,6 +208,11 @@
                               <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
+                              <FlowPane fx:id="fp_answers1" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                              <FlowPane fx:id="fp_answers2" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <FlowPane fx:id="fp_answers3" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <FlowPane fx:id="fp_answers4" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <FlowPane fx:id="fp_answers5" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="5">
                                  <children>
                                     <ToolBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -222,19 +228,9 @@
                                     <Label fx:id="lb_question1_st" styleClass="label-scoreQuestion" text="QUESTION_1" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                 <children>
-                                    <Label fx:id="lb_answer1" styleClass="label-scoreAnswer" text="USER_ANSWER_1" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
                                     <Label fx:id="lb_question2_st" styleClass="label-scoreQuestion" text="QUESTION_2" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                 <children>
-                                    <Label fx:id="lb_answer2" styleClass="label-scoreAnswer" text="USER_ANSWER_2" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -242,29 +238,14 @@
                                     <Label fx:id="lb_question3_st" styleClass="label-scoreQuestion" text="QUESTION_3" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                 <children>
-                                    <Label fx:id="lb_answer3" styleClass="label-scoreAnswer" text="USER_ANSWER_3" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <Label fx:id="lb_question4_st" styleClass="label-scoreQuestion" text="QUESTION_4" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                 <children>
-                                    <Label fx:id="lb_answer4" styleClass="label-scoreAnswer" text="USER_ANSWER_4" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
                                     <Label fx:id="lb_question5_st" styleClass="label-scoreQuestion" text="QUESTION_5" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                 </children>
-                              </AnchorPane>
-                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                 <children>
-                                    <Label fx:id="lb_answer5" styleClass="label-scoreAnswer" text="USER_ANSWER_5" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                  </children>
                               </AnchorPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">

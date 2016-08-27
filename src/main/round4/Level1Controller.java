@@ -91,7 +91,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
 
 
     public void setActiveThread(long threadId) {
-        super.setActiveThread(threadId);
+        activeThreadId = threadId;
     }
 
     private void initComboBox() {
@@ -162,17 +162,52 @@ public class Level1Controller extends Round4Controller implements Initializable,
     private void displayChoices(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L1_DATA.getQuestions().size())
             throw new Exception("No such question exist");
-        Button[] choices = new Button[Main.R4L1_DATA.getChoices(questionNumber).size()];
+        Button[] choices;
+        if (Main.R4L1_DATA.getChoices(questionNumber).size() > 0)
+            choices = new Button[Main.R4L1_DATA.getChoices(questionNumber).size()];
+        else
+            choices = new Button[2];
         for (int i = 0; i < choices.length; i++) {
-            choices[i] = new Button((char) (0x41 + i) + "." + Main.R4L1_DATA.getChoices(questionNumber).get(i));
+
+            if (Main.R4L1_DATA.getChoices(questionNumber).size() > 0) {
+                String label = Main.R4L1_DATA.getChoices(questionNumber).get(i);
+                choices[i] = new Button((char) (0x41 + i) + "." + label);
+
+            } else {
+                if (i == 0)
+                    choices[i] = new Button("\uD83D\uDC4D");
+
+                else if (i == 1)
+                    choices[i] = new Button("\uD83D\uDC4E");
+            }
             choices[i].getStyleClass().set(0, "button-questionsChoice");
             int finalI = i;
-            choices[i].setOnMouseClicked(e -> {
-                if (Main.R4L1_DATA.isCorrect(choices[finalI].getText().substring(2), questionNumber))
-                    System.out.println("R4L1: Correct!");
-                else
-                    System.out.println("R4L1: Incorrect!");
-            });
+            if (Main.R4L1_DATA.getChoices(questionNumber).size() > 0) {
+                choices[i].setOnMouseClicked(e -> {
+                    if (Main.R4L1_DATA.isCorrect(choices[finalI].getText().substring(2), questionNumber))
+                        System.out.println("R4L1: Correct!");
+                    else
+                        System.out.println("R4L1: Incorrect!");
+                });
+            } else {
+                choices[i].setOnMouseClicked(e -> {
+                    if (finalI == 0) {
+                        choices[finalI].getStyleClass().set(0, "button-questionsUserChoice");
+                        choices[1].getStyleClass().set(0,"button-questionsChoice");
+                        getLevel1User(activeThreadId).setRound4Points(1);
+                        writeToClient(Constants.S2C_R4LX_CRCT);
+                        writeToClient(Constants.S2C_R4L1_SCR, packageData(getLevel1User(activeThreadId).getRound4Points()), activeThreadId);
+                        System.out.println("R4L1: Correct!");
+                    } else if (finalI == 1) {
+                        choices[finalI].getStyleClass().set(0, "button-questionsUserChoice");
+                        choices[0].getStyleClass().set(0,"button-questionsChoice");
+                        getLevel1User(activeThreadId).setRound4Points(-1);
+                        writeToClient(Constants.S2C_R4LX_WRNG);
+                        writeToClient(Constants.S2C_R4L1_SCR, packageData(getLevel1User(activeThreadId).getRound4Points()), activeThreadId);
+                        System.out.println("R4L1: Incorrect!");
+                    }
+                });
+            }
         }
         fp_choices.getChildren().clear();
         fp_choices.getChildren().addAll(choices);
@@ -309,4 +344,3 @@ public class Level1Controller extends Round4Controller implements Initializable,
     }
 
 }
-

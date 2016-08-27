@@ -1,0 +1,5 @@
+#vbox-tableHeader {
+    -fx-border-color: black;
+    -fx-border-style: solid inside;
+    -fx-border-insets: 5;
+}

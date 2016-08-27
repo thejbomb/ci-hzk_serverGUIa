@@ -10,58 +10,69 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.60"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
     <children>
-        <fx:include fx:id="ap_round2Interface" source="round2/Round2Interface.fxml" />
-        <fx:include fx:id="ap_round4Interface" source="round4/Round4Interface.fxml" />
-        <fx:include fx:id="ap_round5Interface" source="round5/Round5Interface.fxml" />
-        <AnchorPane fx:id="ap_root" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <fx:include fx:id="ap_round2Interface" source="round2/Round2Interface.fxml"/>
+        <fx:include fx:id="ap_round4Interface" source="round4/Round4Interface.fxml"/>
+        <fx:include fx:id="ap_round5Interface" source="round5/Round5Interface.fxml"/>
+        <fx:include fx:id="ap_scoreboardInterface" source="ScoreboardInterface.fxml"/>
+        <AnchorPane fx:id="ap_root" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0"
+                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <Label fx:id="lb_name" styleClass="label-tableHeader" text="姓名 Name" AnchorPane.leftAnchor="60.0" AnchorPane.topAnchor="50.0">
+                <Label fx:id="lb_name" styleClass="label-tableHeader" text="姓名 Name" AnchorPane.leftAnchor="60.0"
+                       AnchorPane.topAnchor="50.0">
                     <font>
-                        <Font name="KaiTi" size="16.0" />
+                        <Font name="KaiTi" size="16.0"/>
                     </font>
                 </Label>
-                <Label fx:id="lb_level" styleClass="label-tableHeader" text="水平 Level" AnchorPane.leftAnchor="155.0" AnchorPane.topAnchor="50.0">
+                <Label fx:id="lb_level" styleClass="label-tableHeader" text="水平 Level" AnchorPane.leftAnchor="155.0"
+                       AnchorPane.topAnchor="50.0">
                     <font>
-                        <Font name="KaiTi" size="16.0" />
+                        <Font name="KaiTi" size="16.0"/>
                     </font>
                 </Label>
-                <Label fx:id="lb_status" styleClass="label-tableHeader" text="状态 Status" AnchorPane.leftAnchor="245.0" AnchorPane.topAnchor="50.0">
+                <Label fx:id="lb_status" styleClass="label-tableHeader" text="状态 Status" AnchorPane.leftAnchor="245.0"
+                       AnchorPane.topAnchor="50.0">
                     <font>
-                        <Font name="KaiTi" size="16.0" />
+                        <Font name="KaiTi" size="16.0"/>
                     </font>
                 </Label>
-                <TableView fx:id="tb_usersList" styleClass="table-view-text" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="70.0">
+                <TableView fx:id="tb_usersList" styleClass="table-view-text" AnchorPane.bottomAnchor="50.0"
+                           AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="70.0">
                     <columns>
-                        <TableColumn minWidth="90.0" prefWidth="90.0" resizable="false" text="Name" />
-                        <TableColumn minWidth="105.0" prefWidth="105.0" resizable="false" text="Level" />
-                        <TableColumn minWidth="100.0" prefWidth="100.0" text="ID" visible="false" />
-                        <TableColumn minWidth="90.0" prefWidth="90.0" resizable="false" text="Status" />
+                        <TableColumn minWidth="90.0" prefWidth="90.0" resizable="false" text="Name"/>
+                        <TableColumn minWidth="105.0" prefWidth="105.0" resizable="false" text="Level"/>
+                        <TableColumn minWidth="100.0" prefWidth="100.0" text="ID" visible="false"/>
+                        <TableColumn minWidth="90.0" prefWidth="90.0" resizable="false" text="Status"/>
                     </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
+                    <columnResizePolicy>
+                        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                    </columnResizePolicy>
                 </TableView>
-                <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
+                <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="200.0"
+                            AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="100.0">
                     <bottom>
-                        <Button fx:id="bt_start" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-start" text="开始&#10;Open" textAlignment="CENTER" textOverrun="CLIP" BorderPane.alignment="CENTER">
+                        <Button fx:id="bt_start" mnemonicParsing="false" onMouseClicked="#handleMouseClick"
+                                styleClass="button-start" text="开始&#10;Open" textAlignment="CENTER" textOverrun="CLIP"
+                                BorderPane.alignment="CENTER">
                             <font>
-                                <Font name="KaiTi" size="48.0" />
+                                <Font name="KaiTi" size="48.0"/>
                             </font>
                         </Button>
                     </bottom>
                     <top>
                         <VBox alignment="CENTER" fillWidth="false" spacing="75.0" BorderPane.alignment="CENTER">
                             <children>
-                                <Label fx:id="lb_cnTitle" styleClass="label-title-zh" text="第三届“汉字酷”">
+                                <Label fx:id="lb_title_zh" styleClass="label-title-zh" text="第三届“汉字酷”">
                                     <font>
-                                        <Font name="KaiTi" size="72.0" />
+                                        <Font name="KaiTi" size="72.0"/>
                                     </font>
                                 </Label>
-                                <Label fx:id="lb_enTitle" styleClass="label-title-en" text="The 3rd Annual URI “Hanzi Ku”Competition">
+                                <Label fx:id="lb_title_en" styleClass="label-title-en"
+                                       text="The 3rd Annual URI “Hanzi Ku”Competition">
                                     <font>
-                                        <Font name="Verdana" size="24.0" />
+                                        <Font name="Verdana" size="24.0"/>
                                     </font>
                                 </Label>
                             </children>
@@ -72,6 +83,6 @@
         </AnchorPane>
     </children>
     <stylesheets>
-        <URL value="@MainStyle.css" />
+        <URL value="@MainStyle.css"/>
     </stylesheets>
 </AnchorPane>

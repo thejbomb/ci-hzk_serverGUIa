@@ -1,11 +1,17 @@
 package data;
 
 import data.round2.Level1DataStructure;
+import javafx.scene.shape.Polyline;
+import main.Main;
+import sun.awt.image.ImageWatched;
 
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class UserDataLevel1 extends UserData {
-
+    private LinkedList<LinkedList<Polyline>>[] round2Answers;
 
     public UserDataLevel1(String name, int level, int ID) {
         super(name, level, ID);
@@ -16,22 +22,57 @@ public class UserDataLevel1 extends UserData {
     }
 
     public void setRound2Answers(LinkedList<String> answers) {
-        if (round2Answers == null)
-            round2Answers = new LinkedList<>();
+        round2Answers = new LinkedList[answers.size() / 2];
+        for (int i = 0; i < round2Answers.length; i++)
+            round2Answers[i] = new LinkedList<>();
 
-        int i = 2;
-        while (answers.size() != 0) {
-            String answer = "";
-            answers.removeFirst();
-            while (answers.getFirst().compareTo("ANS" + i) != 0) {
-                answer += answers.getFirst();
-                answers.removeFirst();
-                if (answers.size() == 0)
-                    break;
+        answers.removeFirst();
+        int index = 0;
+        while (true) {
+
+            String s = answers.removeFirst();
+            int index0;
+            int index00 = 0;
+            index0 = s.indexOf("[Polyline", index00);
+            index00 = s.indexOf("[Polyline", index0 + 1);
+            while (index0 != -1) {
+                LinkedList<Polyline> llpl = new LinkedList<>();
+                String sString;
+                if (index00 != -1)
+                    sString = s.substring(index0, index00);
+                else {
+                    sString = s.substring(index0);
+                    index00 = index0 + 1;
+                }
+                int index1;
+                int index2 = 0;
+                index1 = sString.indexOf("points=", index2);
+                index2 = sString.indexOf("]", index1);
+                while (index1 != -1) {
+                    Polyline pl = new Polyline();
+                    String s2 = sString.substring(index1 + 8, index2);
+                    List<String> list = Arrays.asList(s2.split(","));
+                    LinkedList<Double> dList = new LinkedList<>();
+                    for (String string : list)
+                        dList.add(Double.parseDouble(string));
+                    pl.getPoints().addAll(dList);
+                    llpl.add(pl);
+                    index1 = sString.indexOf("points=", index2);
+                    index2 = sString.indexOf("]", index1);
+
+                }
+                index0 = s.indexOf("[Polyline", index00);
+                index00 = s.indexOf("[Polyline", index0 + 1);
+                round2Answers[index].add(llpl);
             }
-            round2Answers.add(answer.replaceAll("\\s", ""));
-            i++;
+            try {
+                answers.removeFirst();
+                index++;
+            } catch (NoSuchElementException ex) {
+                break;
+            }
         }
+
         System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 2 are " + round2Answers);
     }
 
@@ -55,7 +96,7 @@ public class UserDataLevel1 extends UserData {
         System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 5 are " + round5Answers);
     }
 
-    public LinkedList<String> getRound2Answers() {
+    public LinkedList<LinkedList<Polyline>>[] getRound2Answers() {
         return round2Answers;
     }
 

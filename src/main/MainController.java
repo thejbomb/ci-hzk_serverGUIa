@@ -39,11 +39,15 @@ public class MainController implements Initializable, ClientHandlerInterface {
     @FXML
     private Round5Controller ap_round5InterfaceController;
     @FXML
+    private AnchorPane ap_scoreboardInterface;
+    @FXML
+    private ScoreboardController ap_scoreboardInterfaceController;
+    @FXML
     private AnchorPane ap_root;
     @FXML
-    private Label lb_cnTitle;
+    private Label lb_title_zh;
     @FXML
-    private Label lb_enTitle;
+    private Label lb_title_en;
     @FXML
     private Label lb_name;
     @FXML
@@ -59,7 +63,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private int currentRound = 0;
+    private int currentRound = Constants.ROUND2;
 
     public void init(ClientInteractionInterface handler) {
         clientHandler = handler;
@@ -97,6 +101,31 @@ public class MainController implements Initializable, ClientHandlerInterface {
             throw new HzkException("User ID Not Found");
     }
 
+    public void startRound(int roundNumber) {
+        switch (roundNumber) {
+            case Constants.ROUND1:
+                break;
+            case Constants.ROUND2:
+                for (UserDataLevel1 ud : level1Users)
+                    writeToClient(Constants.BEGIN_R2L1, ud.getThreadId());
+                for (UserDataLevel2 ud : level2Users)
+                    writeToClient(Constants.BEGIN_R2L2, ud.getThreadId());
+                for (UserDataLevel3 ud : level3Users)
+                    writeToClient(Constants.BEGIN_R2L3, ud.getThreadId());
+                ap_round2Interface.setVisible(true);
+                ap_round2InterfaceController.init();
+                ap_round2InterfaceController.setUsers(level1Users,level2Users,level3Users);
+                ap_round2InterfaceController.show();
+                break;
+            case Constants.ROUND3:
+                break;
+            case Constants.ROUND4:
+                break;
+            case Constants.ROUND5:
+                break;
+        }
+    }
+
     private void initUserData() {
         if (level1Users == null)
             level1Users = new LinkedList<>();
@@ -119,9 +148,11 @@ public class MainController implements Initializable, ClientHandlerInterface {
         if (e.getSource() == bt_start) {
             sendCommandToAllClients(Constants.BEGIN_COMP);
             ap_root.setVisible(false);
-            ap_round4Interface.setVisible(true);
-            ap_round4InterfaceController.init();
-            ap_round4InterfaceController.setUsers(level1Users, level2Users, level3Users);
+            ap_scoreboardInterface.setVisible(true);
+            ap_scoreboardInterfaceController.init(this);
+            ap_scoreboardInterfaceController.setCurrentRound(currentRound);
+            ap_scoreboardInterfaceController.initUserData(level1Users, level2Users, level3Users);
+            ap_scoreboardInterfaceController.display();
         }
     }
 
@@ -227,21 +258,25 @@ public class MainController implements Initializable, ClientHandlerInterface {
         }
     }
 
+    // write command and data to all clients
     public void writeToClient(int command, LinkedList<String> data) {
         System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
         sendDataToAllClient(command, data);
     }
 
+    // write command and data to client on threadId
     public void writeToClient(int command, LinkedList<String> data, long threadId) {
         System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
         sendDataToClient(command, data, threadId);
     }
 
+    // write command to client on threadId
     public void writeToClient(int command, long threadId) {
         System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
         sendCommandToClient(command, threadId);
     }
 
+    // write command to all clients except for client on threadId
     public void writeToAllClientsExcept(int command, long threadId) {
         System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
         for (UserDataLevel1 ud : level1Users)
@@ -278,21 +313,15 @@ public class MainController implements Initializable, ClientHandlerInterface {
     @Override
     public void setActiveThread(long threadID) {
         activeThreadId = threadID;
+        if (ap_round2InterfaceController != null)
+            ap_round2InterfaceController.setActiveThread(threadID);
         if (ap_round4InterfaceController != null)
             ap_round4InterfaceController.setActiveThread(threadID);
     }
 
-
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
-            case Constants.C2S_R2L1_ANS:
-                for (UserDataLevel1 ud : level1Users) {
-                    if (ud.getThreadId() == activeThreadId)
-                        ud.setRound2Answers(data);
-                }
-                ap_round2InterfaceController.handleClientData(command, null);
-                break;
             case Constants.C2S_R2L2_ANS:
                 for (UserDataLevel2 ud : level2Users) {
                     if (ud.getThreadId() == activeThreadId)
@@ -338,13 +367,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
             default:
                 switch (currentRound) {
                     case Constants.ROUND1:
-                        //ap_round2InterfaceController.handleClientData(command, levelData);
+                        //ap_round2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND2:
                         ap_round2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND3:
-                        //ap_round2InterfaceController.handleClientData(command, levelData);
+                        //ap_round2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND4:
                         ap_round4InterfaceController.handleClientData(command, data);
@@ -380,7 +409,11 @@ public class MainController implements Initializable, ClientHandlerInterface {
         AnchorPane.setRightAnchor(ap_round5Interface, 0.0);
         ap_round5Interface.setVisible(false);
 
-        currentRound = Constants.ROUND4;
+        AnchorPane.setBottomAnchor(ap_scoreboardInterface, 0.0);
+        AnchorPane.setTopAnchor(ap_scoreboardInterface, 0.0);
+        AnchorPane.setLeftAnchor(ap_scoreboardInterface, 0.0);
+        AnchorPane.setRightAnchor(ap_scoreboardInterface, 0.0);
+        ap_scoreboardInterface.setVisible(false);
 
         initUserData();
     }
