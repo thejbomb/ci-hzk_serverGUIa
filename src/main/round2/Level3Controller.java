@@ -20,7 +20,7 @@ import tool.Constants;
 import java.net.URL;
 import java.util.*;
 
-public class Level3Controller extends Round2Controller implements Initializable, Runnable {
+public class Level3Controller extends Round2Controller implements Initializable {
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -197,6 +197,14 @@ public class Level3Controller extends Round2Controller implements Initializable,
     private Line line9;
     @FXML
     private Line line10;
+    @FXML
+    private GridPane gp_instruction;
+    @FXML
+    private GridPane gp_example;
+    @FXML
+    private Button bt_instructionHome;
+    @FXML
+    private Button bt_exampleHome;
 
     private LinkedList<Label> questions;
     private LinkedList<Label> choices;
@@ -210,18 +218,15 @@ public class Level3Controller extends Round2Controller implements Initializable,
 
     private Round2Controller round2Controller;
 
-    private Thread thread;
 
     public void init(LinkedList<UserDataLevel3> level3Users, Round2Controller controller) {
         this.level3Users = level3Users;
         round2Controller = controller;
 
-        thread = new Thread(this);
-        thread.start();
         initComboBox();
     }
 
-    public void setActiveThread(long threadId){
+    public void setActiveThread(long threadId) {
         activeThreadId = threadId;
     }
 
@@ -233,6 +238,40 @@ public class Level3Controller extends Round2Controller implements Initializable,
         ObservableList<String> name = FXCollections.observableArrayList(studentName);
         cb_users.setItems(name);
         cb_users.setValue(cb_users.getItems().get(0));
+    }
+
+    public void showInstruction() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_example.setVisible(false);
+        gp_instruction.setVisible(true);
+    }
+
+    public void hideInstruction() {
+        gp_instruction.setVisible(false);
+    }
+
+    public void showExample() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_instruction.setVisible(false);
+        gp_example.setVisible(true);
+    }
+
+    public void hideExample() {
+        gp_example.setVisible(false);
+    }
+
+    public void showScoring() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_instruction.setVisible(false);
+        gp_example.setVisible(false);
+        gp_score.setVisible(true);
+    }
+
+    public void hideScoring() {
+        gp_score.setVisible(false);
     }
 
     private LinkedList<String> randomizeAnswers(ArrayList<String> data) {
@@ -294,10 +333,18 @@ public class Level3Controller extends Round2Controller implements Initializable,
         } else if (e.getSource() == bt_home) {
             hide();
             round2Controller.show();
+        } else if (e.getSource() == bt_instructionHome) {
+            hideInstruction();
+            hide();
+            round2Controller.show();
+        } else if (e.getSource() == bt_exampleHome) {
+            hideExample();
+            hide();
+            round2Controller.show();
         }
     }
 
-    private void drawLine(){
+    private void drawLine() {
         for (int j = 0; j < answers.size(); j++) {
             Label answer = answers.get(j);
             String input = answer.getText();
@@ -305,7 +352,7 @@ public class Level3Controller extends Round2Controller implements Initializable,
                 input = input.toUpperCase();
                 if (input.length() > 1)
                     answer.setText(input.substring(0, 1));
-                else if(input.charAt(0) >= answers.size() + 0x41)
+                else if (input.charAt(0) >= answers.size() + 0x41)
                     answer.setText("");
                 else
                     answer.setText(input);
@@ -316,17 +363,17 @@ public class Level3Controller extends Round2Controller implements Initializable,
                     if (_input == i + 0x41) {
                         // ONLY WORK IN MAXIMIZED SCREEN MODE RIGHT NOW
                         Scene scene = choices_st.get(i).getScene();
-                        Point2D windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
-                        Point2D sceneC = new Point2D(scene.getX(),scene.getY());
-                        Point2D node = choices_st.get(i).localToScene(0.0,0.0);
+                        Point2D windowC = new Point2D(scene.getWindow().getX(), scene.getWindow().getY());
+                        Point2D sceneC = new Point2D(scene.getX(), scene.getY());
+                        Point2D node = choices_st.get(i).localToScene(0.0, 0.0);
                         double x = windowC.getX() + sceneC.getX() + node.getX();
                         double y = windowC.getY() + sceneC.getY() + node.getY();
                         lines.get(j).setStartX(x);
                         lines.get(j).setStartY(y);
                         scene = questions_st.get(j).getScene();
-                        windowC = new Point2D(scene.getWindow().getX(),scene.getWindow().getY());
-                        sceneC = new Point2D(scene.getX(),scene.getY());
-                        node = questions_st.get(j).localToScene(0.0,0.0);
+                        windowC = new Point2D(scene.getWindow().getX(), scene.getWindow().getY());
+                        sceneC = new Point2D(scene.getX(), scene.getY());
+                        node = questions_st.get(j).localToScene(0.0, 0.0);
                         x = windowC.getX() + sceneC.getX() + node.getX();
                         y = windowC.getY() + sceneC.getY() + node.getY();
                         lines.get(j).setEndX(x + questions_st.get(i).getWidth());
@@ -377,17 +424,6 @@ public class Level3Controller extends Round2Controller implements Initializable,
                 break;
         }
 
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            if (tp_mainTab.getTabs().get(1).isSelected()) {
-                super.writeToClient(Constants.DIS_R2L3_EXP);
-                break;
-            }
-        }
-        thread.interrupt();
     }
 
     @Override

@@ -31,14 +31,17 @@ public class Constants {
     public static final int BEGIN_R5L2 = 0x520;
     public static final int BEGIN_R5L3 = 0x530;
 
+    public static final int DIS_R2L1_INS = 0x211;
     public static final int DIS_R2L1_EXP = 0x212;
     public static final int DIS_R2L1_QST = 0x213;
     public static final int C2S_R2L1_ANS = 0x214;
     public static final int S2C_R2L1_SCR = 0x215;
+    public static final int DIS_R2L2_INS = 0x221;
     public static final int DIS_R2L2_EXP = 0x222;
     public static final int DIS_R2L2_QST = 0x223;
     public static final int C2S_R2L2_ANS = 0x224;
     public static final int S2C_R2L2_SCR = 0x225;
+    public static final int DIS_R2L3_INS = 0x231;
     public static final int DIS_R2L3_EXP = 0x232;
     public static final int DIS_R2L3_QST = 0x233;
     public static final int C2S_R2L3_ANS = 0x234;

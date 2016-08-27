@@ -5,7 +5,6 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -102,8 +101,11 @@
                                           </Button>
                                        </left>
                                        <right>
-                                          <Button fx:id="bt_level1Example" mnemonicParsing="false" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                          <Button fx:id="bt_level1Example" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
                                        </right>
+                                       <center>
+                                          <Button fx:id="bt_level1Scoring" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Scoring" BorderPane.alignment="CENTER" />
+                                       </center>
                                     </BorderPane>
                                  </children>
                               </GridPane>
@@ -156,8 +158,11 @@
                                           </Button>
                                        </left>
                                        <right>
-                                          <Button fx:id="bt_level2Example" mnemonicParsing="false" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                          <Button fx:id="bt_level2Example" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
                                        </right>
+                                       <center>
+                                          <Button fx:id="bt_level2Scoring" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Scoring" BorderPane.alignment="CENTER" />
+                                       </center>
                                     </BorderPane>
                                  </children>
                               </GridPane>
@@ -210,8 +215,11 @@
                                           </Button>
                                        </left>
                                        <right>
-                                          <Button fx:id="bt_level3Example" mnemonicParsing="false" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                          <Button fx:id="bt_level3Example" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
                                        </right>
+                                       <center>
+                                          <Button fx:id="bt_level3Scoring" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Scoring" BorderPane.alignment="CENTER" />
+                                       </center>
                                     </BorderPane>
                                  </children>
                               </GridPane>
@@ -223,14 +231,53 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                            <children>
-                              <ToolBar prefHeight="40.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                <items>
-                                  <Button mnemonicParsing="false" text="Stage 1" />
-                                    <Button mnemonicParsing="false" text="Stage 2" />
-                                    <Button mnemonicParsing="false" text="Stage " />
-                                    <Button mnemonicParsing="false" text="Button" />
-                                </items>
-                              </ToolBar>
+                              <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" />
+                                    <ColumnConstraints hgrow="SOMETIMES" />
+                                  <ColumnConstraints hgrow="SOMETIMES" />
+                                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                                  <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                    <RowConstraints vgrow="SOMETIMES" />
+                                  <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                  <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                       <top>
+                                          <Label text="初级 Beginner Level" BorderPane.alignment="CENTER" />
+                                       </top>
+                                       <center>
+                                          <Label fx:id="lb_level1Timer" text="LEVEL1_TIMER" BorderPane.alignment="CENTER" />
+                                       </center>
+                                    </BorderPane>
+                                    <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                       <top>
+                                          <Label text="中级 Intermediate Level" BorderPane.alignment="CENTER" />
+                                       </top>
+                                       <center>
+                                          <Label fx:id="lb_level2Timer" text="LEVEL2_TIMER" BorderPane.alignment="CENTER" />
+                                       </center>
+                                    </BorderPane>
+                                    <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                       <top>
+                                          <Label text="高级 Advance Level" BorderPane.alignment="CENTER" />
+                                       </top>
+                                       <center>
+                                          <Label fx:id="lb_level3Timer" text="LEVEL3_TIMER" BorderPane.alignment="CENTER" />
+                                       </center>
+                                    </BorderPane>
+                                    <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                       <center>
+                                          <Button fx:id="bt_startTimer" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Start" BorderPane.alignment="CENTER" />
+                                       </center>
+                                    </BorderPane>
+                                 </children>
+                              </GridPane>
                            </children></AnchorPane>
                     </content>
                   </Tab>

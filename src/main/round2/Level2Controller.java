@@ -18,7 +18,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level2Controller extends Round2Controller implements Initializable, Runnable {
+public class Level2Controller extends Round2Controller implements Initializable {
 
     @FXML
     private AnchorPane ap_root;
@@ -88,6 +88,14 @@ public class Level2Controller extends Round2Controller implements Initializable,
     private Label lb_pointTotal;
     @FXML
     private Button bt_home;
+    @FXML
+    private GridPane gp_instruction;
+    @FXML
+    private GridPane gp_example;
+    @FXML
+    private Button bt_instructionHome;
+    @FXML
+    private Button bt_exampleHome;
 
     private Round2Controller round2Controller;
 
@@ -96,17 +104,13 @@ public class Level2Controller extends Round2Controller implements Initializable,
     private LinkedList<Label> answers;
     private LinkedList<TextField> points;
 
-    private Thread thread;
-
     public void init(LinkedList<UserDataLevel2> level2Users, Round2Controller controller) {
         this.level2Users = level2Users;
         round2Controller = controller;
-        thread = new Thread(this);
-        thread.start();
         initComboBox();
     }
 
-    public void setActiveThread(long threadId){
+    public void setActiveThread(long threadId) {
         activeThreadId = threadId;
     }
 
@@ -118,6 +122,40 @@ public class Level2Controller extends Round2Controller implements Initializable,
         ObservableList<String> name = FXCollections.observableArrayList(studentName);
         cb_users.setItems(name);
         cb_users.setValue(cb_users.getItems().get(0));
+    }
+
+    public void showInstruction() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_example.setVisible(false);
+        gp_instruction.setVisible(true);
+    }
+
+    public void hideInstruction() {
+        gp_instruction.setVisible(false);
+    }
+
+    public void showExample() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_instruction.setVisible(false);
+        gp_example.setVisible(true);
+    }
+
+    public void hideExample() {
+        gp_example.setVisible(false);
+    }
+
+    public void showScoring() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_instruction.setVisible(false);
+        gp_example.setVisible(false);
+        gp_score.setVisible(true);
+    }
+
+    public void hideScoring() {
+        gp_score.setVisible(false);
     }
 
     private void setData() {
@@ -162,6 +200,14 @@ public class Level2Controller extends Round2Controller implements Initializable,
                 }
             }
         } else if (e.getSource() == bt_home) {
+            hide();
+            round2Controller.show();
+        } else if (e.getSource() == bt_instructionHome) {
+            hideInstruction();
+            hide();
+            round2Controller.show();
+        } else if (e.getSource() == bt_exampleHome) {
+            hideExample();
             hide();
             round2Controller.show();
         }
@@ -209,17 +255,6 @@ public class Level2Controller extends Round2Controller implements Initializable,
             default:
                 break;
         }
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            if (tp_mainTab.getTabs().get(1).isSelected()) {
-                super.writeToClient(Constants.DIS_R2L2_EXP);
-                break;
-            }
-        }
-        thread.interrupt();
     }
 
     @Override
