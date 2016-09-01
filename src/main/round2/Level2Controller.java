@@ -8,9 +8,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.shape.Polyline;
 import main.Main;
 import tool.Constants;
 
@@ -67,13 +66,13 @@ public class Level2Controller extends Round2Controller implements Initializable 
     @FXML
     private Label lb_question4_st;
     @FXML
-    private Label lb_answer1;
+    private FlowPane fp_answers1;
     @FXML
-    private Label lb_answer2;
+    private FlowPane fp_answers2;
     @FXML
-    private Label lb_answer3;
+    private FlowPane fp_answers3;
     @FXML
-    private Label lb_answer4;
+    private FlowPane fp_answers4;
     @FXML
     private Label lb_total;
     @FXML
@@ -101,7 +100,7 @@ public class Level2Controller extends Round2Controller implements Initializable 
 
     private LinkedList<Label> questions;
     private LinkedList<Label> questions_st;
-    private LinkedList<Label> answers;
+    private LinkedList<FlowPane> answers;
     private LinkedList<TextField> points;
 
     public void init(LinkedList<UserDataLevel2> level2Users, Round2Controller controller) {
@@ -123,6 +122,8 @@ public class Level2Controller extends Round2Controller implements Initializable 
         cb_users.setItems(name);
         cb_users.setValue(cb_users.getItems().get(0));
     }
+
+
 
     public void showInstruction() {
         ap_root.setVisible(true);
@@ -186,14 +187,19 @@ public class Level2Controller extends Round2Controller implements Initializable 
         if (e.getSource() == bt_startTimer) {
             bt_startTimer.setVisible(false);
             bp_start.setVisible(false);
-            super.writeToClient(Constants.DIS_R2L2_QST);
+            super.writeToClient(Constants.DIS_R2L2_QST, Constants.ROUND2);
             lb_timer.setVisible(true);
             for (Label question : questions) question.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
             for (UserDataLevel2 ud : level2Users) {
-                if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
+                if (ud.isOnline() && ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     for (int i = 0; i < answers.size(); i++) {
-                        answers.get(i).setText(ud.getRound2Answers().get(i));
+                        answers.get(i).getChildren().clear();
+                        for (LinkedList<Polyline> pl : ud.getRound2Answers()[i]) {
+                            Pane pane = new Pane();
+                            pane.getChildren().addAll(pl);
+                            answers.get(i).getChildren().addAll(pane);
+                        }
                         points.get(i).setText((ud.getRound2Points() == null) ? "0" : Integer.toString(ud.getRound2Points().get(i)));
                     }
                     lb_pointTotal.setText((ud.getRound2Points() == null) ? "0" : Integer.toString(ud.getRound2Points().getLast()));
@@ -229,7 +235,7 @@ public class Level2Controller extends Round2Controller implements Initializable 
                     for (int i = 0; i < points.size(); i++)
                         ud.setPointRound2((points.get(i).getText().compareTo("") == 0) ? 0 : Integer.parseInt(points.get(i).getText()), i);
                     lb_pointTotal.setText(Integer.toString(ud.getRound2Points().getLast()));
-                    writeToClient(Constants.S2C_R2L2_SCR);
+                    writeToClient(Constants.S2C_R2L1_SCR, packageData(ud.getRound2Points().getLast()), ud.getThreadId());
                 }
             }
     }
@@ -248,9 +254,21 @@ public class Level2Controller extends Round2Controller implements Initializable 
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
             case Constants.C2S_R2L2_ANS:
-                for (int i = 0; i < answers.size(); i++)
-                    answers.get(i).setText(level2Users.getFirst().getRound2Answers().get(i));
-                System.out.println(level2Users.getFirst().getRound2Answers());
+                for (UserDataLevel2 ud : level2Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound2Answers(data);
+                }
+                try {
+                    for (int i = 0; i < answers.size(); i++) {
+                        for (LinkedList<Polyline> pl : level2Users.getFirst().getRound2Answers()[i]) {
+                            Pane pane = new Pane();
+                            pane.getChildren().addAll(pl);
+                            answers.get(i).getChildren().addAll(pane);
+                        }
+                    }
+                } catch (NullPointerException ex) {
+
+                }
                 break;
             default:
                 break;
@@ -278,10 +296,10 @@ public class Level2Controller extends Round2Controller implements Initializable 
         questions_st.add(lb_question3_st);
         questions_st.add(lb_question4_st);
 
-        answers.add(lb_answer1);
-        answers.add(lb_answer2);
-        answers.add(lb_answer3);
-        answers.add(lb_answer4);
+        answers.add(fp_answers1);
+        answers.add(fp_answers2);
+        answers.add(fp_answers3);
+        answers.add(fp_answers4);
 
         points.add(tf_point1);
         points.add(tf_point2);

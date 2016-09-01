@@ -44,10 +44,9 @@ public class UserDataLevel1 extends UserData {
                     sString = s.substring(index0);
                     index00 = index0 + 1;
                 }
-                int index1;
-                int index2 = 0;
-                index1 = sString.indexOf("points=", index2);
-                index2 = sString.indexOf("]", index1);
+
+                int index1 = sString.indexOf("points=", 0);
+                int index2 = sString.indexOf("]", index1);
                 while (index1 != -1) {
                     Polyline pl = new Polyline();
                     String s2 = sString.substring(index1 + 8, index2);

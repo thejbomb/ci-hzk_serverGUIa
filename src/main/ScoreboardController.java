@@ -346,7 +346,7 @@ public class ScoreboardController implements Initializable {
             vb_R1L3Points.getChildren().add(label);
             label = new Label();
             try {
-                label.setText(Integer.toString(ud.getRound2Points().getLast()));
+                label.setText(Integer.toString(ud.getROund2Points()));
             } catch (NullPointerException ex) {
                 label.setText("0");
             }
@@ -391,7 +391,7 @@ public class ScoreboardController implements Initializable {
         for (int i = 0; i < level3Users.size(); i++) {
             updateNode(vb_R1L3Points.getChildren().get(i), level3Users.get(i).getRound1Points());
             try {
-                updateNode(vb_R2L3Points.getChildren().get(i), level3Users.get(i).getRound2Points().getLast());
+                updateNode(vb_R2L3Points.getChildren().get(i), level3Users.get(i).getROund2Points());
             } catch (NullPointerException ex) {
                 updateNode(vb_R2L3Points.getChildren().get(i), 0);
             }

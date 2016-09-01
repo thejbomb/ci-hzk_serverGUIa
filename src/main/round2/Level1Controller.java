@@ -191,7 +191,7 @@ public class Level1Controller extends Round2Controller implements Initializable 
         if (e.getSource() == bt_startTimer) {
             bt_startTimer.setVisible(false);
             bp_start.setVisible(false);
-            super.writeToClient(Constants.DIS_R2L1_QST);
+            super.writeToClient(Constants.DIS_R2L1_QST, Constants.LEVEL1);
             lb_timer.setVisible(true);
             for (Label question : questions) question.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
@@ -239,7 +239,7 @@ public class Level1Controller extends Round2Controller implements Initializable 
                     for (int i = 0; i < points.size(); i++)
                         ud.setPointRound2((points.get(i).getText().compareTo("") == 0) ? 0 : Integer.parseInt(points.get(i).getText()), i);
                     lb_pointTotal.setText(Integer.toString(ud.getRound2Points().getLast()));
-                    writeToClient(Constants.S2C_R2L1_SCR);
+                    writeToClient(Constants.S2C_R2L1_SCR, packageData(ud.getRound2Points().getLast()), ud.getThreadId());
                 }
             }
     }
@@ -262,12 +262,16 @@ public class Level1Controller extends Round2Controller implements Initializable 
                     if (ud.getThreadId() == activeThreadId)
                         ud.setRound2Answers(data);
                 }
-                for (int i = 0; i < answers.size(); i++) {
-                    for (LinkedList<Polyline> pl : level1Users.getFirst().getRound2Answers()[i]) {
-                        Pane pane = new Pane();
-                        pane.getChildren().addAll(pl);
-                        answers.get(i).getChildren().addAll(pane);
+                try {
+                    for (int i = 0; i < answers.size(); i++) {
+                        for (LinkedList<Polyline> pl : level1Users.getFirst().getRound2Answers()[i]) {
+                            Pane pane = new Pane();
+                            pane.getChildren().addAll(pl);
+                            answers.get(i).getChildren().addAll(pane);
+                        }
                     }
+                } catch (NullPointerException ex) {
+
                 }
                 break;
             default:
@@ -310,7 +314,6 @@ public class Level1Controller extends Round2Controller implements Initializable 
         points.add(tf_point5);
 
         setData();
-        tp_mainTab.setVisible(true);
         lb_timer.setVisible(false);
         for (Label question : questions)
             question.setVisible(false);

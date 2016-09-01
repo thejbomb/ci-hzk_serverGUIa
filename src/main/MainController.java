@@ -63,7 +63,9 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private int currentRound = Constants.ROUND2;
+    private int currentRound = Constants.ROUND5;
+
+    private int userLevel = 0;
 
     public void init(ClientInteractionInterface handler) {
         clientHandler = handler;
@@ -106,15 +108,12 @@ public class MainController implements Initializable, ClientHandlerInterface {
             case Constants.ROUND1:
                 break;
             case Constants.ROUND2:
-                for (UserDataLevel1 ud : level1Users)
-                    writeToClient(Constants.BEGIN_R2L1, ud.getThreadId());
-                for (UserDataLevel2 ud : level2Users)
-                    writeToClient(Constants.BEGIN_R2L2, ud.getThreadId());
-                for (UserDataLevel3 ud : level3Users)
-                    writeToClient(Constants.BEGIN_R2L3, ud.getThreadId());
+                writeToClient(Constants.BEGIN_R2L1, Constants.LEVEL1);
+                writeToClient(Constants.BEGIN_R2L2, Constants.LEVEL2);
+                writeToClient(Constants.BEGIN_R2L3, Constants.LEVEL3);
                 ap_round2Interface.setVisible(true);
                 ap_round2InterfaceController.init();
-                ap_round2InterfaceController.setUsers(level1Users,level2Users,level3Users);
+                ap_round2InterfaceController.setUsers(level1Users, level2Users, level3Users);
                 ap_round2InterfaceController.show();
                 break;
             case Constants.ROUND3:
@@ -122,6 +121,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
             case Constants.ROUND4:
                 break;
             case Constants.ROUND5:
+                writeToClient(Constants.BEGIN_R5L1, Constants.LEVEL1);
+                writeToClient(Constants.BEGIN_R5L2, Constants.LEVEL2);
+                writeToClient(Constants.BEGIN_R5L3, Constants.LEVEL3);
+                ap_round5Interface.setVisible(true);
+                ap_round5InterfaceController.init();
+                ap_round5InterfaceController.setUsers(level1Users, level2Users, level3Users);
+                ap_round5InterfaceController.show();
                 break;
         }
     }
@@ -156,7 +162,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
         }
     }
 
-    private LinkedList<String> packageData(Object data) {
+    protected LinkedList<String> packageData(Object data) {
         LinkedList<String> result = new LinkedList<>();
         if (data.getClass() == Integer.class)
             result.add(Integer.toString((int) data));
@@ -219,39 +225,6 @@ public class MainController implements Initializable, ClientHandlerInterface {
     public void writeToClient(int command) {
         System.out.println("M TO: command = " + Integer.toHexString(command) + " | levelData = ");
         switch (command) {
-            case Constants.S2C_R2L1_SCR:
-                for (UserDataLevel1 ud : level1Users) {
-                    if (ud.getRound2Points() != null)
-                        sendDataToClient(command, packageData(ud.getRound2Points().getLast()), ud);
-                }
-                break;
-            case Constants.S2C_R2L2_SCR:
-                for (UserDataLevel2 ud : level2Users) {
-                    if (ud.getRound2Points() != null)
-                        sendDataToClient(command, packageData(ud.getRound2Points().getLast()), ud);
-                }
-                break;
-            case Constants.S2C_R2L3_SCR:
-                for (UserDataLevel3 ud : level3Users) {
-                    if (ud.getRound2Points() != null)
-                        sendDataToClient(command, packageData(ud.getRound2Points().getLast()), ud);
-                }
-                break;
-            case Constants.S2C_R5L1_SCR:
-                for (UserDataLevel1 ud : level1Users) {
-                    sendDataToClient(command, packageData(ud.getRound5Points()), ud);
-                }
-                break;
-            case Constants.S2C_R5L2_SCR:
-                for (UserDataLevel2 ud : level2Users) {
-                    sendDataToClient(command, packageData(ud.getRound5Points()), ud);
-                }
-                break;
-            case Constants.S2C_R5L3_SCR:
-                for (UserDataLevel3 ud : level3Users) {
-                    sendDataToClient(command, packageData(ud.getRound5Points()), ud);
-                }
-                break;
             default:
                 sendCommandToAllClients(command);
                 break;
@@ -282,6 +255,25 @@ public class MainController implements Initializable, ClientHandlerInterface {
         for (UserDataLevel1 ud : level1Users)
             if (ud.getThreadId() != threadId)
                 sendCommandToClient(command, ud.getThreadId());
+    }
+
+    // write command to a group of user
+    public void writeToClient(int command, int level) {
+        switch (level) {
+            case Constants.LEVEL1:
+                for (UserDataLevel1 ud : level1Users)
+                    writeToClient(command, ud.getThreadId());
+                break;
+            case Constants.LEVEL2:
+                for (UserDataLevel2 ud : level2Users)
+                    writeToClient(command, ud.getThreadId());
+                break;
+            case Constants.LEVEL3:
+                for (UserDataLevel3 ud : level3Users)
+                    writeToClient(command, ud.getThreadId());
+                break;
+        }
+
     }
 
 
@@ -317,46 +309,15 @@ public class MainController implements Initializable, ClientHandlerInterface {
             ap_round2InterfaceController.setActiveThread(threadID);
         if (ap_round4InterfaceController != null)
             ap_round4InterfaceController.setActiveThread(threadID);
+        if(ap_round5InterfaceController != null)
+            ap_round5InterfaceController.setActiveThread(threadID);
     }
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
+        System.out.println("M FROM: command = " + command + " | data = " + data);
+        System.out.println("Current round = " + currentRound);
         switch (command) {
-            case Constants.C2S_R2L2_ANS:
-                for (UserDataLevel2 ud : level2Users) {
-                    if (ud.getThreadId() == activeThreadId)
-                        ud.setRound2Answers(data);
-                }
-                ap_round2InterfaceController.handleClientData(command, null);
-                break;
-            case Constants.C2S_R2L3_ANS:
-                for (UserDataLevel3 ud : level3Users) {
-                    if (ud.getThreadId() == activeThreadId)
-                        ud.setRound2Answers(data);
-                }
-                ap_round2InterfaceController.handleClientData(command, null);
-                break;
-            case Constants.C2S_R5L1_ANS:
-                for (UserDataLevel1 ud : level1Users) {
-                    if (ud.getThreadId() == activeThreadId)
-                        ud.setRound5Answers(data);
-                }
-                ap_round5InterfaceController.handleClientData(command, null);
-                break;
-            case Constants.C2S_R5L2_ANS:
-                for (UserDataLevel2 ud : level2Users) {
-                    if (ud.getThreadId() == activeThreadId)
-                        ud.setRound5Answers(data);
-                }
-                ap_round5InterfaceController.handleClientData(command, null);
-                break;
-            case Constants.C2S_R5L3_ANS:
-                for (UserDataLevel3 ud : level3Users) {
-                    if (ud.getThreadId() == activeThreadId)
-                        ud.setRound5Answers(data);
-                }
-                ap_round5InterfaceController.handleClientData(command, null);
-                break;
             case Constants.C2S_R2L3_SEED:
                 for (UserDataLevel3 ud : level3Users) {
                     if (ud.getThreadId() == activeThreadId)

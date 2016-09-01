@@ -17,15 +17,16 @@ public class Timer {
                 int timeLeft = time;
                 while (timeLeft > 0) {
                     String time;
+                    timeLeft--;
                     if (type == 0)
                         time = refreshTimer1(timeLeft);
                     else
                         time = Integer.toString(timeLeft);
                     Platform.runLater(() -> timerLabel.setText(time));
-                    timeLeft--;
+
                     if (timeLeft == 0)
                         timerInterface.takeNotice();
-                    Thread.sleep(1000);
+                    Thread.sleep(20);
                 }
                 return null;
             }

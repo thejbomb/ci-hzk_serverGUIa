@@ -76,15 +76,17 @@ public class Constants {
     public static final int S2C_R4LX_WRNG = 0x471;
     public static final int C2S_R4LX_TMUP = 0x472;
 
-
+    public static final int DIS_R5L1_INS = 0x511;
     public static final int DIS_R5L1_EXP = 0x512;
     public static final int DIS_R5L1_QST = 0x513;
     public static final int C2S_R5L1_ANS = 0x515;
     public static final int S2C_R5L1_SCR = 0x516;
+    public static final int DIS_R5L2_INS = 0x521;
     public static final int DIS_R5L2_EXP = 0x522;
     public static final int DIS_R5L2_QST = 0x523;
     public static final int C2S_R5L2_ANS = 0x525;
     public static final int S2C_R5L2_SCR = 0x526;
+    public static final int DIS_R5L3_INS = 0x531;
     public static final int DIS_R5L3_EXP = 0x532;
     public static final int DIS_R5L3_QST = 0x533;
     public static final int C2S_R5L3_ANS = 0x535;

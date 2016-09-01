@@ -62,7 +62,12 @@ public class ClientHandler extends Thread {
                         inputQueue.add(response);
                         response = readFromClient();
                     }
-                    int command = Integer.parseInt(inputQueue.getFirst());
+                    int command = 0;
+                    try {
+                        command = Integer.parseInt(inputQueue.getFirst());
+                    } catch (NumberFormatException ex) {
+
+                    }
                     System.out.println("Client command: " + Integer.toHexString(command) + " on thread " + getThreadID());
                     inputQueue.removeFirst();
 
@@ -75,9 +80,10 @@ public class ClientHandler extends Thread {
                             });
                             break;
                         default:
+                            int finalCommand = command;
                             Platform.runLater(() -> {
                                 mainController.setActiveThread(getId());
-                                mainController.handleClientData(command, inputQueue);
+                                mainController.handleClientData(finalCommand, inputQueue);
                                 inputQueue = null;
                             });
                             break;
@@ -88,7 +94,7 @@ public class ClientHandler extends Thread {
                     while (outputQueue != null && !outputQueue.isEmpty()) {
                         System.out.println("Thread " + getThreadID() + " is trying to transmit...");
                         try {
-                            System.out.println("To client on thread " + getThreadID() +": " + outputQueue.getFirst());
+                            System.out.println("To client on thread " + getThreadID() + ": " + outputQueue.getFirst());
                             out.println(outputQueue.getFirst());
                         } catch (NoSuchElementException ex) {
                             ex.printStackTrace();
@@ -158,7 +164,7 @@ public class ClientHandler extends Thread {
             outputQueue = new LinkedList<>();
             LinkedList<String> data = dataQueue.removeFirst();
             outputQueue.addAll(data);
-            System.out.println("CONTENT IN OUTPUT QUEUE ON THREAD "  + getThreadID() + ": " + outputQueue);
+            System.out.println("CONTENT IN OUTPUT QUEUE ON THREAD " + getThreadID() + ": " + outputQueue);
             System.out.println("SERVER -> CLIENT BEGIN TRANSMISSION (IN DATA QUEUE)" + " on thread " + getThreadID());
             System.out.println("CH To Client: command = " + Integer.toHexString(Integer.parseInt(data.getFirst())) + " | levelData = " + data.getLast() + " on thread " + getThreadID());
             out.println(Constants.TRANSMISSION_BEGIN);

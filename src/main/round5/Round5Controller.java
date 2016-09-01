@@ -10,14 +10,17 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import main.Main;
 import main.MainController;
 import tool.Constants;
+import tool.Timer;
+import tool.TimerInterface;
 
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Round5Controller extends MainController implements Initializable, Runnable {
+public class Round5Controller extends MainController implements Initializable, Runnable, TimerInterface {
     @FXML
     private AnchorPane ap_root;
     @FXML
@@ -40,12 +43,6 @@ public class Round5Controller extends MainController implements Initializable, R
     private Label lb_roundNumber_zh;
     @FXML
     private Label lb_roundNumber_en;
-    @FXML
-    private Button bt_beginnerStart;
-    @FXML
-    private Button bt_intermediateStart;
-    @FXML
-    private Button bt_advanceStart;
     @FXML
     private Label lb_roundNumberS1_zh;
     @FXML
@@ -72,6 +69,32 @@ public class Round5Controller extends MainController implements Initializable, R
     private Label lb_roundLevel3_en;
     @FXML
     private AnchorPane ap_parent;
+    @FXML
+    private Label lb_level1Timer;
+    @FXML
+    private Label lb_level2Timer;
+    @FXML
+    private Label lb_level3Timer;
+    @FXML
+    private Button bt_startTimer;
+    @FXML
+    private Button bt_level1Scoring;
+    @FXML
+    private Button bt_level2Scoring;
+    @FXML
+    private Button bt_level3Scoring;
+    @FXML
+    private Button bt_level1Instruction;
+    @FXML
+    private Button bt_level1Example;
+    @FXML
+    private Button bt_level2Instruction;
+    @FXML
+    private Button bt_level2Example;
+    @FXML
+    private Button bt_level3Instruction;
+    @FXML
+    private Button bt_level3Example;
 
     private Thread thread;
 
@@ -83,11 +106,21 @@ public class Round5Controller extends MainController implements Initializable, R
 
     }
 
-    public void show(){
+    public void setActiveThread(long threadId) {
+        activeThreadId = threadId;
+        if (ap_level1InterfaceController != null)
+            ap_level1InterfaceController.setActiveThread(threadId);
+        if (ap_level2InterfaceController != null)
+            ap_level2InterfaceController.setActiveThread(threadId);
+        if (ap_level3InterfaceController != null)
+            ap_level3InterfaceController.setActiveThread(threadId);
+    }
+
+    public void show() {
         ap_root.setVisible(true);
     }
 
-    private void hide(){
+    private void hide() {
         ap_root.setVisible(false);
     }
 
@@ -95,28 +128,53 @@ public class Round5Controller extends MainController implements Initializable, R
         level1Users = level1;
         level2Users = level2;
         level3Users = level3;
+        ap_level1InterfaceController.init(level1, this);
+        ap_level2InterfaceController.init(level2, this);
+        ap_level3InterfaceController.init(level3, this);
     }
 
     @FXML
     private void handleMouseClick(MouseEvent e) {
-        if (e.getSource() == bt_beginnerStart) {
-            currentLevel = Constants.LEVEL1;
+        if (e.getSource() == bt_level1Instruction) {
             hide();
-            ap_level1InterfaceController.init(level1Users, this);
-            ap_level1InterfaceController.show();
-            writeToClient(Constants.BEGIN_R5L1);
-        } else if (e.getSource() == bt_intermediateStart) {
-            currentLevel = Constants.LEVEL2;
+            ap_level1InterfaceController.showInstruction();
+            writeToClient(Constants.DIS_R5L1_INS, Constants.LEVEL1);
+        } else if (e.getSource() == bt_level1Example) {
             hide();
-            ap_level2InterfaceController.init(level2Users,this);
-            ap_level2InterfaceController.show();
-            writeToClient(Constants.BEGIN_R5L2);
-        } else if (e.getSource() == bt_advanceStart) {
-            currentLevel = Constants.LEVEL3;
+            ap_level1InterfaceController.showExample();
+            writeToClient(Constants.DIS_R5L1_EXP, Constants.LEVEL1);
+        } else if (e.getSource() == bt_level2Instruction) {
             hide();
-            ap_level3InterfaceController.init(level3Users,this);
-            ap_level3InterfaceController.show();
-            writeToClient(Constants.BEGIN_R5L3);
+            ap_level2InterfaceController.showInstruction();
+            writeToClient(Constants.DIS_R5L2_INS, Constants.LEVEL2);
+        } else if (e.getSource() == bt_level2Example) {
+            hide();
+            ap_level2InterfaceController.showExample();
+            writeToClient(Constants.DIS_R5L2_EXP, Constants.LEVEL2);
+        } else if (e.getSource() == bt_level3Instruction) {
+            hide();
+            ap_level3InterfaceController.showInstruction();
+            writeToClient(Constants.DIS_R5L3_INS, Constants.LEVEL3);
+        } else if (e.getSource() == bt_level3Example) {
+            hide();
+            ap_level3InterfaceController.showExample();
+            writeToClient(Constants.DIS_R5L3_EXP, Constants.LEVEL3);
+        } else if (e.getSource() == bt_startTimer) {
+            writeToClient(Constants.DIS_R5L1_QST, Constants.LEVEL1);
+            new Timer(lb_level1Timer, Main.R5L1_DATA.TIME_LIMIT * 60, this, 0);
+            writeToClient(Constants.DIS_R5L2_QST, Constants.LEVEL2);
+            new Timer(lb_level2Timer, Main.R5L2_DATA.TIME_LIMIT * 60, this, 0);
+            writeToClient(Constants.DIS_R5L3_QST, Constants.LEVEL3);
+            new Timer(lb_level3Timer, Main.R5L3_DATA.TIME_LIMIT * 60, this, 0);
+        } else if (e.getSource() == bt_level1Scoring) {
+            hide();
+            ap_level1InterfaceController.showScoring();
+        } else if (e.getSource() == bt_level2Scoring) {
+            hide();
+            ap_level2InterfaceController.showScoring();
+        } else if (e.getSource() == bt_level3Scoring) {
+            hide();
+            ap_level3InterfaceController.showScoring();
         }
     }
 
@@ -136,19 +194,9 @@ public class Round5Controller extends MainController implements Initializable, R
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
             default:
-                switch (currentLevel) {
-                    case Constants.LEVEL1:
-                        ap_level1InterfaceController.handleClientData(command, data);
-                        break;
-                    case Constants.LEVEL2:
-                        ap_level2InterfaceController.handleClientData(command, data);
-                        break;
-                    case Constants.LEVEL3:
-                        ap_level3InterfaceController.handleClientData(command, data);
-                        break;
-                    default:
-                        break;
-                }
+                ap_level1InterfaceController.handleClientData(command, data);
+                ap_level2InterfaceController.handleClientData(command, data);
+                ap_level3InterfaceController.handleClientData(command, data);
                 break;
         }
 
@@ -190,7 +238,17 @@ public class Round5Controller extends MainController implements Initializable, R
         AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
         ap_level3Interface.setVisible(false);
+
+        bt_level1Scoring.setVisible(false);
+        bt_level2Scoring.setVisible(false);
+        bt_level3Scoring.setVisible(false);
     }
 
 
+    @Override
+    public void takeNotice() {
+        bt_level1Scoring.setVisible(true);
+        bt_level2Scoring.setVisible(true);
+        bt_level3Scoring.setVisible(true);
+    }
 }

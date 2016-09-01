@@ -98,8 +98,6 @@ public class Round2Controller extends MainController implements Initializable, R
 
     private Thread thread;
 
-    private int currentLevel = 0;
-
     public void init() {
         thread = new Thread(this);
         thread.start();
@@ -137,33 +135,33 @@ public class Round2Controller extends MainController implements Initializable, R
         if (e.getSource() == bt_level1Instruction) {
             hide();
             ap_level1InterfaceController.showInstruction();
-            writeToClient(Constants.DIS_R2L1_INS);
+            writeToClient(Constants.DIS_R2L1_INS, Constants.LEVEL1);
         } else if (e.getSource() == bt_level1Example) {
             hide();
             ap_level1InterfaceController.showExample();
-            writeToClient(Constants.DIS_R2L1_EXP);
+            writeToClient(Constants.DIS_R2L1_EXP, Constants.LEVEL1);
         } else if (e.getSource() == bt_level2Instruction) {
             hide();
             ap_level2InterfaceController.showInstruction();
-            writeToClient(Constants.DIS_R2L2_INS);
+            writeToClient(Constants.DIS_R2L2_INS, Constants.LEVEL2);
         } else if (e.getSource() == bt_level2Example) {
             hide();
             ap_level2InterfaceController.showExample();
-            writeToClient(Constants.DIS_R2L2_EXP);
+            writeToClient(Constants.DIS_R2L2_EXP, Constants.LEVEL2);
         } else if (e.getSource() == bt_level3Instruction) {
             hide();
             ap_level3InterfaceController.showInstruction();
-            writeToClient(Constants.DIS_R2L3_INS);
+            writeToClient(Constants.DIS_R2L3_INS, Constants.LEVEL3);
         } else if (e.getSource() == bt_level3Example) {
             hide();
             ap_level3InterfaceController.showExample();
-            writeToClient(Constants.DIS_R2L3_EXP);
+            writeToClient(Constants.DIS_R2L3_EXP, Constants.LEVEL3);
         } else if (e.getSource() == bt_startTimer) {
-            writeToClient(Constants.DIS_R2L1_QST);
+            writeToClient(Constants.DIS_R2L1_QST, Constants.LEVEL1);
             new Timer(lb_level1Timer, Main.R2L1_DATA.TIME_LIMIT * 60, this, 0);
-            writeToClient(Constants.DIS_R2L2_QST);
+            writeToClient(Constants.DIS_R2L2_QST, Constants.LEVEL2);
             new Timer(lb_level2Timer, Main.R2L2_DATA.TIME_LIMIT * 60, this, 0);
-            writeToClient(Constants.DIS_R2L3_QST);
+            writeToClient(Constants.DIS_R2L3_QST, Constants.LEVEL3);
             new Timer(lb_level3Timer, Main.R2L3_DATA.TIME_LIMIT * 60, this, 0);
         } else if (e.getSource() == bt_level1Scoring) {
             hide();
@@ -191,21 +189,12 @@ public class Round2Controller extends MainController implements Initializable, R
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
+        System.out.println("R2 FROM: command = " + command + " | data = " + data);
         switch (command) {
             default:
-                switch (currentLevel) {
-                    case Constants.LEVEL1:
-                        ap_level1InterfaceController.handleClientData(command, data);
-                        break;
-                    case Constants.LEVEL2:
-                        ap_level2InterfaceController.handleClientData(command, data);
-                        break;
-                    case Constants.LEVEL3:
-                        ap_level3InterfaceController.handleClientData(command, data);
-                        break;
-                    default:
-                        break;
-                }
+                ap_level1InterfaceController.handleClientData(command, data);
+                ap_level2InterfaceController.handleClientData(command, data);
+                ap_level3InterfaceController.handleClientData(command, data);
                 break;
         }
 

@@ -24,7 +24,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level2Controller extends Round5Controller implements Initializable, Runnable {
+public class Level2Controller extends Round5Controller implements Initializable {
 
     @FXML
     private AnchorPane ap_root;
@@ -55,8 +55,6 @@ public class Level2Controller extends Round5Controller implements Initializable,
     @FXML
     private ComboBox cb_users;
     @FXML
-    private GridPane gp_score;
-    @FXML
     private Label lb_total;
     @FXML
     private Label lb_pointTotal;
@@ -66,17 +64,27 @@ public class Level2Controller extends Round5Controller implements Initializable,
     private FlowPane fp_text;
     @FXML
     private FlowPane fp_answers;
+    @FXML
+    private GridPane gp_instruction;
+    @FXML
+    private GridPane gp_example;
+    @FXML
+    private GridPane gp_score;
+    @FXML
+    private Button bt_instructionHome;
+    @FXML
+    private Button bt_exampleHome;
 
     private Round5Controller round5Controller;
-
-    private Thread thread;
 
     public void init(LinkedList<UserDataLevel2> level2Users, Round5Controller controller) {
         this.level2Users = level2Users;
         round5Controller = controller;
-        thread = new Thread(this);
-        thread.start();
         initComboBox();
+    }
+
+    public void setActiveThread(long threadId) {
+        activeThreadId = threadId;
     }
 
     private void initComboBox() {
@@ -87,6 +95,42 @@ public class Level2Controller extends Round5Controller implements Initializable,
         ObservableList<String> name = FXCollections.observableArrayList(studentName);
         cb_users.setItems(name);
         cb_users.setValue(cb_users.getItems().get(0));
+    }
+
+    public void showInstruction() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_example.setVisible(false);
+        gp_instruction.setVisible(true);
+        gp_score.setVisible(false);
+    }
+
+    public void hideInstruction() {
+        gp_instruction.setVisible(false);
+    }
+
+    public void showExample() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_instruction.setVisible(false);
+        gp_example.setVisible(true);
+        gp_score.setVisible(false);
+    }
+
+    public void hideExample() {
+        gp_example.setVisible(false);
+    }
+
+    public void showScoring() {
+        ap_root.setVisible(true);
+        tp_mainTab.setVisible(false);
+        gp_instruction.setVisible(false);
+        gp_example.setVisible(false);
+        gp_score.setVisible(true);
+    }
+
+    public void hideScoring() {
+        gp_score.setVisible(false);
     }
 
     private void setData() {
@@ -127,6 +171,14 @@ public class Level2Controller extends Round5Controller implements Initializable,
                 }
             }
         } else if (e.getSource() == bt_home) {
+            hide();
+            round5Controller.show();
+        }else if (e.getSource() == bt_instructionHome) {
+            hideInstruction();
+            hide();
+            round5Controller.show();
+        } else if (e.getSource() == bt_exampleHome) {
+            hideExample();
             hide();
             round5Controller.show();
         }
@@ -182,7 +234,10 @@ public class Level2Controller extends Round5Controller implements Initializable,
                     System.out.println("Current total points: " + user.getRound5Points());
                     label2.setGraphic(imageView);
                     imageView.setVisible(true);
-                    writeToClient(Constants.S2C_R5L2_SCR);
+                    String userName = (String) cb_users.getValue();
+                    for (UserDataLevel2 ud : level2Users)
+                        if (ud.getUSER_NAME().compareTo(userName) == 0)
+                            writeToClient(Constants.S2C_R5L2_SCR, packageData(ud.getRound5Points()), ud.getThreadId());
                 } else if (e.getButton() == MouseButton.SECONDARY) {
                     if (imageView.isVisible())
                         user.setRound5Points(-1);
@@ -192,7 +247,10 @@ public class Level2Controller extends Round5Controller implements Initializable,
                     imageView2.setVisible(true);
                     lb_pointTotal.setText(Integer.toString(user.getRound5Points()));
                     System.out.println("Current total points: " + user.getRound5Points());
-                    writeToClient(Constants.S2C_R5L2_SCR);
+                    String userName = (String) cb_users.getValue();
+                    for (UserDataLevel2 ud : level2Users)
+                        if (ud.getUSER_NAME().compareTo(userName) == 0)
+                            writeToClient(Constants.S2C_R5L1_SCR, packageData(ud.getRound5Points()), ud.getThreadId());
 
                 }
             });
@@ -214,22 +272,15 @@ public class Level2Controller extends Round5Controller implements Initializable,
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
             case Constants.C2S_R5L2_ANS:
+                for (UserDataLevel2 ud : level2Users) {
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound5Answers(data);
+                }
                 updateAnswerLabels(level2Users.getFirst());
                 break;
             default:
                 break;
         }
-    }
-
-    @Override
-    public void run() {
-        while (true) {
-            if (tp_mainTab.getTabs().get(1).isSelected()) {
-                super.writeToClient(Constants.DIS_R5L2_EXP);
-                break;
-            }
-        }
-        thread.interrupt();
     }
 
     @Override
