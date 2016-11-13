@@ -11,6 +11,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import main.MainController;
+import main.ScoreboardController;
 import tool.Constants;
 
 import java.net.URL;
@@ -73,14 +74,17 @@ public class Round4Controller extends MainController implements Initializable, R
     @FXML
     private AnchorPane ap_parent;
 
+    @FXML
+    private Button bt_scoreboard;
+
     private Thread thread;
 
-    static int currentLevel = 0;
+    private ScoreboardController scoreboardController;
 
-    public void init() {
+    public void init(ScoreboardController controller) {
+        scoreboardController = controller;
         thread = new Thread(this);
         thread.start();
-
     }
 
     public void show() {
@@ -103,30 +107,15 @@ public class Round4Controller extends MainController implements Initializable, R
             ap_level1InterfaceController.setActiveThread(threadId);
     }
 
-    private LinkedList<String> packageData(Object data) {
-        LinkedList<String> result = new LinkedList<>();
-
-        if (data.getClass() == Integer.class) {
-            result.add(Integer.toString((int) data));
-        } else if (data.getClass() == Long.class)
-            result.add(Long.toString((long) data));
-
-        return result;
-    }
-
     @FXML
     private void handleMouseClick(MouseEvent e) {
         if (e.getSource() == bt_beginnerStart) {
-            currentLevel = Constants.LEVEL1;
             hide();
-
-
             writeToClient(Constants.BEGIN_R4L1);
             ap_level1InterfaceController.init(level1Users, this);
             ap_level1InterfaceController.show();
 
         } else if (e.getSource() == bt_intermediateStart) {
-            currentLevel = Constants.LEVEL2;
             hide();
             writeToClient(Constants.BEGIN_R4L2);
             ap_level2InterfaceController.init(level2Users, this);
@@ -139,6 +128,10 @@ public class Round4Controller extends MainController implements Initializable, R
             ap_level3InterfaceController.init(level3Users, this);
             ap_level3InterfaceController.show();
 
+        }else if(e.getSource() == bt_scoreboard){
+            hide();
+            scoreboardController.setCurrentRound(MainController.getNextRound());
+            scoreboardController.show();
         }
     }
 
@@ -163,19 +156,9 @@ public class Round4Controller extends MainController implements Initializable, R
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
             default:
-                switch (currentLevel) {
-                    case Constants.LEVEL1:
-                        ap_level1InterfaceController.handleClientData(command, data);
-                        break;
-                    case Constants.LEVEL2:
-                        ap_level2InterfaceController.handleClientData(command, data);
-                        break;
-                    case Constants.LEVEL3:
-                        ap_level3InterfaceController.handleClientData(command, data);
-                        break;
-                    default:
-                        break;
-                }
+                ap_level1InterfaceController.handleClientData(command, data);
+                ap_level2InterfaceController.handleClientData(command, data);
+                ap_level3InterfaceController.handleClientData(command, data);
                 break;
         }
 
@@ -184,7 +167,7 @@ public class Round4Controller extends MainController implements Initializable, R
     @Override
     public void run() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(3000);
             lb_roundNumber_zh.setVisible(false);
             lb_roundNumber_en.setVisible(false);
             lb_roundDescription.setVisible(false);
@@ -217,6 +200,8 @@ public class Round4Controller extends MainController implements Initializable, R
         AnchorPane.setLeftAnchor(ap_level3Interface, 0.0);
         AnchorPane.setRightAnchor(ap_level3Interface, 0.0);
         ap_level3Interface.setVisible(false);
+
+        ap_root.setVisible(false);
     }
 
 

@@ -15,12 +15,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import main.Main;
 import tool.Constants;
+import tool.Timer;
+import tool.TimerInterface;
 
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level1Controller extends Round4Controller implements Initializable, Runnable {
+public class Level1Controller extends Round4Controller implements Initializable, Runnable, TimerInterface {
 
     @FXML
     private AnchorPane ap_root;
@@ -75,6 +77,8 @@ public class Level1Controller extends Round4Controller implements Initializable,
 
     private int currentQuestion = 0;
 
+    private Timer timer;
+
     @SuppressWarnings(value = "unchecked")
     public void init(LinkedList<UserDataLevel1> users, Round4Controller controller) {
 
@@ -94,6 +98,19 @@ public class Level1Controller extends Round4Controller implements Initializable,
         activeThreadId = threadId;
     }
 
+    private void setData() {
+        lb_instructionBody_zh.setText(Main.R4L1_DATA.INSTRUCTION_ZH);
+        lb_instructionBody_en.setText(Main.R4L1_DATA.INSTRUCTION_EN);
+        String time_zh = "限时" + Main.R4L1_DATA.TIME_LIMIT + "分钟";
+        String time_en = "Time Limit: " + Main.R4L1_DATA.TIME_LIMIT + ((Main.R4L1_DATA.TIME_LIMIT > 1) ? " minutes" : " minute");
+        lb_instructionTime_zh.setText(time_zh);
+        lb_instructionTime_en.setText(time_en);
+
+        lb_exampleBody.setText(Main.R4L1_DATA.EXAMPLES.get(0));
+
+
+    }
+
     private void initComboBox() {
         LinkedList<String> studentName = new LinkedList<>();
         for (UserDataLevel1 ud : level1Users) {
@@ -102,17 +119,6 @@ public class Level1Controller extends Round4Controller implements Initializable,
         ObservableList<String> name = FXCollections.observableArrayList(studentName);
         cb_users.setItems(name);
         cb_users.setValue(cb_users.getItems().get(0));
-    }
-
-    private LinkedList<String> packageData(Object data) {
-        LinkedList<String> result = new LinkedList<>();
-
-        if (data.getClass() == Integer.class) {
-            result.add(Integer.toString((int) data));
-        } else if (data.getClass() == Long.class)
-            result.add(Long.toString((long) data));
-
-        return result;
     }
 
     private void displayInstruction(int questionNumber) throws Exception {
@@ -285,6 +291,9 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 ex.printStackTrace();
             }
 
+        } else if (e.getSource() == bt_home){
+            hide();
+            round4Controller.show();
         }
     }
 
@@ -306,6 +315,8 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 break;
             case Constants.C2S_R4L1_BUZZ:
                 writeToAllClientsExcept(Constants.S2C_R4L1_BUZZ, activeThreadId);
+                int time = 5; // 5 seconds
+                timer = new Timer(lb_timer,time,this,1);
                 break;
             case Constants.C2S_R4LX_TMUP:
                 for (UserDataLevel1 ud : level1Users)
@@ -331,7 +342,10 @@ public class Level1Controller extends Round4Controller implements Initializable,
     public void initialize(URL location, ResourceBundle resources) {
         Main.R4L1_DATA.init();
 
+        setData();
+
         tp_mainTab.setVisible(true);
+        lb_timer.setText("5");
         lb_timer.setVisible(false);
         lb_instruction.setVisible(false);
         bt_startTimer.setVisible(true);
@@ -343,4 +357,8 @@ public class Level1Controller extends Round4Controller implements Initializable,
         fp_choices.setVgap(10);
     }
 
+    @Override
+    public void takeNotice() {
+
+    }
 }

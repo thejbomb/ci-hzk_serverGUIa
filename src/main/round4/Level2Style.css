@@ -9,44 +9,64 @@
       -fx-text-fill: rgb(0,0,0);
 }
 
+.label-instructionLevel {
+    -fx-font: 20pt "KaiTi";
+    -fx-text-fill: rgb(200,150,0);
+}
+
 .label-instructionHeader {
     -fx-font: bold 60pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,0);
 }
 
 .label-instructionBody-zh {
     -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .label-instructionBody-en {
     -fx-font: bold 30pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .label-instructionTime-zh {
     -fx-font: bold 30pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(255,0,0);
 }
 
 .label-instructionTime-en {
     -fx-font: bold 30pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(255,0,0);
 }
 
 .label-exampleHeader {
     -fx-font: bold 60pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,0);
 }
 
 .label-exampleBody {
     -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .label-exampleWarning {
     -fx-font: bold 30pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(255,0,0);
+}
+
+.label-questionsInstruction-zh {
+    -fx-font: 20pt "KaiTi";
+    -fx-text-fill: rgb(0,162,232);
+}
+
+.label-questionsInstruction-en {
+    -fx-font: 20pt "Bell MT";
+    -fx-text-fill: rgb(0,162,232);
+}
+
+.label-questionsTimer {
+    -fx-font: bold 60pt "KaiTi";
+    -fx-text-fill: rgb(255,0,0);
 }
 
 .button-questionsStart {
@@ -56,12 +76,12 @@
 
 .label-questionsTimer {
     -fx-font: bold 60pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(255,0,0);
 }
 
 .label-questionsQuestion {
     -fx-font: bold 60pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .button-questionsChoice {
@@ -85,7 +105,7 @@
 
 .button-questionsUserChoice {
     -fx-font: bold 50pt "KaiTi";
-    -fx-text-fill: rgb(0,0,100);
+    -fx-text-fill: rgb(245,0,0);
     -fx-background-color: -fx-shadow-highlight-color, -fx-outer-border, -fx-inner-border, -fx-body-color;
     -fx-background-insets: 0 0 -1 0, 0, 1, 2;
     -fx-background-radius: 5, 5, 4, 3;

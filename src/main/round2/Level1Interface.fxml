@@ -105,7 +105,7 @@
                 </BorderPane>
                 <AnchorPane GridPane.columnIndex="1">
                     <children>
-                        <Label alignment="CENTER" text="初级 Beginner Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label alignment="CENTER" styleClass="label-instructionLevel" text="初级 Beginner Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
                 <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -186,7 +186,7 @@
                 </BorderPane>
                 <AnchorPane GridPane.columnIndex="1">
                     <children>
-                        <Label alignment="CENTER" text="初级 Beginner Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label alignment="CENTER" styleClass="label-instructionLevel" text="初级 Beginner Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             </children>

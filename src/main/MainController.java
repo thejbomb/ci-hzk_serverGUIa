@@ -63,9 +63,17 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private int currentRound = Constants.ROUND5;
+    private static int currentRound = Constants.ROUND2;
 
     private int userLevel = 0;
+
+    public static int getNextRound() {
+        if (currentRound == Constants.ROUND2)
+            currentRound = Constants.ROUND4;
+        else if (currentRound == Constants.ROUND4)
+            currentRound = Constants.ROUND5;
+        return currentRound;
+    }
 
     public void init(ClientInteractionInterface handler) {
         clientHandler = handler;
@@ -112,20 +120,26 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 writeToClient(Constants.BEGIN_R2L2, Constants.LEVEL2);
                 writeToClient(Constants.BEGIN_R2L3, Constants.LEVEL3);
                 ap_round2Interface.setVisible(true);
-                ap_round2InterfaceController.init();
+                ap_round2InterfaceController.init(ap_scoreboardInterfaceController);
                 ap_round2InterfaceController.setUsers(level1Users, level2Users, level3Users);
                 ap_round2InterfaceController.show();
                 break;
             case Constants.ROUND3:
                 break;
             case Constants.ROUND4:
+                writeToClient(Constants.BEGIN_RND4);
+                ap_round4Interface.setVisible(true);
+                ap_round4InterfaceController.init(ap_scoreboardInterfaceController);
+                //ap_round4InterfaceController.show();
+                ap_round4InterfaceController.setUsers(level1Users, level2Users, level3Users);
                 break;
             case Constants.ROUND5:
+                writeToClient(Constants.BEGIN_RND5);
                 writeToClient(Constants.BEGIN_R5L1, Constants.LEVEL1);
                 writeToClient(Constants.BEGIN_R5L2, Constants.LEVEL2);
                 writeToClient(Constants.BEGIN_R5L3, Constants.LEVEL3);
                 ap_round5Interface.setVisible(true);
-                ap_round5InterfaceController.init();
+                ap_round5InterfaceController.init(ap_scoreboardInterfaceController);
                 ap_round5InterfaceController.setUsers(level1Users, level2Users, level3Users);
                 ap_round5InterfaceController.show();
                 break;
@@ -168,8 +182,8 @@ public class MainController implements Initializable, ClientHandlerInterface {
             result.add(Integer.toString((int) data));
         else if (data.getClass() == String.class)
             result.add((String) data);
-        else
-            result.add(null);
+        else if (data.getClass() == Long.class)
+            result.add(Long.toString((long) data));
         return result;
     }
 
@@ -309,7 +323,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
             ap_round2InterfaceController.setActiveThread(threadID);
         if (ap_round4InterfaceController != null)
             ap_round4InterfaceController.setActiveThread(threadID);
-        if(ap_round5InterfaceController != null)
+        if (ap_round5InterfaceController != null)
             ap_round5InterfaceController.setActiveThread(threadID);
     }
 

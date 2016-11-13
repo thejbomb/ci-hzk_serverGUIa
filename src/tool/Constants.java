@@ -24,9 +24,11 @@ public class Constants {
     public static final int BEGIN_R2L1 = 0x210;
     public static final int BEGIN_R2L2 = 0x220;
     public static final int BEGIN_R2L3 = 0x230;
+    public static final int BEGIN_RND4 = 0x400;
     public static final int BEGIN_R4L1 = 0x410;
     public static final int BEGIN_R4L2 = 0x420;
     public static final int BEGIN_R4L3 = 0x430;
+    public static final int BEGIN_RND5 = 0x500;
     public static final int BEGIN_R5L1 = 0x510;
     public static final int BEGIN_R5L2 = 0x520;
     public static final int BEGIN_R5L3 = 0x530;

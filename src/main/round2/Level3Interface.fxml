@@ -146,7 +146,7 @@
                 </Tab>
             </tabs>
         </TabPane>
-        <GridPane fx:id="gp_instruction" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane fx:id="gp_instruction" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
                 <ColumnConstraints hgrow="SOMETIMES" />
@@ -208,7 +208,7 @@
                 </BorderPane>
                 <AnchorPane GridPane.columnIndex="1">
                     <children>
-                        <Label alignment="CENTER" text="高级 Advance Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label alignment="CENTER" styleClass="label-instructionLevel" text="高级 Advance Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             </children>
@@ -249,12 +249,12 @@
                 </BorderPane>
                 <AnchorPane GridPane.columnIndex="1">
                     <children>
-                        <Label alignment="CENTER" text="高级 Advance Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                        <Label alignment="CENTER" styleClass="label-instructionLevel" text="高级 Advance Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                     </children>
                 </AnchorPane>
             </children>
         </GridPane>
-        <GridPane fx:id="gp_score" onMouseEntered="#handleMouseClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <GridPane fx:id="gp_score" onMouseEntered="#handleMouseClick" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="35.0" />

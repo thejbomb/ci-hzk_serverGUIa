@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -247,33 +248,38 @@
                                     <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
                                  </rowConstraints>
                                  <children>
+                                    <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2147483647">
+                                       <items>
+                                          <Button fx:id="bt_scoreboard" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Scoreboard" />
+                                       </items>
+                                    </ToolBar>
                                     <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                                        <top>
-                                          <Label text="初级 Beginner Level" BorderPane.alignment="CENTER" />
+                                          <Label styleClass="label-roundLevel1S" text="初级 Beginner Level" BorderPane.alignment="CENTER" />
                                        </top>
                                        <center>
-                                          <Label fx:id="lb_level1Timer" text="LEVEL1_TIMER" BorderPane.alignment="CENTER" />
+                                          <Label fx:id="lb_level1Timer" styleClass="label-roundTimer" text="LEVEL1_TIMER" BorderPane.alignment="CENTER" />
                                        </center>
                                     </BorderPane>
                                     <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <top>
-                                          <Label text="中级 Intermediate Level" BorderPane.alignment="CENTER" />
+                                          <Label styleClass="label-roundLevel2S" text="中级 Intermediate Level" BorderPane.alignment="CENTER" />
                                        </top>
                                        <center>
-                                          <Label fx:id="lb_level2Timer" text="LEVEL2_TIMER" BorderPane.alignment="CENTER" />
+                                          <Label fx:id="lb_level2Timer" styleClass="label-roundTimer" text="LEVEL2_TIMER" BorderPane.alignment="CENTER" />
                                        </center>
                                     </BorderPane>
                                     <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="2">
                                        <top>
-                                          <Label text="高级 Advance Level" BorderPane.alignment="CENTER" />
+                                          <Label styleClass="label-roundLevel3S" text="高级 Advance Level" BorderPane.alignment="CENTER" />
                                        </top>
                                        <center>
-                                          <Label fx:id="lb_level3Timer" text="LEVEL3_TIMER" BorderPane.alignment="CENTER" />
+                                          <Label fx:id="lb_level3Timer" styleClass="label-roundTimer" text="LEVEL3_TIMER" BorderPane.alignment="CENTER" />
                                        </center>
                                     </BorderPane>
                                     <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                                        <center>
-                                          <Button fx:id="bt_startTimer" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Start" BorderPane.alignment="CENTER" />
+                                          <Button fx:id="bt_startTimer" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Start" BorderPane.alignment="CENTER" />
                                        </center>
                                     </BorderPane>
                                  </children>

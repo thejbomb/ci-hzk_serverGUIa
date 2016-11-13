@@ -6,6 +6,7 @@ import data.UserDataLevel3;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Bounds;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -282,19 +283,25 @@ public class ScoreboardController implements Initializable {
     }
 
     private void displayUserName() {
+        Label l = new Label(level1Users.getFirst().getUSER_NAME());
+        double offset = gp_table1.localToScene(gp_table1.getBoundsInLocal()).getHeight() / 40 - l.getFont().getSize()/1.5;
+        double offset2 = gp_table1.localToScene(gp_table1.getBoundsInLocal()).getHeight()/50;
+        for(VBox vb : vBoxes){
+            vb.setPadding(new Insets(offset,0,0,0));
+            vb.setSpacing(offset2);
+        }
         for (UserDataLevel1 ud : level1Users) {
             Label label = new Label();
             label.setText(ud.getUSER_NAME());
-
             vb_level1Name.getChildren().add(label);
-
             label = new Label();
             label.setText(Integer.toString(ud.getRound1Points()));
             vb_R1L1Points.getChildren().add(label);
-            label = new Label();
+
             try {
                 label.setText(Integer.toString(ud.getRound2Points().getLast()));
             } catch (NullPointerException ex) {
+            label = new Label();
                 label.setText("0");
             }
             vb_R2L1Points.getChildren().add(label);

@@ -95,6 +95,19 @@ public class Level3Controller extends Round4Controller implements Initializable,
         activeThreadId = threadId;
     }
 
+    private void setData() {
+        lb_instructionBody_zh.setText(Main.R4L3_DATA.INSTRUCTION_ZH);
+        lb_instructionBody_en.setText(Main.R4L3_DATA.INSTRUCTION_EN);
+        String time_zh = "限时" + Main.R4L3_DATA.TIME_LIMIT + "分钟";
+        String time_en = "Time Limit: " + Main.R4L3_DATA.TIME_LIMIT + ((Main.R4L3_DATA.TIME_LIMIT > 1) ? " minutes" : " minute");
+        lb_instructionTime_zh.setText(time_zh);
+        lb_instructionTime_en.setText(time_en);
+
+        lb_exampleBody.setText(Main.R4L3_DATA.EXAMPLES.get(0));
+
+
+    }
+
     private void initComboBox() {
         LinkedList<String> studentName = new LinkedList<>();
         for (UserDataLevel1 ud : level1Users) {
@@ -105,16 +118,7 @@ public class Level3Controller extends Round4Controller implements Initializable,
         cb_users.setValue(cb_users.getItems().get(0));
     }
 
-    private LinkedList<String> packageData(Object data) {
-        LinkedList<String> result = new LinkedList<>();
 
-        if (data.getClass() == Integer.class) {
-            result.add(Integer.toString((int) data));
-        } else if (data.getClass() == Long.class)
-            result.add(Long.toString((long) data));
-
-        return result;
-    }
 
     private void displayInstruction(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L3_DATA.getQuestions().size())
@@ -235,6 +239,9 @@ public class Level3Controller extends Round4Controller implements Initializable,
                 ex.printStackTrace();
             }
 
+        }else if (e.getSource() == bt_home){
+            hide();
+            round4Controller.show();
         }
     }
 
@@ -290,7 +297,10 @@ public class Level3Controller extends Round4Controller implements Initializable,
     public void initialize(URL location, ResourceBundle resources) {
         Main.R4L3_DATA.init();
 
+        setData();
+
         tp_mainTab.setVisible(true);
+        lb_timer.setText("5");
         lb_timer.setVisible(false);
         lb_instruction.setVisible(false);
         bt_startTimer.setVisible(true);

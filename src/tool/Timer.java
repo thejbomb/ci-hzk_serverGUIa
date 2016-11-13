@@ -26,7 +26,7 @@ public class Timer {
 
                     if (timeLeft == 0)
                         timerInterface.takeNotice();
-                    Thread.sleep(20);
+                    Thread.sleep(1000);
                 }
                 return null;
             }

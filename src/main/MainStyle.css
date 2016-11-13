@@ -5,20 +5,20 @@
 
 .label-title-zh {
     -fx-font: bold 80pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(255,0,0);
 }
 
 .label-title-en {
     -fx-font: bold 35pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(255,0,0);
 }
 
 .button-start {
     -fx-font: bold 40pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,0);
 }
 
 .label-tableHeader {
     -fx-font: bold 12pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,0);
 }

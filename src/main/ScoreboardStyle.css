@@ -3,3 +3,33 @@
     -fx-border-style: solid inside;
     -fx-border-insets: 5;
 }
+
+.label-ranking-en {
+    -fx-font: bold 35pt "Bell MT";
+    -fx-text-fill: rgb(255,0,0);
+}
+
+.label-level {
+    -fx-font: bold 20pt "KaiTi";
+    -fx-text-fill: rgb(255,0,0);
+}
+
+.label-tableHeader {
+    -fx-font: 18pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+.label-tableHeaderRound {
+    -fx-font: 13pt "Bell MT";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+.label-tableUserName {
+    -fx-font: 18pt "KaiTi";
+    -fx-text-fill: rgb(0,0,0);
+}
+
+.label-tableUserScore {
+    -fx-font: 18pt "KaiTi";
+    -fx-text-fill: rgb(0,0,255);
+}

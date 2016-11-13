@@ -9,10 +9,10 @@ import java.util.*;
  * Created by quang on 08/18/16.
  */
 public class DataStructure {
-    protected String INSTRUCTION_ZH;
-    protected String INSTRUCTION_EN;
-    protected int TIME_LIMIT;
-    protected ArrayList<String> EXAMPLES;
+    public String INSTRUCTION_ZH;
+    public String INSTRUCTION_EN;
+    public int TIME_LIMIT;
+    public ArrayList<String> EXAMPLES;
     protected ArrayList<String> QUESTIONS1;
     protected ArrayList<String> CHOICES;
     protected ArrayList<String> QUESTIONS2;

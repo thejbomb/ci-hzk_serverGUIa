@@ -129,6 +129,7 @@ public class Level2Controller extends Round2Controller implements Initializable 
         ap_root.setVisible(true);
         tp_mainTab.setVisible(false);
         gp_example.setVisible(false);
+        gp_score.setVisible(false);
         gp_instruction.setVisible(true);
     }
 
@@ -140,6 +141,7 @@ public class Level2Controller extends Round2Controller implements Initializable 
         ap_root.setVisible(true);
         tp_mainTab.setVisible(false);
         gp_instruction.setVisible(false);
+        gp_score.setVisible(false);
         gp_example.setVisible(true);
     }
 

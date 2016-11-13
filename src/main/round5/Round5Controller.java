@@ -12,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import main.Main;
 import main.MainController;
+import main.ScoreboardController;
 import tool.Constants;
 import tool.Timer;
 import tool.TimerInterface;
@@ -95,15 +96,19 @@ public class Round5Controller extends MainController implements Initializable, R
     private Button bt_level3Instruction;
     @FXML
     private Button bt_level3Example;
+    @FXML
+    private Button bt_scoreboard;
 
     private Thread thread;
 
+    private ScoreboardController scoreboardController;
+
     private int currentLevel = 0;
 
-    public void init() {
+    public void init(ScoreboardController controller) {
+        scoreboardController = controller;
         thread = new Thread(this);
         thread.start();
-
     }
 
     public void setActiveThread(long threadId) {
@@ -175,6 +180,9 @@ public class Round5Controller extends MainController implements Initializable, R
         } else if (e.getSource() == bt_level3Scoring) {
             hide();
             ap_level3InterfaceController.showScoring();
+        } else if(e.getSource() ==bt_scoreboard){
+            hide();
+            scoreboardController.show();
         }
     }
 
