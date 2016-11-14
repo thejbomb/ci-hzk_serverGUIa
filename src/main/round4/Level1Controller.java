@@ -79,7 +79,6 @@ public class Level1Controller extends Round4Controller implements Initializable,
 
     private Timer timer;
 
-    @SuppressWarnings(value = "unchecked")
     public void init(LinkedList<UserDataLevel1> users, Round4Controller controller) {
 
         this.level1Users = users;

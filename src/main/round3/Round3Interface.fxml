@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<AnchorPane fx:id="ap_parent" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round3.Round3Controller">
+    <children>
+        <fx:include fx:id="ap_level1Interface" source="Level1Interface.fxml" />
+        <fx:include fx:id="ap_level2Interface" source="Level2Interface.fxml" />
+        <fx:include fx:id="ap_level3Interface" source="Level3Interface.fxml" />
+        <GridPane mouseTransparent="true" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <AnchorPane>
+                    <children>
+                        <Label fx:id="lb_roundNumber_zh" alignment="CENTER" styleClass="label-roundNumber-zh" text="淘汰赛&#10;第三关" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+                            <font>
+                                <Font name="KaiTi" size="49.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.rowIndex="1">
+                    <children>
+                        <Label fx:id="lb_roundNumber_en" alignment="CENTER" styleClass="label-roundNumber-en" text="Round 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <font>
+                                <Font name="Bell MT" size="30.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </AnchorPane>
+                <AnchorPane GridPane.rowIndex="2">
+                    <children>
+                        <Label fx:id="lb_roundDescription" alignment="CENTER" styleClass="label-roundDescription" text="ROUND_DESCRIPTION" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </GridPane>
+        <AnchorPane fx:id="ap_root" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+                <TabPane fx:id="tp_mainTab" side="RIGHT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <tabs>
+                        <Tab text="Beginner">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="40.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                    <children>
+                                                        <Label fx:id="lb_roundNumberS1_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第三关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label fx:id="lb_roundNumberS1_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label fx:id="lb_roundLevel1_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="初级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                                                    <children>
+                                                        <Label fx:id="lb_roundLevel1_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Beginner Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+                                                    <left>
+                                                        <Button fx:id="bt_level1Instruction" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Instruction" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                                            <font>
+                                                                <Font name="KaiTi" size="48.0" />
+                                                            </font>
+                                                        </Button>
+                                                    </left>
+                                                    <right>
+                                                        <Button fx:id="bt_level1Example" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                                    </right>
+                                                    <center>
+                                                        <Button fx:id="bt_level1Scoring" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Scoring" BorderPane.alignment="CENTER" />
+                                                    </center>
+                                                </BorderPane>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Intermediate">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="40.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                    <children>
+                                                        <Label fx:id="lb_roundNumberS2_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第三关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label fx:id="lb_roundNumberS2_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label fx:id="lb_roundLevel2_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="中级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                                                    <children>
+                                                        <Label fx:id="lb_roundLevel2_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Intermediate Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+                                                    <left>
+                                                        <Button fx:id="bt_level2Instruction" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Instruction" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                                            <font>
+                                                                <Font name="KaiTi" size="48.0" />
+                                                            </font>
+                                                        </Button>
+                                                    </left>
+                                                    <right>
+                                                        <Button fx:id="bt_level2Example" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                                    </right>
+                                                    <center>
+                                                        <Button fx:id="bt_level2Scoring" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Scoring" BorderPane.alignment="CENTER" />
+                                                    </center>
+                                                </BorderPane>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Advance">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="40.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                    <children>
+                                                        <Label fx:id="lb_roundNumberS3_zh" alignment="CENTER" styleClass="label-roundNumberS-zh" text="第三关" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                    <children>
+                                                        <Label fx:id="lb_roundNumberS3_en" alignment="CENTER" styleClass="label-roundNumberS-en" text="Round 3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                                                    <children>
+                                                        <Label fx:id="lb_roundLevel3_zh" alignment="CENTER" styleClass="label-roundLevel-zh" text="高级组" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3">
+                                                    <children>
+                                                        <Label fx:id="lb_roundLevel3_en" alignment="CENTER" styleClass="label-roundLevel-en" text="Advance Level" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="4">
+                                                    <left>
+                                                        <Button fx:id="bt_level3Instruction" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Instruction" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                                                            <font>
+                                                                <Font name="KaiTi" size="48.0" />
+                                                            </font>
+                                                        </Button>
+                                                    </left>
+                                                    <right>
+                                                        <Button fx:id="bt_level3Example" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Example" BorderPane.alignment="CENTER" />
+                                                    </right>
+                                                    <center>
+                                                        <Button fx:id="bt_level3Scoring" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Scoring" BorderPane.alignment="CENTER" />
+                                                    </center>
+                                                </BorderPane>
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Tools">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                                <ColumnConstraints hgrow="SOMETIMES" />
+                                                <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                                                <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <ToolBar prefHeight="40.0" prefWidth="200.0" GridPane.columnSpan="2147483647">
+                                                    <items>
+                                                        <Button fx:id="bt_scoreboard" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Scoreboard" />
+                                                    </items>
+                                                </ToolBar>
+                                                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                                    <top>
+                                                        <Label styleClass="label-roundLevel1S" text="初级 Beginner Level" BorderPane.alignment="CENTER" />
+                                                    </top>
+                                                    <center>
+                                                        <Label fx:id="lb_level1Timer" styleClass="label-roundTimer" text="LEVEL1_TIMER" BorderPane.alignment="CENTER" />
+                                                    </center>
+                                                </BorderPane>
+                                                <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                                    <top>
+                                                        <Label styleClass="label-roundLevel2S" text="中级 Intermediate Level" BorderPane.alignment="CENTER" />
+                                                    </top>
+                                                    <center>
+                                                        <Label fx:id="lb_level2Timer" styleClass="label-roundTimer" text="LEVEL2_TIMER" BorderPane.alignment="CENTER" />
+                                                    </center>
+                                                </BorderPane>
+                                                <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                                    <top>
+                                                        <Label styleClass="label-roundLevel3S" text="高级 Advance Level" BorderPane.alignment="CENTER" />
+                                                    </top>
+                                                    <center>
+                                                        <Label fx:id="lb_level3Timer" styleClass="label-roundTimer" text="LEVEL3_TIMER" BorderPane.alignment="CENTER" />
+                                                    </center>
+                                                </BorderPane>
+                                                <BorderPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                                    <center>
+                                                        <Button fx:id="bt_startTimer" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-roundBegin" text="Start" BorderPane.alignment="CENTER" />
+                                                    </center>
+                                                </BorderPane>
+                                            </children>
+                                        </GridPane>
+                                    </children></AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </AnchorPane>
+    </children>
+    <stylesheets>
+        <URL value="@Round3Style.css" />
+    </stylesheets>
+</AnchorPane>

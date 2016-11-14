@@ -5,19 +5,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Bounds;
-import javafx.geometry.Point2D;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Polyline;
 import main.Main;
 import tool.Constants;
 
@@ -248,7 +239,7 @@ public class Level3Controller extends Round2Controller implements Initializable 
                     } catch (NumberFormatException ex) {
                         System.out.println("Only numeric characters allowed.");
                     }
-                    writeToClient(Constants.S2C_R2L3_SCR, packageData(ud.getROund2Points()), ud.getThreadId());
+                    writeToClient(Constants.S2C_R2L3_SCR, packageData(ud.getround2Points()), ud.getThreadId());
                 }
             }
     }
@@ -274,7 +265,7 @@ public class Level3Controller extends Round2Controller implements Initializable 
                         Pane pane = new Pane();
                         pane.getChildren().addAll(ud.getRound2Answers().get(i));
                         answers.get(i).getChildren().addAll(pane);
-                        tf_totalPoints.setText(ud.getROund2Points() + "");
+                        tf_totalPoints.setText(ud.getround2Points() + "");
                     }
                 }
             }

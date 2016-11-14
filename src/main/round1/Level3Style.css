@@ -1,0 +1,100 @@
+.background {
+    -fx-background-color: rgb(255,255,255);
+}
+
+.tab .tab-label {
+      -fx-background-color: transparent;
+      -fx-alignment: CENTER;
+      -fx-font: 16px "Bell MT";
+      -fx-text-fill: rgb(0,0,0);
+}
+
+.label-instructionHeader {
+    -fx-font: bold 60pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-instructionBody-zh {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-instructionBody-en {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-instructionTime-zh {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-instructionTime-en {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-exampleHeader {
+    -fx-font: bold 60pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-exampleBody {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-exampleWarning {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.button-questionsStart {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-questionsTimer {
+    -fx-font: bold 60pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-questionsQuestion {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-questionsChoice {
+    -fx-font: bold 40pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-scoreAnswer {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-scoreQuestion {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-scoreChoice {
+    -fx-font: bold 30pt "KaiTi";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.text-field-scorePoint {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-scoreTotalLabel {
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}
+
+.label-scoreTotalPoint{
+    -fx-font: bold 30pt "Bell MT";
+    -fx-text-fill: rgb(0,255,0);
+}

@@ -22,8 +22,14 @@ public class UserDataLevel2 extends UserData {
         super.setThreadId(id);
     }
 
+    public LinkedList<String>[] getRound1Answers() {return round1Answers;}
+
     public LinkedList<LinkedList<Polyline>>[] getRound2Answers() {
         return round2Answers;
+    }
+
+    public LinkedList<String> getRound3Answers() {
+        return round3Answers;
     }
 
     public LinkedList<Integer> getRound5AnswerIndices() {
@@ -32,6 +38,51 @@ public class UserDataLevel2 extends UserData {
 
     public LinkedList<String> getRound5Answers() {
         return round5Answers;
+    }
+
+    public void setPointRound1(int point, int index) {
+        if (round1Points == null) {
+            round1Points = new LinkedList<>();
+            for (int i = 0; i < data.round1.Level3DataStructure.NUM_OF_QUESTIONS; i++)
+                round1Points.add(0);
+        }
+
+        round2Points.set(index, point);
+
+        int total = 0;
+
+        for (int i = 0; i < data.round1.Level3DataStructure.NUM_OF_QUESTIONS; i++)
+            total += round2Points.get(i);
+        if (round2Points.size() == data.round1.Level3DataStructure.NUM_OF_QUESTIONS)
+            round2Points.add(total);
+        else {
+            round2Points.removeLast();
+            round2Points.add(total);
+        }
+
+    }
+
+    public void setRound1Answers(LinkedList<String> answers) {
+        round1Answers = new LinkedList[answers.size() / 2];
+        for (int k = 0; k < round1Answers.length; k++)
+            round1Answers[k] = new LinkedList<>();
+        int i = 0;
+        answers.removeFirst();
+        while (true) {
+            while (answers.size() != 0) {
+                String answer = "";
+                answers.removeFirst();
+                while (answers.getFirst().compareTo("ANS" + i) != 0) {
+                    answer += answers.getFirst();
+                    answers.removeFirst();
+                    if (answers.size() == 0)
+                        break;
+                }
+                round1Answers[i].add(answer.replaceAll("\\s", ""));
+                i++;
+            }        System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 1 are " + round1Answers);
+
+        }
     }
 
     public void setRound2Answers(LinkedList<String> answers) {
@@ -88,6 +139,33 @@ public class UserDataLevel2 extends UserData {
         System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 2 are " + round2Answers);
     }
 
+    public void setPointRound3(int point, int index) {
+        if (round2Points == null) {
+            round2Points = new LinkedList<>();
+            for (int i = 0; i < Level2DataStructure.NUM_OF_QUESTIONS; i++)
+                round2Points.add(0);
+        }
+
+        round2Points.set(index, point);
+
+        int total = 0;
+
+        for (int i = 0; i < Level2DataStructure.NUM_OF_QUESTIONS; i++)
+            total += round2Points.get(i);
+        if (round2Points.size() == Level2DataStructure.NUM_OF_QUESTIONS)
+            round2Points.add(total);
+        else {
+            round2Points.removeLast();
+            round2Points.add(total);
+        }
+
+    }
+
+    public void setRound3Answers(LinkedList<String> answers) {
+        round3Answers = answers;
+        System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 3 are " + round3Answers);
+    }
+
 
     public void setRound5Answers(LinkedList<String> answers) {
         if (round5AnswerIndices == null)
@@ -131,8 +209,16 @@ public class UserDataLevel2 extends UserData {
 
     }
 
+    public LinkedList<Integer> getRound1Points() {
+        return round1Points;
+    }
+
     public LinkedList<Integer> getRound2Points() {
         return round2Points;
+    }
+
+    public LinkedList<Integer> getRound3Points() {
+        return round3Points;
     }
 
     public int[] getRound5PointState() {

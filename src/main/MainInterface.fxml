@@ -16,7 +16,9 @@
 
 <AnchorPane fx:id="ap_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="pane" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.MainController">
     <children>
+        <fx:include fx:id="ap_round1Interface" source="round1/Round1Interface.fxml" />
         <fx:include fx:id="ap_round2Interface" source="round2/Round2Interface.fxml" />
+        <fx:include fx:id="ap_round3Interface" source="round3/Round3Interface.fxml" />
         <fx:include fx:id="ap_round4Interface" source="round4/Round4Interface.fxml" />
         <fx:include fx:id="ap_round5Interface" source="round5/Round5Interface.fxml" />
         <fx:include fx:id="ap_scoreboardInterface" source="ScoreboardInterface.fxml" />

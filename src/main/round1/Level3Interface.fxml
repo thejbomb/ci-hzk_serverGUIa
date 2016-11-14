@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane fx:id="ap_root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round1.Level3Controller">
+   <children>
+      <TabPane fx:id="tp_mainTab" side="RIGHT" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <tabs>
+            <Tab fx:id="tp_instruction" closable="false" text="Instruction">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label fx:id="lb_instructionHeader" alignment="CENTER" styleClass="label-instructionHeader" text="比赛要求" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label fx:id="lb_instructionBody_zh" alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" styleClass="label-instructionBody-zh" text="INSTRUCTION_BODY_ZH" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label fx:id="lb_instructionBody_en" alignment="TOP_CENTER" styleClass="label-instructionBody-en" text="INSTRUCTION_BODY_EN" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <children>
+                                    <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                             <children>
+                                                <Label fx:id="lb_instructionTime_zh" alignment="TOP_CENTER" styleClass="label-instructionTime-zh" text="TIME_LIMIT_ZH" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                                             <children>
+                                                <Label fx:id="lb_instructionTime_en" alignment="TOP_CENTER" styleClass="label-instructionTime-en" text="TIME_LIMIT_EN" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="tp_example" closable="false" text="Example">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label fx:id="lb_exampleHeader" alignment="CENTER" styleClass="label-exampleHeader" text="Example" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Label fx:id="lb_exampleBody" alignment="CENTER" styleClass="label-exampleBody" text="EXAMPLE_BODY" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <children>
+                                    <Label fx:id="lb_exampleWarning" alignment="TOP_CENTER" styleClass="label-exampleWarning" text="Examples cannot be used toward answers." AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Question">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                 <children>
+                                    <Label fx:id="lb_timer" alignment="CENTER" styleClass="label-questionsTimer" text="TIMER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+                                 <left>
+                                    <Label fx:id="lb_question1" styleClass="label-questionsQuestion" text="QUESTION_1" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="3">
+                                 <left>
+                                    <Label fx:id="lb_question2" styleClass="label-questionsQuestion" text="QUESTION_2" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="4">
+                                 <left>
+                                    <Label fx:id="lb_question3" styleClass="label-questionsQuestion" text="QUESTION_3" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="5">
+                                 <left>
+                                    <Label fx:id="lb_question4" styleClass="label-questionsQuestion" text="QUESTION_4" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="6">
+                                 <left>
+                                    <Label fx:id="lb_question5" styleClass="label-questionsQuestion" text="QUESTION_5" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="7">
+                                 <left>
+                                    <Label fx:id="lb_question6" styleClass="label-questionsQuestion" text="QUESTION_6" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="8">
+                                 <left>
+                                    <Label fx:id="lb_question7" styleClass="label-questionsQuestion" text="QUESTION_7" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="9">
+                                 <left>
+                                    <Label fx:id="lb_question8" styleClass="label-questionsQuestion" text="QUESTION_8" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="10">
+                                 <left>
+                                    <Label fx:id="lb_question9" styleClass="label-questionsQuestion" text="QUESTION_9" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="2" GridPane.rowIndex="11">
+                                 <left>
+                                    <Label fx:id="lb_question10" styleClass="label-questionsQuestion" text="QUESTION_10" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp_start" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="3">
+                                 <center>
+                                    <Button fx:id="bt_startTimer" mnemonicParsing="false" onMouseClicked="#handleMouseClick" styleClass="button-questionsStart" text="开始&#10;Start" textAlignment="CENTER" BorderPane.alignment="CENTER" />
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Score">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <GridPane fx:id="gp_score" onMouseClicked="#handleMouseClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="1.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="40.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                              <ColumnConstraints />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <AnchorPane GridPane.columnSpan="8">
+                                 <children>
+                                    <ToolBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <items>
+                                          <ComboBox fx:id="cb_users" promptText="Select student" />
+                                          <Button fx:id="bt_home" mnemonicParsing="false" onMouseClicked="#handleMouseClick" text="Home" />
+                                       </items>
+                                    </ToolBar>
+                                 </children>
+                              </AnchorPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <left>
+                                    <Label fx:id="lb_question1_st" styleClass="label-scoreQuestion" text="QUESTION_1" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <left>
+                                    <Label fx:id="lb_question2_st" styleClass="label-scoreQuestion" text="QUESTION_2" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <left>
+                                    <Label fx:id="lb_question3_st" styleClass="label-scoreQuestion" text="QUESTION_3" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="5">
+                                 <left>
+                                    <Label fx:id="lb_question4_st" styleClass="label-scoreQuestion" text="QUESTION_4" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="6">
+                                 <left>
+                                    <Label fx:id="lb_question5_st" styleClass="label-scoreQuestion" text="QUESTION_5" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="7">
+                                 <left>
+                                    <Label fx:id="lb_question6_st" styleClass="label-scoreQuestion" text="QUESTION_6" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="8">
+                                 <left>
+                                    <Label fx:id="lb_question7_st" styleClass="label-scoreQuestion" text="QUESTION_7" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="9">
+                                 <left>
+                                    <Label fx:id="lb_question8_st" styleClass="label-scoreQuestion" text="QUESTION_8" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="10">
+                                 <left>
+                                    <Label fx:id="lb_question9_st" styleClass="label-scoreQuestion" text="QUESTION_9" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="11">
+                                 <left>
+                                    <Label fx:id="lb_question10_st" styleClass="label-scoreQuestion" text="QUESTION_10" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp1" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                                 <left>
+                                    <Label fx:id="lb_answer1" styleClass="label-scoreAnswer" text="ANSWER_1" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp2" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                                 <left>
+                                    <Label fx:id="lb_answer2" styleClass="label-scoreAnswer" text="ANSWER_2" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp3" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                                 <left>
+                                    <Label fx:id="lb_answer3" styleClass="label-scoreAnswer" text="ANSWER_3" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp4" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                                 <left>
+                                    <Label fx:id="lb_answer4" styleClass="label-scoreAnswer" text="ANSWER_4" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp5" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                                 <left>
+                                    <Label fx:id="lb_answer5" styleClass="label-scoreAnswer" text="ANSWER_5" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp6" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                                 <left>
+                                    <Label fx:id="lb_answer6" styleClass="label-scoreAnswer" text="ANSWER_6" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp7" GridPane.columnIndex="3" GridPane.rowIndex="8">
+                                 <left>
+                                    <Label fx:id="lb_answer7" styleClass="label-scoreAnswer" text="ANSWER_7" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp8" GridPane.columnIndex="3" GridPane.rowIndex="9">
+                                 <left>
+                                    <Label fx:id="lb_answer8" styleClass="label-scoreAnswer" text="ANSWER_8" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp9" GridPane.columnIndex="3" GridPane.rowIndex="10">
+                                 <left>
+                                    <Label fx:id="lb_answer9" styleClass="label-scoreAnswer" text="ANSWER_9" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <BorderPane fx:id="bp10" GridPane.columnIndex="3" GridPane.rowIndex="11">
+                                 <left>
+                                    <Label fx:id="lb_answer10" styleClass="label-scoreAnswer" text="ANSWER_10" BorderPane.alignment="CENTER" />
+                                 </left>
+                              </BorderPane>
+                              <AnchorPane GridPane.columnIndex="4" GridPane.rowIndex="12">
+                                 <children>
+                                    <Label fx:id="lb_total" alignment="CENTER_RIGHT" styleClass="label-scoreTotalLabel" text="Total:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="2">
+                                 <children>
+                                    <TextField fx:id="tf_point1" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="3">
+                                 <children>
+                                    <TextField fx:id="tf_point2" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="4">
+                                 <children>
+                                    <TextField fx:id="tf_point3" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="5">
+                                 <children>
+                                    <TextField fx:id="tf_point4" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="6">
+                                 <children>
+                                    <TextField fx:id="tf_point5" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="7">
+                                 <children>
+                                    <TextField fx:id="tf_point6" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="8">
+                                 <children>
+                                    <TextField fx:id="tf_point7" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="9">
+                                 <children>
+                                    <TextField fx:id="tf_point8" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="10">
+                                 <children>
+                                    <TextField fx:id="tf_point9" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="11">
+                                 <children>
+                                    <TextField fx:id="tf_point10" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="12">
+                                 <children>
+                                    <Label fx:id="lb_pointTotal" styleClass="label-scoreTotalPoint" text="TOTAL_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </GridPane>
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+   </children>
+   <stylesheets>
+      <URL value="@Level3Style.css" />
+   </stylesheets>
+</AnchorPane>

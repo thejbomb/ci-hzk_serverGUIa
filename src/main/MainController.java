@@ -8,7 +8,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import main.round1.Round1Controller;
 import main.round2.Round2Controller;
+import main.round3.Round3Controller;
 import main.round4.Round4Controller;
 import main.round5.Round5Controller;
 import network.ClientHandlerInterface;
@@ -27,9 +29,15 @@ public class MainController implements Initializable, ClientHandlerInterface {
     @FXML
     private AnchorPane ap_round1Interface;
     @FXML
+    private Round1Controller ap_round1InterfaceController;
+    @FXML
     private AnchorPane ap_round2Interface;
     @FXML
     private Round2Controller ap_round2InterfaceController;
+    @FXML
+    private AnchorPane ap_round3Interface;
+    @FXML
+    private Round3Controller ap_round3InterfaceController;
     @FXML
     private AnchorPane ap_round4Interface;
     @FXML
@@ -63,12 +71,16 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private static int currentRound = Constants.ROUND2;
+    private static int currentRound = Constants.ROUND1;
 
     private int userLevel = 0;
 
     public static int getNextRound() {
-        if (currentRound == Constants.ROUND2)
+        if(currentRound == Constants.ROUND1)
+            currentRound = Constants.ROUND2;
+        else if (currentRound == Constants.ROUND2)
+            currentRound = Constants.ROUND3;
+        else if (currentRound == Constants.ROUND3)
             currentRound = Constants.ROUND4;
         else if (currentRound == Constants.ROUND4)
             currentRound = Constants.ROUND5;
@@ -114,8 +126,16 @@ public class MainController implements Initializable, ClientHandlerInterface {
     public void startRound(int roundNumber) {
         switch (roundNumber) {
             case Constants.ROUND1:
+                writeToClient(Constants.BEGIN_R1L1, Constants.LEVEL1);
+                writeToClient(Constants.BEGIN_R1L2, Constants.LEVEL2);
+                writeToClient(Constants.BEGIN_R1L3, Constants.LEVEL3);
+                ap_round1Interface.setVisible(true);
+                ap_round1InterfaceController.init(ap_scoreboardInterfaceController);
+                ap_round1InterfaceController.setUsers(level1Users, level2Users, level3Users);
+                ap_round1InterfaceController.show();
                 break;
             case Constants.ROUND2:
+                writeToClient(Constants.BEGIN_RND2);
                 writeToClient(Constants.BEGIN_R2L1, Constants.LEVEL1);
                 writeToClient(Constants.BEGIN_R2L2, Constants.LEVEL2);
                 writeToClient(Constants.BEGIN_R2L3, Constants.LEVEL3);
@@ -125,6 +145,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 ap_round2InterfaceController.show();
                 break;
             case Constants.ROUND3:
+                writeToClient(Constants.BEGIN_R3L1, Constants.LEVEL1);
+                writeToClient(Constants.BEGIN_R3L2, Constants.LEVEL2);
+                writeToClient(Constants.BEGIN_R3L3, Constants.LEVEL3);
+                ap_round3Interface.setVisible(true);
+                ap_round3InterfaceController.init(ap_scoreboardInterfaceController);
+                ap_round3InterfaceController.setUsers(level1Users, level2Users, level3Users);
+                ap_round3InterfaceController.show();
                 break;
             case Constants.ROUND4:
                 writeToClient(Constants.BEGIN_RND4);
@@ -319,8 +346,12 @@ public class MainController implements Initializable, ClientHandlerInterface {
     @Override
     public void setActiveThread(long threadID) {
         activeThreadId = threadID;
+        if (ap_round1InterfaceController != null)
+            ap_round1InterfaceController.setActiveThread(threadID);
         if (ap_round2InterfaceController != null)
             ap_round2InterfaceController.setActiveThread(threadID);
+        if (ap_round3InterfaceController != null)
+            ap_round3InterfaceController.setActiveThread(threadID);
         if (ap_round4InterfaceController != null)
             ap_round4InterfaceController.setActiveThread(threadID);
         if (ap_round5InterfaceController != null)
@@ -342,13 +373,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
             default:
                 switch (currentRound) {
                     case Constants.ROUND1:
-                        //ap_round2InterfaceController.handleClientData(command, data);
+                        ap_round1InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND2:
                         ap_round2InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND3:
-                        //ap_round2InterfaceController.handleClientData(command, data);
+                        ap_round3InterfaceController.handleClientData(command, data);
                         break;
                     case Constants.ROUND4:
                         ap_round4InterfaceController.handleClientData(command, data);
@@ -366,11 +397,23 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        AnchorPane.setBottomAnchor(ap_round1Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_round1Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_round1Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_round1Interface, 0.0);
+        ap_round1Interface.setVisible(false);
+
         AnchorPane.setBottomAnchor(ap_round2Interface, 0.0);
         AnchorPane.setTopAnchor(ap_round2Interface, 0.0);
         AnchorPane.setLeftAnchor(ap_round2Interface, 0.0);
         AnchorPane.setRightAnchor(ap_round2Interface, 0.0);
         ap_round2Interface.setVisible(false);
+
+        AnchorPane.setBottomAnchor(ap_round3Interface, 0.0);
+        AnchorPane.setTopAnchor(ap_round3Interface, 0.0);
+        AnchorPane.setLeftAnchor(ap_round3Interface, 0.0);
+        AnchorPane.setRightAnchor(ap_round3Interface, 0.0);
+        ap_round3Interface.setVisible(false);
 
         AnchorPane.setBottomAnchor(ap_round4Interface, 0.0);
         AnchorPane.setTopAnchor(ap_round4Interface, 0.0);

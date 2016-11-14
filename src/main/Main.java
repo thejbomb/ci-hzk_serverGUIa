@@ -18,9 +18,18 @@ import java.util.List;
 
 public class Main extends Application {
     public static final ObservableList<UserData> USERS_LIST = getUsersList();
+
+    public static final data.round1.Level1DataStructure R1L1_DATA;
+    public static final data.round1.Level2DataStructure R1L2_DATA;
+    public static final data.round1.Level3DataStructure R1L3_DATA;
+
     public static final data.round2.Level1DataStructure R2L1_DATA;
     public static final data.round2.Level2DataStructure R2L2_DATA;
     public static final data.round2.Level3DataStructure R2L3_DATA;
+
+    public static final data.round3.Level1DataStructure R3L1_DATA;
+    public static final data.round3.Level2DataStructure R3L2_DATA;
+    public static final data.round3.Level3DataStructure R3L3_DATA;
 
     public static final data.round4.DataStructure R4L1_DATA;
     public static final data.round4.DataStructure R4L2_DATA;
@@ -32,12 +41,24 @@ public class Main extends Application {
 
     static {
         try {
-            String fileName = System.getProperty("user.dir") + "/src/data/Round2Level1Data.json";
+            String fileName = System.getProperty("user.dir") + "/src/data/Round1Level1Data.json";
+            R1L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round1.Level1DataStructure.class);
+            fileName = System.getProperty("user.dir") + "/src/data/Round1Level2Data.json";
+            R1L2_DATA = new Gson().fromJson(new FileReader(fileName), data.round1.Level2DataStructure.class);
+            fileName = System.getProperty("user.dir") +"/src/data/Round1Level3Data.json";
+            R1L3_DATA = new Gson().fromJson(new FileReader(fileName), data.round1.Level3DataStructure.class);
+            fileName = System.getProperty("user.dir") +"/src/data/Round2Level1Data.json";
             R2L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round2.Level1DataStructure.class);
             fileName = System.getProperty("user.dir") + "/src/data/Round2Level2Data.json";
             R2L2_DATA = new Gson().fromJson(new FileReader(fileName), data.round2.Level2DataStructure.class);
             fileName = System.getProperty("user.dir") +"/src/data/Round2Level3Data.json";
             R2L3_DATA = new Gson().fromJson(new FileReader(fileName), data.round2.Level3DataStructure.class);
+            fileName = System.getProperty("user.dir") +"/src/data/Round3Level1Data.json";
+            R3L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round3.Level1DataStructure.class);
+            fileName = System.getProperty("user.dir") + "/src/data/Round3Level2Data.json";
+            R3L2_DATA = new Gson().fromJson(new FileReader(fileName), data.round3.Level2DataStructure.class);
+            fileName = System.getProperty("user.dir") +"/src/data/Round3Level3Data.json";
+            R3L3_DATA = new Gson().fromJson(new FileReader(fileName), data.round3.Level3DataStructure.class);
             fileName = System.getProperty("user.dir") +"/src/data/Round4Level1Data.json";
             R4L1_DATA = new Gson().fromJson(new FileReader(fileName), data.round4.DataStructure.class);
             fileName = System.getProperty("user.dir") +"/src/data/Round4Level2Data.json";

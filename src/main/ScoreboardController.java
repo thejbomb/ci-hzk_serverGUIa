@@ -197,9 +197,9 @@ public class ScoreboardController implements Initializable {
         TableColumn scoreColumn4 = (TableColumn) tb_level1Score.getColumns().get(3);
         TableColumn scoreColumn5 = (TableColumn) tb_level1Score.getColumns().get(4);
         nameColumn.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, String>("USER_NAME"));
-        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round1Points"));
+        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round1TotalPoints"));
         scoreColumn2.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round2TotalPoints"));
-        scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round3Points"));
+        scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round3TotalPoints"));
         scoreColumn4.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round4Points"));
         scoreColumn5.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round5Points"));
         ObservableList<UserDataLevel1> userList1 = FXCollections.observableArrayList(level1Users);
@@ -213,9 +213,9 @@ public class ScoreboardController implements Initializable {
         scoreColumn4 = (TableColumn) tb_level2Score.getColumns().get(3);
         scoreColumn5 = (TableColumn) tb_level2Score.getColumns().get(4);
         nameColumn.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, String>("USER_NAME"));
-        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round1Points"));
+        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round1TotalPoints"));
         scoreColumn2.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round2TotalPoints"));
-        scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round3Points"));
+        scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round3TotalPoints"));
         scoreColumn4.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round4Points"));
         scoreColumn5.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round5Points"));
         ObservableList<UserDataLevel2> userList2 = FXCollections.observableArrayList(level2Users);
@@ -229,9 +229,9 @@ public class ScoreboardController implements Initializable {
         scoreColumn4 = (TableColumn) tb_level3Score.getColumns().get(3);
         scoreColumn5 = (TableColumn) tb_level3Score.getColumns().get(4);
         nameColumn.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, String>("USER_NAME"));
-        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round1Points"));
+        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round1TotalPoints"));
         scoreColumn2.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round2TotalPoints"));
-        scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round3Points"));
+        scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round3TotalPoints"));
         scoreColumn4.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round4Points"));
         scoreColumn5.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round5Points"));
         ObservableList<UserDataLevel3> userList3 = FXCollections.observableArrayList(level3Users);

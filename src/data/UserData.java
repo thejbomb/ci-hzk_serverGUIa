@@ -10,13 +10,17 @@ public class UserData {
     private String user_status;
     protected long threadId = -1;
 
-    protected int round1Points = 0;
+    protected LinkedList<String>[] round1Answers;
+    protected LinkedList<Integer> round1Points;
+    protected int round1TotalPoints = 0;
 
     protected LinkedList<String> round2Answers;
     protected LinkedList<Integer> round2Points; // last element is the total point
     protected int round2TotalPoints = 0;
 
-    protected int round3Points = 0;
+    protected LinkedList<String> round3Answers;
+    protected LinkedList<Integer> round3Points;
+    protected int round3TotalPoints = 0;
 
     protected int round4Points = 0;
 
@@ -98,16 +102,16 @@ public class UserData {
         System.out.println("User with ID " + USER_ID + " threadId is " + threadId);
     }
 
-    public int getRound1Points() {
-        return round1Points;
+    public int getRound1TotalPoints() {
+        return round1TotalPoints;
     }
 
     public int getRound2TotalPoints(){
         return round2TotalPoints;
     }
 
-    public int getRound3Points() {
-        return round3Points;
+    public int getRound3TotalPoints() {
+        return round3TotalPoints;
     }
 
     public void setRound4Points(int point) {

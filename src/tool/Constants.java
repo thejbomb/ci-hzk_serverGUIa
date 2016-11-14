@@ -21,9 +21,17 @@ public class Constants {
     public static final String TRANSMISSION_BEGIN = "TRANS_BEGIN";
     public static final String TRANSMISSION_END = "TRANS_END";
 
+    public static final int BEGIN_R1L1 = 0x110;
+    public static final int BEGIN_R1L2 = 0x120;
+    public static final int BEGIN_R1L3 = 0x130;
+    public static final int BEGIN_RND2 = 0x200;
     public static final int BEGIN_R2L1 = 0x210;
     public static final int BEGIN_R2L2 = 0x220;
     public static final int BEGIN_R2L3 = 0x230;
+    public static final int BEGIN_RND3 = 0x300;
+    public static final int BEGIN_R3L1 = 0x310;
+    public static final int BEGIN_R3L2 = 0x320;
+    public static final int BEGIN_R3L3 = 0x330;
     public static final int BEGIN_RND4 = 0x400;
     public static final int BEGIN_R4L1 = 0x410;
     public static final int BEGIN_R4L2 = 0x420;
@@ -32,6 +40,23 @@ public class Constants {
     public static final int BEGIN_R5L1 = 0x510;
     public static final int BEGIN_R5L2 = 0x520;
     public static final int BEGIN_R5L3 = 0x530;
+
+    public static final int DIS_R1L1_INS = 0x111;
+    public static final int DIS_R1L1_EXP = 0x112;
+    public static final int DIS_R1L1_QST = 0x113;
+    public static final int C2S_R1L1_ANS = 0x114;
+    public static final int S2C_R1L1_SCR = 0x115;
+    public static final int DIS_R1L2_INS = 0x121;
+    public static final int DIS_R1L2_EXP = 0x122;
+    public static final int DIS_R1L2_QST = 0x123;
+    public static final int C2S_R1L2_ANS = 0x124;
+    public static final int S2C_R1L2_SCR = 0x125;
+    public static final int DIS_R1L3_INS = 0x131;
+    public static final int DIS_R1L3_EXP = 0x132;
+    public static final int DIS_R1L3_QST = 0x133;
+    public static final int C2S_R1L3_ANS = 0x134;
+    public static final int S2C_R1L3_SCR = 0x135;
+    public static final int C2S_R1L3_SEED = 0x13A;
 
     public static final int DIS_R2L1_INS = 0x211;
     public static final int DIS_R2L1_EXP = 0x212;
@@ -49,6 +74,23 @@ public class Constants {
     public static final int C2S_R2L3_ANS = 0x234;
     public static final int S2C_R2L3_SCR = 0x235;
     public static final int C2S_R2L3_SEED = 0x23A;
+
+    public static final int DIS_R3L1_INS = 0x311;
+    public static final int DIS_R3L1_EXP = 0x312;
+    public static final int DIS_R3L1_QST = 0x313;
+    public static final int C2S_R3L1_ANS = 0x314;
+    public static final int S2C_R3L1_SCR = 0x315;
+    public static final int DIS_R3L2_INS = 0x311;
+    public static final int DIS_R3L2_EXP = 0x322;
+    public static final int DIS_R3L2_QST = 0x323;
+    public static final int C2S_R3L2_ANS = 0x324;
+    public static final int S2C_R3L2_SCR = 0x325;
+    public static final int DIS_R3L3_INS = 0x311;
+    public static final int DIS_R3L3_EXP = 0x332;
+    public static final int DIS_R3L3_QST = 0x333;
+    public static final int C2S_R3L3_ANS = 0x334;
+    public static final int S2C_R3L3_SCR = 0x335;
+    public static final int C2S_R3L3_SEED = 0x33A;
 
     public static final int DIS_R4L1_EXP = 0x412;
     public static final int DIS_R4L1_QST = 0x413;

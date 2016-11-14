@@ -1,0 +1,42 @@
+{
+  "INSTRUCTION_ZH": "选一定数量的左偏旁和有偏旁来拼成一个汉字，每个正确的汉子加一分，错的减一份",
+  "INSTRUCTION_EN": "Choose one radical and one character component to make up a character. 1 point will be given per correct character and 1 point will be deducted for incorrect characters.",
+  "TIME_LIMIT": 2,
+  "EXAMPLES": [
+    "女 + 也 = 她",
+    "讠 + 兑 = 说",
+    "氵 + 又 = 汉"
+  ],
+  "ROOTS": [
+    "亻",
+    "氵",
+    "忄",
+    "扌",
+    "礻",
+    "钅",
+    "女",
+    "犭",
+    "疒",
+    "纟"
+  ],
+  "CHARS":[
+    "工",
+    "王",
+    "尤",
+    "少",
+    "录",
+    "主",
+    "去",
+    "立",
+    "止",
+    "合",
+    "爱",
+    "失",
+    "冬",
+    "申",
+    "主",
+    "虫",
+    "言",
+    "母"
+  ]
+}

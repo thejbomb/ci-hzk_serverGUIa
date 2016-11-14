@@ -29,6 +29,216 @@
           <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <AnchorPane layoutX="458.0" layoutY="154.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
+               <children>
+                  <GridPane fx:id="gp_table111" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TableView fx:id="tb_level3Name" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="2">
+                           <columns>
+                              <TableColumn editable="false" maxWidth="192.0" minWidth="-Infinity" prefWidth="192.0" resizable="false" sortable="false" text="C1" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="tb_level3Score" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2">
+                           <columns>
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C1" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C2" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C3" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C4" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" sortable="false" text="C5" />
+                           </columns>
+                        </TableView>
+                        <AnchorPane GridPane.rowSpan="2">
+                           <children>
+                              <Label fx:id="lb_L3Name" alignment="CENTER" styleClass="label-tableHeader" text="Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="5">
+                           <children>
+                              <Label fx:id="lb_L3Round" alignment="CENTER" styleClass="label-tableHeaderRound" text="Round" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R1L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R2L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="2" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R3L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="3" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R4L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="4" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R5L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="5" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="74.0" layoutY="154.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
+               <children>
+                  <GridPane fx:id="gp_table11" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TableView fx:id="tb_level2Name" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="2">
+                           <columns>
+                              <TableColumn editable="false" maxWidth="192.0" minWidth="-Infinity" prefWidth="192.0" resizable="false" sortable="false" text="C1" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="tb_level2Score" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2">
+                           <columns>
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C1" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C2" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C3" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C4" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" sortable="false" text="C5" />
+                           </columns>
+                        </TableView>
+                        <AnchorPane GridPane.rowSpan="2">
+                           <children>
+                              <Label fx:id="lb_L2Name" alignment="CENTER" styleClass="label-tableHeader" text="Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="5">
+                           <children>
+                              <Label fx:id="lb_L2Round" alignment="CENTER" styleClass="label-tableHeaderRound" text="Round" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R1L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R2L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="2" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R3L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="3" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R4L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="4" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R5L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="5" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <GridPane fx:id="gp_table1" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                      <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                        <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                      <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <TableView fx:id="tb_level1Name" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="2">
+                           <columns>
+                              <TableColumn editable="false" maxWidth="192.0" minWidth="-Infinity" prefWidth="192.0" resizable="false" sortable="false" text="C1" />
+                           </columns>
+                        </TableView>
+                        <TableView fx:id="tb_level1Score" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2">
+                           <columns>
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C1" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C2" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C3" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C4" />
+                              <TableColumn maxWidth="38.0" prefWidth="38.0" sortable="false" text="C5" />
+                           </columns>
+                        </TableView>
+                        <AnchorPane GridPane.rowSpan="2">
+                           <children>
+                              <Label fx:id="lb_L1Name" alignment="CENTER" styleClass="label-tableHeader" text="Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="5">
+                           <children>
+                              <Label fx:id="lb_L1Round" alignment="CENTER" styleClass="label-tableHeaderRound" text="Round" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R1L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R2L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="2" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R3L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="3" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="4" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R4L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="4" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="lb_R5L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="5" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1">
                <children>
                   <Label fx:id="lb_ranking" alignment="CENTER" styleClass="label-ranking-en" text="Ranking" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
@@ -50,204 +260,6 @@
                </children>
             </AnchorPane>
             <BorderPane fx:id="bp_start" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <GridPane fx:id="gp_table1" GridPane.columnIndex="1" GridPane.rowIndex="3">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
-                  <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
-                <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                  <RowConstraints vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <TableView fx:id="tb_level1Name" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="2">
-                     <columns>
-                        <TableColumn editable="false" maxWidth="192.0" minWidth="-Infinity" prefWidth="192.0" resizable="false" sortable="false" text="C1" />
-                     </columns>
-                  </TableView>
-                  <TableView fx:id="tb_level1Score" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2">
-                     <columns>
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C1" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C2" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C3" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C4" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C5" />
-                     </columns>
-                  </TableView>
-                  <AnchorPane GridPane.rowSpan="2">
-                     <children>
-                        <Label fx:id="lb_L1Name" alignment="CENTER" styleClass="label-tableHeader" text="Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="5">
-                     <children>
-                        <Label fx:id="lb_L1Round" alignment="CENTER" styleClass="label-tableHeaderRound" text="Round" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R1L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R2L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="2" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R3L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="3" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R4L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="4" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R5L1" alignment="CENTER" styleClass="label-tableHeaderRound" text="5" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </GridPane>
-            <GridPane fx:id="gp_table2" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                  <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                  <RowConstraints />
-               </rowConstraints>
-               <children>
-                  <TableView fx:id="tb_level2Name" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="2">
-                     <columns>
-                        <TableColumn editable="false" maxWidth="-1.0" minWidth="-Infinity" prefWidth="-1.0" resizable="false" sortable="false" text="C1" />
-                     </columns>
-                  </TableView>
-                  <TableView fx:id="tb_level2Score" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2">
-                     <columns>
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C1" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C2" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C3" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C4" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C5" />
-                     </columns>
-                  </TableView>
-                  <AnchorPane GridPane.rowSpan="2">
-                     <children>
-                        <Label fx:id="lb_L2Name" alignment="CENTER" styleClass="label-tableHeader" text="Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="5">
-                     <children>
-                        <Label fx:id="lb_L2Round" alignment="CENTER" styleClass="label-tableHeaderRound" text="Round" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R1L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R2L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="2" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R3L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="3" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R4L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="4" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R5L2" alignment="CENTER" styleClass="label-tableHeaderRound" text="5" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </GridPane>
-            <GridPane fx:id="gp_table3" GridPane.columnIndex="3" GridPane.rowIndex="3">
-               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-               </columnConstraints>
-               <rowConstraints>
-                  <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                  <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                  <RowConstraints />
-               </rowConstraints>
-               <children>
-                  <TableView fx:id="tb_level3Name" GridPane.columnIndex="0" GridPane.columnSpan="1" GridPane.rowIndex="2">
-                     <columns>
-                        <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="192.0" resizable="false" sortable="false" text="C1" />
-                     </columns>
-                  </TableView>
-                  <TableView fx:id="tb_level3Score" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="2">
-                     <columns>
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C1" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C2" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C3" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C4" />
-                        <TableColumn maxWidth="38.0" prefWidth="38.0" resizable="false" sortable="false" text="C5" />
-                     </columns>
-                  </TableView>
-                  <AnchorPane GridPane.rowSpan="2">
-                     <children>
-                        <Label fx:id="lb_L3Name" alignment="CENTER" styleClass="label-tableHeader" text="Name" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="1" GridPane.columnSpan="5">
-                     <children>
-                        <Label fx:id="lb_L3Round" alignment="CENTER" styleClass="label-tableHeaderRound" text="Round" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R1L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="1" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R2L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="2" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R3L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="3" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="4" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R4L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="4" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane GridPane.columnIndex="5" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="lb_R5L3" alignment="CENTER" styleClass="label-tableHeaderRound" text="5" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                     </children>
-                  </AnchorPane>
-               </children>
-            </GridPane>
          </children>
       </GridPane>
    </children>
