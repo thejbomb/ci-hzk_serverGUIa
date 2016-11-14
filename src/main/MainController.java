@@ -71,7 +71,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private static int currentRound = Constants.ROUND1;
+    private static int currentRound = Constants.ROUND2;
 
     private int userLevel = 0;
 
