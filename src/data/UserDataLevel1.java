@@ -127,6 +127,8 @@ public class UserDataLevel1 extends UserData {
             round2Points.add(total);
         }
 
+        round2TotalPoints = round2Points.getLast();
+
     }
 
 

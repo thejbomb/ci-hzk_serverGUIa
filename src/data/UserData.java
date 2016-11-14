@@ -14,6 +14,7 @@ public class UserData {
 
     protected LinkedList<String> round2Answers;
     protected LinkedList<Integer> round2Points; // last element is the total point
+    protected int round2TotalPoints = 0;
 
     protected int round3Points = 0;
 
@@ -99,6 +100,10 @@ public class UserData {
 
     public int getRound1Points() {
         return round1Points;
+    }
+
+    public int getRound2TotalPoints(){
+        return round2TotalPoints;
     }
 
     public int getRound3Points() {

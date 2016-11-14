@@ -1,3 +1,10 @@
+.pane {
+    -fx-background-image: url("bgn1.jpg");
+    -fx-background-repeat: stretch;
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
+
 .table-view-text{
     -fx-font: bold 8.4pt "KaiTi";
     -fx-text-fill: rgb(100,0,0);
