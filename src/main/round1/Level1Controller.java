@@ -1,6 +1,7 @@
 package main.round1;
 
 import data.UserDataLevel1;
+import data.UserDataLevel2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;

@@ -21,6 +21,7 @@ public class Constants {
     public static final String TRANSMISSION_BEGIN = "TRANS_BEGIN";
     public static final String TRANSMISSION_END = "TRANS_END";
 
+    public static final int BEGIN_RND1 = 0x100;
     public static final int BEGIN_R1L1 = 0x110;
     public static final int BEGIN_R1L2 = 0x120;
     public static final int BEGIN_R1L3 = 0x130;

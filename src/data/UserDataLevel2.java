@@ -43,21 +43,21 @@ public class UserDataLevel2 extends UserData {
     public void setPointRound1(int point, int index) {
         if (round1Points == null) {
             round1Points = new LinkedList<>();
-            for (int i = 0; i < data.round1.Level3DataStructure.NUM_OF_QUESTIONS; i++)
+            for (int i = 0; i < data.round1.Level2DataStructure.NUM_OF_QUESTIONS; i++)
                 round1Points.add(0);
         }
 
-        round2Points.set(index, point);
+        round1Points.set(index, point);
 
         int total = 0;
 
         for (int i = 0; i < data.round1.Level3DataStructure.NUM_OF_QUESTIONS; i++)
-            total += round2Points.get(i);
-        if (round2Points.size() == data.round1.Level3DataStructure.NUM_OF_QUESTIONS)
-            round2Points.add(total);
+            total += round1Points.get(i);
+        if (round1Points.size() == data.round1.Level2DataStructure.NUM_OF_QUESTIONS)
+            round1Points.add(total);
         else {
-            round2Points.removeLast();
-            round2Points.add(total);
+            round1Points.removeLast();
+            round1Points.add(total);
         }
 
     }

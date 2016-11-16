@@ -7,11 +7,9 @@
         <option name="appClass" value="main.Main" />
         <option name="description" value="" />
         <option name="height" value="1080" />
-        <option name="htmlPlaceholderId" value="" />
         <option name="keystore" value="" />
         <option name="title" value="Server" />
         <option name="vendor" value="" />
-        <option name="version" value="0.1" />
         <option name="width" value="1920" />
       </options>
     </properties>

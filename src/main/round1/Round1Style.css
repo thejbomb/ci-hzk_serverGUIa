@@ -6,40 +6,60 @@
 
 .label-roundNumber-zh {
     -fx-font: bold 80pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .label-roundNumber-en {
     -fx-font: bold 60pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .label-roundNumberS-zh {
     -fx-font: bold 60pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .label-roundNumberS-en {
     -fx-font: bold 40pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,160);
 }
 
 .label-roundLevel-zh {
     -fx-font: bold 50pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,162,232);
 }
 
 .label-roundLevel-en {
     -fx-font: bold 30pt "Bell MT";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,162,232);
 }
 
 .label-roundDescription {
     -fx-font: bold 30pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(150,0,0);
 }
 
 .button-roundBegin {
     -fx-font: bold 30pt "KaiTi";
-    -fx-text-fill: rgb(0,255,0);
+    -fx-text-fill: rgb(0,0,0);
+}
+
+.label-roundLevel1S {
+    -fx-font: 25pt "KaiTi";
+    -fx-text-fill: rgb(200,150,0);
+}
+
+.label-roundLevel2S {
+    -fx-font: 25pt "KaiTi";
+    -fx-text-fill: rgb(0,150,0);
+}
+
+.label-roundLevel3S {
+    -fx-font: 25pt "KaiTi";
+    -fx-text-fill: rgb(150,0,0);
+}
+
+.label-roundTimer {
+    -fx-font: 30pt "Bell MT";
+    -fx-text-fill: rgb(255,0,0);
 }

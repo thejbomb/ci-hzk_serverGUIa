@@ -71,7 +71,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private static int currentRound = Constants.ROUND2;
+    private static int currentRound = Constants.ROUND1;
 
     private int userLevel = 0;
 
@@ -126,6 +126,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
     public void startRound(int roundNumber) {
         switch (roundNumber) {
             case Constants.ROUND1:
+                writeToClient(Constants.BEGIN_RND1);
                 writeToClient(Constants.BEGIN_R1L1, Constants.LEVEL1);
                 writeToClient(Constants.BEGIN_R1L2, Constants.LEVEL2);
                 writeToClient(Constants.BEGIN_R1L3, Constants.LEVEL3);
@@ -145,6 +146,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 ap_round2InterfaceController.show();
                 break;
             case Constants.ROUND3:
+                writeToClient(Constants.BEGIN_RND3);
                 writeToClient(Constants.BEGIN_R3L1, Constants.LEVEL1);
                 writeToClient(Constants.BEGIN_R3L2, Constants.LEVEL2);
                 writeToClient(Constants.BEGIN_R3L3, Constants.LEVEL3);

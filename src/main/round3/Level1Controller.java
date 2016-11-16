@@ -194,6 +194,14 @@ public class Level1Controller extends Round3Controller implements Initializable,
         } else if (e.getSource() == bt_home) {
             hide();
             round3Controller.show();
+        } else if (e.getSource() == bt_instructionHome) {
+            hideInstruction();
+            hide();
+            round3Controller.show();
+        } else if (e.getSource() == bt_exampleHome) {
+            hideExample();
+            hide();
+            round3Controller.show();
         }
     }
 
