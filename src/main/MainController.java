@@ -71,7 +71,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private static int currentRound = Constants.ROUND1;
+    private static int currentRound = Constants.ROUND3;
 
     private int userLevel = 0;
 
@@ -159,7 +159,6 @@ public class MainController implements Initializable, ClientHandlerInterface {
                 writeToClient(Constants.BEGIN_RND4);
                 ap_round4Interface.setVisible(true);
                 ap_round4InterfaceController.init(ap_scoreboardInterfaceController);
-                //ap_round4InterfaceController.show();
                 ap_round4InterfaceController.setUsers(level1Users, level2Users, level3Users);
                 break;
             case Constants.ROUND5:
