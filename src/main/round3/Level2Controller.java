@@ -162,8 +162,7 @@ public class Level2Controller extends Round3Controller implements Initializable,
         if (cb_users != null)
             for (UserDataLevel2 ud : level2Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
-                    for (int i = 0; i < points.size(); i++)
-                        ud.setPointRound3((points.get(i).getText().compareTo("") == 0) ? 0 : Integer.parseInt(points.get(i).getText()), i);
+                    ud.setPointRound3((tf_point3.getText().compareTo("") == 0) ? 0 : Integer.parseInt(tf_point3.getText()), 1);
                     lb_pointTotal.setText(Integer.toString(ud.getRound3Points().getLast()));
                     writeToClient(Constants.S2C_R3L2_SCR, packageData(ud.getRound3Points().getLast()), ud.getThreadId());
                 }
@@ -186,6 +185,7 @@ public class Level2Controller extends Round3Controller implements Initializable,
             for (UserDataLevel2 ud : level2Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     Label label = new Label(ud.getRound3Answers().toString());
+                    label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
                     fp_answers.getChildren().addAll(label);
                     tf_point3.setText((ud.getRound3Points() == null) ? "0" : Integer.toString(ud.getRound3Points().getLast()));
                     lb_pointTotal.setText((ud.getRound3Points() == null) ? "0" : Integer.toString(ud.getRound3Points().getLast()));
@@ -217,12 +217,14 @@ public class Level2Controller extends Round3Controller implements Initializable,
             roots.get(i).setText(Main.R3L2_DATA.ROOTS.get(i));
             Label label = new Label();
             label.setText(Main.R3L2_DATA.ROOTS.get(i));
+            label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
             fp_roots.getChildren().add(label);
         }
         for (int i = 0; i < chars.size(); i++) {
             chars.get(i).setText(Main.R3L2_DATA.CHARS.get(i));
             Label label = new Label();
             label.setText(Main.R3L2_DATA.CHARS.get(i));
+            label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
             fp_chars.getChildren().add(label);
         }
         lb_pointTotal.setText("0");
@@ -249,14 +251,12 @@ public class Level2Controller extends Round3Controller implements Initializable,
         roots = new LinkedList<>();
         for(int i = 0; i < 9; i++) {
             Label label = new Label();
-            label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
             roots.add(label);
         }
 
         chars = new LinkedList<>();
         for (int i = 0; i < 18; i++) {
             Label label = new Label();
-            label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
             chars.add(label);
         }
 
