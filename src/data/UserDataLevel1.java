@@ -44,26 +44,9 @@ public class UserDataLevel1 extends UserData {
     }
 
     public void setRound1Answers(LinkedList<String> answers) {
-        round1Answers = new LinkedList[answers.size() / 2];
+        round1Answers = new LinkedList[answers.size()];
         for (int k = 0; k < round1Answers.length; k++)
-            round1Answers[k] = new LinkedList<>();
-        int i = 0;
-        answers.removeFirst();
-        while (true) {
-            while (answers.size() != 0) {
-                String answer = "";
-                answers.removeFirst();
-                while (answers.getFirst().compareTo("ANS" + i) != 0) {
-                    answer += answers.getFirst();
-                    answers.removeFirst();
-                    if (answers.size() == 0)
-                        break;
-                }
-                round1Answers[i].add(answer.replaceAll("\\s", ""));
-                i++;
-            }        System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 1 are " + round1Answers);
-
-        }
+            round1Answers[k] = new LinkedList<>(answers);
     }
 
     public void setRound2Answers(LinkedList<String> answers) {
@@ -152,23 +135,23 @@ public class UserDataLevel1 extends UserData {
     }
 
     public void setPointRound3(int point, int index) {
-        if (round2Points == null) {
-            round2Points = new LinkedList<>();
+        if (round3Points == null) {
+            round3Points = new LinkedList<>();
             for (int i = 0; i < Level1DataStructure.NUM_OF_QUESTIONS; i++)
-                round2Points.add(0);
+                round3Points.add(0);
         }
 
-        round2Points.set(index, point);
+        round3Points.set(index, point);
 
         int total = 0;
 
         for (int i = 0; i < Level1DataStructure.NUM_OF_QUESTIONS; i++)
-            total += round2Points.get(i);
-        if (round2Points.size() == Level1DataStructure.NUM_OF_QUESTIONS)
-            round2Points.add(total);
+            total += round3Points.get(i);
+        if (round3Points.size() == Level1DataStructure.NUM_OF_QUESTIONS)
+            round3Points.add(total);
         else {
-            round2Points.removeLast();
-            round2Points.add(total);
+            round3Points.removeLast();
+            round3Points.add(total);
         }
 
     }

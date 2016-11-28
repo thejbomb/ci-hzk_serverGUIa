@@ -66,7 +66,6 @@ public class Level1Controller extends Round1Controller implements Initializable,
     private Label lb_question9;
     @FXML
     private Label lb_question10;
-
     @FXML
     private BorderPane bp_start;
     @FXML
@@ -243,16 +242,13 @@ public class Level1Controller extends Round1Controller implements Initializable,
             for (Label q : questions)
                 q.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
-            LinkedList<String> choices = new LinkedList<>(Main.R1L2_DATA.ANSWERS);
             for (UserDataLevel1 ud : level1Users) {
-                if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
-                    //Collections.shuffle(choices, new Random(ud.getSeed()));
+                if (ud.isOnline() && ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     for (int i = 0; i < answers.size(); i++) {
                         answers.get(i).getChildren().clear();
                         for (String pl : ud.getRound1Answers()[i]) {
                             Label label = new Label(pl);
                             answers.get(i).getChildren().addAll(label);
-                            //choices_st.get(i).setText((char) (i + 0x41) + "." + choices.get(i));
                         }
                         points.get(i).setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().get(i)));
                     }
@@ -289,7 +285,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
                     for (int i = 0; i < points.size(); i++)
                         ud.setPointRound1((points.get(i).getText().compareTo("") == 0) ? 0 : Integer.parseInt(points.get(i).getText()), i);
                     lb_pointTotal.setText(Integer.toString(ud.getRound1Points().getLast()));
-                    writeToClient(Constants.S2C_R1L1_SCR);
+                    writeToClient(Constants.S2C_R1L1_SCR, packageData(ud.getRound1Points().getLast()), ud.getThreadId());
                 }
             }
     }

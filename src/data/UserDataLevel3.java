@@ -70,24 +70,7 @@ public class UserDataLevel3 extends UserData {
     public void setRound1Answers(LinkedList<String> answers) {
         round1Answers = new LinkedList[answers.size()];
         for (int k = 0; k < round1Answers.length; k++)
-            round1Answers[k] = new LinkedList<>();
-        int i = 0;
-        answers.removeFirst();
-        while (true) {
-            while (answers.size() != 0) {
-                String answer = "";
-                answers.removeFirst();
-                while (answers.getFirst().compareTo("ANS" + i) != 0) {
-                    answer += answers.getFirst();
-                    answers.removeFirst();
-                    if (answers.size() == 0)
-                        break;
-                }
-                round1Answers[i].add(answer.replaceAll("\\s", ""));
-                i++;
-            }        System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 1 are " + round1Answers);
-
-        }
+            round1Answers[k] = new LinkedList<>(answers);
     }
 
 
@@ -126,20 +109,21 @@ public class UserDataLevel3 extends UserData {
     public void setPointRound3(int point, int index) {
         if (round3Points == null) {
             round3Points = new LinkedList<>();
+            for (int i = 0; i < Level3DataStructure.NUM_OF_QUESTIONS; i++)
+                round3Points.add(0);
+        }
 
-            round3Points.set(index, point);
+        round3Points.set(index, point);
 
-            int total = 0;
+        int total = 0;
 
-        /*for (int i = 0; i < data.round3.Level3DataStructure.NUM_OF_QUESTIONS; i++)
-            total += round1Points.get(i);
-        if (round1Points.size() == data.round1.Level3DataStructure.NUM_OF_QUESTIONS)
-            round1Points.add(total);
+        for (int i = 0; i < Level3DataStructure.NUM_OF_QUESTIONS; i++)
+            total += round3Points.get(i);
+        if (round3Points.size() == Level3DataStructure.NUM_OF_QUESTIONS)
+            round3Points.add(total);
         else {
-            round1Points.removeLast();
-            round1Points.add(total);
-        }*/
-
+            round3Points.removeLast();
+            round3Points.add(total);
         }
     }
 
