@@ -1,7 +1,7 @@
 {
   "INSTRUCTION_ZH": "选一定数量的左偏旁和有偏旁来拼成一个汉字，每个正确的汉子加一分，错的减一份",
   "INSTRUCTION_EN": "Choose one radical and one character component to make up a character. 1 point will be given per correct character and 1 point will be deducted for incorrect characters.",
-  "TIME_LIMIT": 2,
+  "TIME_LIMIT": 1,
   "EXAMPLES": [
     "女 + 也 = 她",
     "讠 + 兑 = 说",

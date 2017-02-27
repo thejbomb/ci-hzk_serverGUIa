@@ -1,7 +1,7 @@
 {
   "INSTRUCTION_ZH": "请在一段话内找出错误的汉字并把正确的汉字写在答题纸上。改对一个汉字得1分，改错不扣分。",
   "INSTRUCTION_EN": "There is an essay with incorrect characters. Please find the incorrect characters and write their correct forms on the paper. 1 point will be given per correct character and no points will be deducted for incorrect characters.",
-  "TIME_LIMIT": 10,
+  "TIME_LIMIT": 1,
   "EXAMPLES": [
     "ROUND_5_LEVEL_1_EXAMPLE_PLACEHOLDER"
   ],

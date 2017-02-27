@@ -1,7 +1,7 @@
 {
   "INSTRUCTION_ZH": "10分钟内，选手答对一题得1分，答错扣1分。抢答开始5秒内，选手必须开始答题，若超过5秒未回答，扣1分，进入下一题。",
   "INSTRUCTION_EN": "The first contestant who hits the buzzer has to answer the question. 1 point will be given if the contestant answers it correctly within 5 seconds. 1 point will be deducted if the contestant answers it wrong or later than 5 seconds.",
-  "TIME_LIMIT": 10,
+  "TIME_LIMIT": 1,
   "EXAMPLES": [
     "ROUND_4_LEVEL_1_EXAMPLE_BODY"
   ],

@@ -10,7 +10,7 @@ public class UserData {
     private String user_status;
     protected long threadId = -1;
 
-    protected LinkedList<String>[] round1Answers;
+    protected LinkedList<String> round1Answers;
     protected LinkedList<Integer> round1Points;
     protected int round1TotalPoints = 0;
 

@@ -13,6 +13,7 @@ import java.util.NoSuchElementException;
  */
 public class UserDataLevel2 extends UserData {
     private LinkedList<LinkedList<Polyline>>[] round2Answers;
+    private LinkedList<String>[] round1Answers;
 
     public UserDataLevel2(String name, int level, int ID) {
         super(name, level, ID);
@@ -63,9 +64,21 @@ public class UserDataLevel2 extends UserData {
     }
 
     public void setRound1Answers(LinkedList<String> answers) {
-        round1Answers = new LinkedList[answers.size()];
-        for (int k = 0; k < round1Answers.length; k++)
-            round1Answers[k] = new LinkedList<>(answers);
+        round1Answers = new LinkedList[answers.size() / 2];
+
+        for (int k = 0; k < round1Answers.length; k++) {
+            round1Answers[k] = new LinkedList<>();
+            String answer = "";
+            answers.removeFirst();
+
+            answer += answers.getFirst();
+
+            answers.removeFirst();
+
+            round1Answers[k].add(answer);
+        }
+
+
     }
 
     public void setRound2Answers(LinkedList<String> answers) {

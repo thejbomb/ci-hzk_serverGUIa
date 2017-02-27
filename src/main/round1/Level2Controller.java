@@ -212,17 +212,17 @@ public class Level2Controller extends Round1Controller implements Initializable,
     }
 
     private void setData() {
-        lb_instructionBody_zh.setText(Main.R1L1_DATA.INSTRUCTION_ZH);
-        lb_instructionBody_en.setText(Main.R1L1_DATA.INSTRUCTION_EN);
+        lb_instructionBody_zh.setText(Main.R1L2_DATA.INSTRUCTION_ZH);
+        lb_instructionBody_en.setText(Main.R1L2_DATA.INSTRUCTION_EN);
         String time_zh = "限时" + Main.R1L1_DATA.TIME_LIMIT + "分钟";
-        String time_en = "Time Limit: " + Main.R1L1_DATA.TIME_LIMIT + ((Main.R1L1_DATA.TIME_LIMIT > 1) ? " minutes" : " minute");
+        String time_en = "Time Limit: " + Main.R1L2_DATA.TIME_LIMIT + ((Main.R1L2_DATA.TIME_LIMIT > 1) ? " minutes" : " minute");
         lb_instructionTime_zh.setText(time_zh);
         lb_instructionTime_en.setText(time_en);
 
-        lb_exampleBody.setText(Main.R1L1_DATA.EXAMPLES.get(0));
+        lb_exampleBody.setText(Main.R1L2_DATA.EXAMPLES.get(0));
 
         for (int i = 0; i < questions.size(); i++) {
-            questions.get(i).setText(Main.R1L1_DATA.QUESTIONS.get(i));
+            questions.get(i).setText(Main.R1L2_DATA.QUESTIONS.get(i));
             questions_st.get(i).setText(questions.get(i).getText());
         }
 
@@ -237,17 +237,19 @@ public class Level2Controller extends Round1Controller implements Initializable,
         if (e.getSource() == bt_startTimer) {
             bt_startTimer.setVisible(false);
             bp_start.setVisible(false);
-            super.writeToClient(Constants.DIS_R1L1_QST);
+            super.writeToClient(Constants.DIS_R1L2_QST);
             lb_timer.setVisible(true);
             for (Label q : questions)
                 q.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
             for (UserDataLevel2 ud : level2Users) {
-                if (ud.isOnline() && ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
+                if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     for (int i = 0; i < answers.size(); i++) {
                         answers.get(i).getChildren().clear();
-                        for (String pl : ud.getRound1Answers()[i]) {
-                            Label label = new Label(pl);
+                        System.out.println("aaaa" + ud.getRound1Answers()[i]);
+
+                        for (String l : ud.getRound1Answers()[i]) {
+                            Label label = new Label(l);
                             answers.get(i).getChildren().addAll(label);
                         }
                         points.get(i).setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().get(i)));
@@ -304,7 +306,7 @@ public class Level2Controller extends Round1Controller implements Initializable,
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
         switch (command) {
-            case Constants.C2S_R1L1_ANS:
+            case Constants.C2S_R1L2_ANS:
                 for (UserDataLevel2 ud : level2Users) {
                     if (ud.getThreadId() == activeThreadId)
                         ud.setRound1Answers(data);

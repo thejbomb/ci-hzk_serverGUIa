@@ -1,7 +1,7 @@
 {
   "INSTRUCTION_ZH": "根据拼音写汉字，不限声调。写对一个汉字得1分，写错不扣分。",
   "INSTRUCTION_EN": "Write the Chinese character according to the Pinyin.You can write any character as long as it has the same pronunciation as what is given. 1 point will be given per correct character and no points will be deducted for incorrect characters.",
-  "TIME_LIMIT": 2,
+  "TIME_LIMIT": 1,
   "EXAMPLES": [
     "qi 七 气 起"
   ],

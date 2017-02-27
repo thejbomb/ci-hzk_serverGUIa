@@ -229,7 +229,7 @@
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="5">
                <children>
-                  <Label fx:id="lb_total" alignment="CENTER_RIGHT" layoutX="428.0" layoutY="49.0" styleClass="label-scoreTotalLabel" text="Total:" wrapText="true" />
+                  <Label fx:id="lb_total" alignment="CENTER_RIGHT" layoutX="628.0" layoutY="40.0" styleClass="label-scoreTotalLabel" text="Total:" wrapText="true" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1" />

@@ -1,7 +1,7 @@
 {
   "INSTRUCTION_ZH": "给一个部件，任意加笔画，使之变成另外一个汉字。",
   "INSTRUCTION_EN": "Randomly add one stroke to the given characters to create new characters. 1 point will be given per correct character and no points will be deducted for incorrect characters.",
-  "TIME_LIMIT": 2,
+  "TIME_LIMIT": 1,
   "EXAMPLES": [
     "一、二、十、丁"
   ],
