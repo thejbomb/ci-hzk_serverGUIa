@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
+
 <AnchorPane fx:id="ap_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round1.Level3Controller">
    <children>
       <TabPane fx:id="tp_mainTab" side="RIGHT" tabClosingPolicy="UNAVAILABLE" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -26,6 +30,10 @@
                               <RowConstraints vgrow="SOMETIMES" />
                               <RowConstraints vgrow="SOMETIMES" />
                               <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
                            </rowConstraints>
                            <children>
                               <BorderPane fx:id="bp_start" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="3">
@@ -209,36 +217,15 @@
       <GridPane fx:id="gp_score" onMouseEntered="#handleMouseClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="25.0" />
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="55.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" percentWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="85.0" />
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="80.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <FlowPane fx:id="fp_answers1" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <FlowPane fx:id="fp_answers2" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-            <FlowPane fx:id="fp_answers3" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-            <FlowPane fx:id="fp_answers4" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <FlowPane fx:id="fp_answers5" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <FlowPane fx:id="fp_answers6" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
-            <FlowPane fx:id="fp_answers7" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
-            <FlowPane fx:id="fp_answers8" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
-            <FlowPane fx:id="fp_answers9" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="9" />
-            <FlowPane fx:id="fp_answers10" hgap="10.0" vgap="3.0" GridPane.columnIndex="2" GridPane.rowIndex="10" />
             <AnchorPane GridPane.columnSpan="5">
                <children>
                   <ToolBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -249,117 +236,25 @@
                   </ToolBar>
                </children>
             </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <children>
-                  <Label fx:id="lb_question1_st" styleClass="label-scoreQuestion" text="QUESTION_1" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <Label fx:id="lb_question2_st" styleClass="label-scoreQuestion" text="QUESTION_2" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <HBox alignment="CENTER_RIGHT" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="600.0">
+                     <children>
+                        <Label fx:id="lb_total" alignment="CENTER_RIGHT" styleClass="label-scoreTotalLabel" text="Total:" wrapText="true" />
+                        <Label fx:id="lb_pointTotal" styleClass="label-scoreTotalPoint" text="TOTAL_POINTS" />
+                     </children>
+                  </HBox>
                </children>
             </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <children>
-                  <Label fx:id="lb_question3_st" styleClass="label-scoreQuestion" text="QUESTION_3" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <children>
-                  <Label fx:id="lb_question4_st" styleClass="label-scoreQuestion" text="QUESTION_4" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <children>
-                  <Label fx:id="lb_question5_st" styleClass="label-scoreQuestion" text="QUESTION_5" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="6">
-               <children>
-                  <Label fx:id="lb_question6_st" styleClass="label-scoreQuestion" text="QUESTION_6" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="7">
-               <children>
-                  <Label fx:id="lb_question7_st" styleClass="label-scoreQuestion" text="QUESTION_7" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="8">
-               <children>
-                  <Label fx:id="lb_question8_st" styleClass="label-scoreQuestion" text="QUESTION_8" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="9">
-               <children>
-                  <Label fx:id="lb_question9_st" styleClass="label-scoreQuestion" text="QUESTION_9" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="10">
-               <children>
-                  <Label fx:id="lb_question10_st" styleClass="label-scoreQuestion" text="QUESTION_10" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="11">
-               <children>
-                  <Label fx:id="lb_total" alignment="CENTER_RIGHT" styleClass="label-scoreTotalLabel" text="Total:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1">
-               <children>
-                  <TextField fx:id="tf_point1" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <children>
-                  <TextField fx:id="tf_point2" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="3">
-               <children>
-                  <TextField fx:id="tf_point3" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="4">
-               <children>
-                  <TextField fx:id="tf_point4" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="5">
-               <children>
-                  <TextField fx:id="tf_point5" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="6">
-               <children>
-                  <TextField fx:id="tf_point6" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="7">
-               <children>
-                  <TextField fx:id="tf_point7" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="8">
-               <children>
-                  <TextField fx:id="tf_point8" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="9">
-               <children>
-                  <TextField fx:id="tf_point9" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="10">
-               <children>
-                  <TextField fx:id="tf_point10" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="11">
-               <children>
-                  <Label fx:id="lb_pointTotal" styleClass="label-scoreTotalPoint" text="TOTAL_POINTS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <content>
+                  <VBox fx:id="question" layoutX="92.0" layoutY="14.0">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
          </children>
       </GridPane>
    </children>

@@ -6,13 +6,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
 import main.Main;
 import tool.Constants;
 
@@ -77,67 +75,9 @@ public class Level1Controller extends Round1Controller implements Initializable,
     @FXML
     private GridPane gp_score;
     @FXML
-    private Label lb_question1_st;
-    @FXML
-    private Label lb_question2_st;
-    @FXML
-    private Label lb_question3_st;
-    @FXML
-    private Label lb_question4_st;
-    @FXML
-    private Label lb_question5_st;
-    @FXML
-    private Label lb_question6_st;
-    @FXML
-    private Label lb_question7_st;
-    @FXML
-    private Label lb_question8_st;
-    @FXML
-    private Label lb_question9_st;
-    @FXML
-    private Label lb_question10_st;
-    @FXML
-    private FlowPane fp_answers1;
-    @FXML
-    private FlowPane fp_answers2;
-    @FXML
-    private FlowPane fp_answers3;
-    @FXML
-    private FlowPane fp_answers4;
-    @FXML
-    private FlowPane fp_answers5;
-    @FXML
-    private FlowPane fp_answers6;
-    @FXML
-    private FlowPane fp_answers7;
-    @FXML
-    private FlowPane fp_answers8;
-    @FXML
-    private FlowPane fp_answers9;
-    @FXML
-    private FlowPane fp_answers10;
+    private VBox question;
     @FXML
     private Label lb_total;
-    @FXML
-    private TextField tf_point1;
-    @FXML
-    private TextField tf_point2;
-    @FXML
-    private TextField tf_point3;
-    @FXML
-    private TextField tf_point4;
-    @FXML
-    private TextField tf_point5;
-    @FXML
-    private TextField tf_point6;
-    @FXML
-    private TextField tf_point7;
-    @FXML
-    private TextField tf_point8;
-    @FXML
-    private TextField tf_point9;
-    @FXML
-    private TextField tf_point10;
     @FXML
     private Label lb_pointTotal;
     @FXML
@@ -149,7 +89,6 @@ public class Level1Controller extends Round1Controller implements Initializable,
 
     private LinkedList<Label> questions;
     private LinkedList<Label> questions_st;
-    private LinkedList<Label> choices_st;
     private LinkedList<TextField> points;
     private LinkedList<FlowPane> answers;
 
@@ -278,7 +217,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
     }
 
     @FXML
-    private void handleKeyboard(KeyEvent e) {
+    private void handleKeyboard() {
         if (cb_users != null)
             for (UserDataLevel1 ud : level1Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
@@ -342,42 +281,30 @@ public class Level1Controller extends Round1Controller implements Initializable,
         questions.add(lb_question9);
         questions.add(lb_question10);
 
-        questions_st = new LinkedList<>();
-        questions_st.add(lb_question1_st);
-        questions_st.add(lb_question2_st);
-        questions_st.add(lb_question3_st);
-        questions_st.add(lb_question4_st);
-        questions_st.add(lb_question5_st);
-        questions_st.add(lb_question6_st);
-        questions_st.add(lb_question7_st);
-        questions_st.add(lb_question8_st);
-        questions_st.add(lb_question9_st);
-        questions_st.add(lb_question10_st);
+        questions_st = new LinkedList<>(); //question labels
 
-        answers = new LinkedList<>();
-        answers.add(fp_answers1);
-        answers.add(fp_answers2);
-        answers.add(fp_answers3);
-        answers.add(fp_answers4);
-        answers.add(fp_answers5);
-        answers.add(fp_answers6);
-        answers.add(fp_answers7);
-        answers.add(fp_answers8);
-        answers.add(fp_answers9);
-        answers.add(fp_answers10);
+        answers = new LinkedList<>(); //flowpanes
 
-        points = new LinkedList<>();
-        points.add(tf_point1);
-        points.add(tf_point2);
-        points.add(tf_point3);
-        points.add(tf_point4);
-        points.add(tf_point5);
-        points.add(tf_point6);
-        points.add(tf_point7);
-        points.add(tf_point8);
-        points.add(tf_point9);
-        points.add(tf_point10);
+        points = new LinkedList<>(); //textfields
 
+        for(int i = 0; i < Main.R1L1_DATA.QUESTIONS.size(); i++) {
+            HBox hbox = new HBox();
+            VBox vbox = new VBox();
+            vbox.setAlignment(Pos.CENTER);
+            Label l = new Label(Main.R1L1_DATA.QUESTIONS.get(i));
+            questions_st.add(l);
+            l.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(150,0,250)");
+            TextField text = new TextField();
+            text.setOnAction(e -> handleKeyboard());
+            points.add(text);
+            text.setPrefWidth(120);
+            FlowPane flow = new FlowPane();
+            answers.add(flow);
+            flow.setPrefWidth(800);
+            vbox.getChildren().add(l);
+            hbox.getChildren().addAll(vbox, flow, text);
+            question.getChildren().add(hbox);
+        }
 
         setData();
 

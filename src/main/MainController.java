@@ -49,7 +49,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
     @FXML
     private AnchorPane ap_scoreboardInterface;
     @FXML
-    private ScoreboardController ap_scoreboardInterfaceController;
+    private ScoreboardController ap_scoreboardInterfaceController = new ScoreboardController();
     @FXML
     private AnchorPane ap_root;
     @FXML

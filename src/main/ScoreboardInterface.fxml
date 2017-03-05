@@ -35,7 +35,7 @@
          <children>
             <AnchorPane layoutX="458.0" layoutY="154.0" GridPane.columnIndex="3" GridPane.rowIndex="3">
                <children>
-                  <GridPane fx:id="gp_table111" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="gp_table3" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
                         <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
@@ -105,7 +105,7 @@
             </AnchorPane>
             <AnchorPane layoutX="74.0" layoutY="154.0" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <children>
-                  <GridPane fx:id="gp_table11" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane fx:id="gp_table2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" percentWidth="50.0" />
                         <ColumnConstraints hgrow="NEVER" percentWidth="10.0" />
