@@ -297,6 +297,12 @@ public class MainController implements Initializable, ClientHandlerInterface {
         for (UserDataLevel1 ud : level1Users)
             if (ud.getThreadId() != threadId)
                 sendCommandToClient(command, ud.getThreadId());
+        /*for (UserDataLevel2 ud : level2Users)
+            if (ud.getThreadId() != threadId)
+                sendCommandToClient(command, ud.getThreadId());
+        for (UserDataLevel3 ud : level3Users)
+            if (ud.getThreadId() != threadId)
+                sendCommandToClient(command, ud.getThreadId());*/
     }
 
     // write command to a group of user

@@ -17,11 +17,9 @@ public class UserDataLevel3 extends UserData {
 
     private int[] round5PointState;
 
-    private LinkedList<LinkedList<Polyline>> round2Answers;
+    private LinkedList<LinkedList<Polyline>>[] round2Answers;
 
     private LinkedList<String>[] round1Answers;
-
-    private int round2Points = 0;
 
     public UserDataLevel3(String name, int level, int ID) {
         super(name, level, ID);
@@ -33,7 +31,7 @@ public class UserDataLevel3 extends UserData {
 
     public LinkedList<String>[] getRound1Answers() { return round1Answers; }
 
-    public LinkedList<LinkedList<Polyline>> getRound2Answers() {
+    public LinkedList<LinkedList<Polyline>>[] getRound2Answers() {
         return round2Answers;
     }
 
@@ -89,33 +87,55 @@ public class UserDataLevel3 extends UserData {
 
 
     public void setRound2Answers(LinkedList<String> answers) {
-        if (round2Answers == null)
-            round2Answers = new LinkedList<>();
+        round2Answers = new LinkedList[answers.size() / 2];
+        for (int i = 0; i < round2Answers.length; i++)
+            round2Answers[i] = new LinkedList<>();
+
         answers.removeFirst();
+        int index = 0;
         while (true) {
-            LinkedList<Polyline> llpl = new LinkedList<>();
+
             String s = answers.removeFirst();
-            int index1 = s.indexOf("points=", 0);
-            int index2 = s.indexOf("]", index1);
-            while (index1 != -1) {
-                Polyline pl = new Polyline();
-                String s2 = s.substring(index1 + 8, index2);
-                List<String> list = Arrays.asList(s2.split(","));
-                LinkedList<Double> dList = new LinkedList<>();
-                for (String string : list)
-                    dList.add(Double.parseDouble(string));
-                pl.getPoints().addAll(dList);
-                llpl.add(pl);
-                index1 = s.indexOf("points=", index2);
-                index2 = s.indexOf("]", index1);
+            int index0;
+            int index00 = 0;
+            index0 = s.indexOf("[Polyline", index00);
+            index00 = s.indexOf("[Polyline", index0 + 1);
+            while (index0 != -1) {
+                LinkedList<Polyline> llpl = new LinkedList<>();
+                String sString;
+                if (index00 != -1)
+                    sString = s.substring(index0, index00);
+                else {
+                    sString = s.substring(index0);
+                    index00 = index0 + 1;
+                }
+                int index1;
+                int index2 = 0;
+                index1 = sString.indexOf("points=", index2);
+                index2 = sString.indexOf("]", index1);
+                while (index1 != -1) {
+                    Polyline pl = new Polyline();
+                    String s2 = sString.substring(index1 + 8, index2);
+                    List<String> list = Arrays.asList(s2.split(","));
+                    LinkedList<Double> dList = new LinkedList<>();
+                    for (String string : list)
+                        dList.add(Double.parseDouble(string));
+                    pl.getPoints().addAll(dList);
+                    llpl.add(pl);
+                    index1 = sString.indexOf("points=", index2);
+                    index2 = sString.indexOf("]", index1);
+
+                }
+                index0 = s.indexOf("[Polyline", index00);
+                index00 = s.indexOf("[Polyline", index0 + 1);
+                round2Answers[index].add(llpl);
             }
-            round2Answers.add(llpl);
             try {
                 answers.removeFirst();
+                index++;
             } catch (NoSuchElementException ex) {
                 break;
             }
-
         }
         System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 2 are " + round2Answers);
     }
@@ -146,8 +166,25 @@ public class UserDataLevel3 extends UserData {
         System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 3 are " + round3Answers);
     }
 
-    public void setPointRound2(int points) {
-        round2Points = points;
+    public void setPointRound2(int point, int index) {
+        if (round2Points == null) {
+            round2Points = new LinkedList<>();
+            for (int i = 0; i < Level3DataStructure.NUM_OF_QUESTIONS; i++)
+                round2Points.add(0);
+        }
+
+        round2Points.set(index, point);
+
+        int total = 0;
+
+        for (int i = 0; i < Level3DataStructure.NUM_OF_QUESTIONS; i++)
+            total += round2Points.get(i);
+        if (round2Points.size() == Level3DataStructure.NUM_OF_QUESTIONS)
+            round2Points.add(total);
+        else {
+            round2Points.removeLast();
+            round2Points.add(total);
+        }
 
     }
 
@@ -155,7 +192,7 @@ public class UserDataLevel3 extends UserData {
         return round1Points;
     }
 
-    public int getround2Points() {
+    public LinkedList<Integer> getRound2Points() {
         return round2Points;
     }
 

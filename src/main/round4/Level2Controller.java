@@ -1,6 +1,5 @@
 package main.round4;
 
-import data.UserDataLevel1;
 import data.UserDataLevel2;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,12 +15,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import main.Main;
 import tool.Constants;
+import tool.Timer;
+import tool.TimerInterface;
 
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-public class Level2Controller extends Round4Controller implements Initializable, Runnable {
+public class Level2Controller extends Round4Controller implements Initializable, Runnable, TimerInterface {
 
     @FXML
     private AnchorPane ap_root;
@@ -76,6 +77,8 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
     private int currentQuestion = 0;
 
+    private Timer timer;
+
     @SuppressWarnings(value = "unchecked")
     public void init(LinkedList<UserDataLevel2> users, Round4Controller controller) {
 
@@ -110,7 +113,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
     private void initComboBox() {
         LinkedList<String> studentName = new LinkedList<>();
-        for (UserDataLevel1 ud : level1Users) {
+        for (UserDataLevel2 ud : level2Users) {
             studentName.add(ud.getUSER_NAME());
         }
         ObservableList<String> name = FXCollections.observableArrayList(studentName);
@@ -120,7 +123,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
     private void displayInstruction(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
-            throw new Exception("R4L1: No such question exist");
+            throw new Exception("R4L2: No such question exist");
         String instruction = "";
         if (Main.R4L2_DATA.getQuestionType(questionNumber) == 0) {
             instruction += Main.R4L2_DATA.QUESTION_INSTRUCTION1_ZH + "\n" + Main.R4L2_DATA.QUESTION_INSTRUCTION1_EN;
@@ -133,7 +136,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
     private void displayQuestion(int questionNumber) throws Exception {
         if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
-            throw new Exception("R4L1: No such question exist");
+            throw new Exception("R4L2: No such question exist");
         if (Main.R4L2_DATA.getQuestionType(questionNumber) == 0 || Main.R4L2_DATA.getQuestionType(questionNumber) == 1) {
             String question = (questionNumber + 1) + ". " + Main.R4L2_DATA.getQuestions(questionNumber);
             Label label = new Label(question);
@@ -163,7 +166,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
     }
 
     private void displayChoices(int questionNumber) throws Exception {
-        if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
+        /*if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
             throw new Exception("No such question exist");
         Button[] choices = new Button[Main.R4L2_DATA.getChoices(questionNumber).size()];
         for (int i = 0; i < choices.length; i++) {
@@ -172,10 +175,69 @@ public class Level2Controller extends Round4Controller implements Initializable,
             int finalI = i;
             choices[i].setOnMouseClicked(e -> {
                 if (Main.R4L2_DATA.isCorrect(choices[finalI].getText().substring(2), questionNumber))
-                    System.out.println("R4L1: Correct!");
+                    System.out.println("R4L2: Correct!");
                 else
-                    System.out.println("R4L1: Incorrect!");
+                    System.out.println("R4L2: Incorrect!");
             });
+        }
+        fp_choices.getChildren().clear();
+        fp_choices.getChildren().addAll(choices);*/
+        if (questionNumber < 0 || questionNumber >= Main.R4L2_DATA.getQuestions().size())
+            throw new Exception("No such question exist");
+        Button[] choices;
+        if (Main.R4L2_DATA.getChoices(questionNumber).size() > 0)
+            choices = new Button[Main.R4L2_DATA.getChoices(questionNumber).size()];
+        else
+            choices = new Button[2];
+        for (int i = 0; i < choices.length; i++) {
+
+            if (Main.R4L2_DATA.getChoices(questionNumber).size() > 0) {
+                String label = Main.R4L2_DATA.getChoices(questionNumber).get(i);
+                choices[i] = new Button((char) (0x41 + i) + "." + label);
+
+            } else {
+                if (i == 0)
+                    choices[i] = new Button("\uD83D\uDC4D");
+
+                else if (i == 1)
+                    choices[i] = new Button("\uD83D\uDC4E");
+            }
+            choices[i].getStyleClass().set(0, "button-questionsChoice");
+            int finalI = i;
+            if (Main.R4L2_DATA.getChoices(questionNumber).size() > 0) {
+                choices[i].setOnMouseClicked(e -> {
+                    if (Main.R4L2_DATA.isCorrect(choices[finalI].getText().substring(2), questionNumber)) {
+                        getLevel2User(activeThreadId).setRound4Points(1);
+                        writeToClient(Constants.S2C_R4LX_CRCT);
+                        writeToClient(Constants.S2C_R4L2_SCR, packageData(getLevel2User(activeThreadId).getRound4Points()), activeThreadId);
+                        System.out.println("R4L2: Correct!");
+                    }
+                    else {
+                        getLevel2User(activeThreadId).setRound4Points(-1);
+                        writeToClient(Constants.S2C_R4LX_WRNG);
+                        writeToClient(Constants.S2C_R4L2_SCR, packageData(getLevel2User(activeThreadId).getRound4Points()), activeThreadId);
+                        System.out.println("R4L2: Incorrect!");
+                    }
+                });
+            } else {
+                choices[i].setOnMouseClicked(e -> {
+                    if (finalI == 0) {
+                        choices[finalI].getStyleClass().set(0, "button-questionsUserChoice");
+                        choices[1].getStyleClass().set(0,"button-questionsChoice");
+                        getLevel2User(activeThreadId).setRound4Points(1);
+                        writeToClient(Constants.S2C_R4LX_CRCT);
+                        writeToClient(Constants.S2C_R4L2_SCR, packageData(getLevel2User(activeThreadId).getRound4Points()), activeThreadId);
+                        System.out.println("R4L2: Correct!");
+                    } else if (finalI == 1) {
+                        choices[finalI].getStyleClass().set(0, "button-questionsUserChoice");
+                        choices[0].getStyleClass().set(0,"button-questionsChoice");
+                        getLevel2User(activeThreadId).setRound4Points(-1);
+                        writeToClient(Constants.S2C_R4LX_WRNG);
+                        writeToClient(Constants.S2C_R4L2_SCR, packageData(getLevel2User(activeThreadId).getRound4Points()), activeThreadId);
+                        System.out.println("R4L2: Incorrect!");
+                    }
+                });
+            }
         }
         fp_choices.getChildren().clear();
         fp_choices.getChildren().addAll(choices);
@@ -188,6 +250,21 @@ public class Level2Controller extends Round4Controller implements Initializable,
         fp_choices.getChildren().get(answer).getStyleClass().set(0, "button-questionsUserChoice");
     }
 
+    private void checkUserAnswer(int answer) {
+        System.out.println("R4L2 User Answer: " + answer);
+        displayUserAnswer(answer);
+        if (Main.R4L2_DATA.isCorrect(((Button) fp_choices.getChildren().get(answer)).getText().substring(2), currentQuestion)) {
+            writeToClient(Constants.S2C_R4LX_CRCT);
+            getLevel2User(activeThreadId).setRound4Points(1);
+            System.out.println("R4L2: Correct");
+
+        } else {
+            writeToClient(Constants.S2C_R4LX_WRNG);
+            getLevel2User(activeThreadId).setRound4Points(-1);
+            System.out.println("R4L2: Wrong");
+        }
+        writeToClient(Constants.S2C_R4L2_SCR, packageData(getLevel2User(activeThreadId).getRound4Points()), activeThreadId);
+    }
 
     @FXML
     private void handleMouseClick(MouseEvent e) {
@@ -201,7 +278,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
                 displayQuestion(currentQuestion);
                 displayChoices(currentQuestion);
                 writeToClient(Constants.DIS_R4L2_QST, packageData(currentQuestion));
-                System.out.println("R4L1: Current question: " + currentQuestion + 1);
+                System.out.println("R4L2: Current question: " + currentQuestion + 1);
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -215,7 +292,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
                 displayQuestion(currentQuestion);
                 displayChoices(currentQuestion);
                 writeToClient(Constants.DIS_R4L2_QST, packageData(currentQuestion));
-                System.out.println("R4L1: Current question: " + currentQuestion + 1);
+                System.out.println("R4L2: Current question: " + currentQuestion + 1);
             } catch (Exception ex) {
                 currentQuestion = Main.R4L2_DATA.getQuestions().size() - 2;
                 ex.printStackTrace();
@@ -231,7 +308,7 @@ public class Level2Controller extends Round4Controller implements Initializable,
                 displayQuestion(currentQuestion);
                 displayChoices(currentQuestion);
                 writeToClient(Constants.DIS_R4L2_QST, packageData(currentQuestion));
-                System.out.println("R4L1: Current question: " + currentQuestion + 1);
+                System.out.println("R4L2: Current question: " + currentQuestion + 1);
             } catch (Exception ex) {
                 currentQuestion = 0;
                 ex.printStackTrace();
@@ -254,21 +331,21 @@ public class Level2Controller extends Round4Controller implements Initializable,
 
     @Override
     public void writeToClient(int command) {
-        System.out.println("R4L1 TO: command = " + Integer.toHexString(command) + " | data = ");
+        System.out.println("R4L2 TO: command = " + Integer.toHexString(command) + " | data = ");
         super.writeToClient(command);
     }
 
     @Override
     public void writeToClient(int command, LinkedList<String> data) {
-        System.out.println("R4L1 TO: command = " + Integer.toHexString(command) + " | data = " + data);
+        System.out.println("R4L2 TO: command = " + Integer.toHexString(command) + " | data = " + data);
         super.writeToClient(command, data);
     }
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
-        System.out.println("R4L1 FROM: command = " + Integer.toHexString(command) + " | data = " + data);
+        System.out.println("R4L2 FROM: command = " + Integer.toHexString(command) + " | data = " + data);
         switch (command) {
-            case Constants.C2S_R4L2_SEED:
+            /*case Constants.C2S_R4L2_SEED:
                 writeToClient(Constants.S2C_R4L2_SEED, packageData(Main.R4L2_DATA.getSeed()));
                 break;
             case Constants.C2S_R4L2_ANS:
@@ -276,6 +353,20 @@ public class Level2Controller extends Round4Controller implements Initializable,
                 break;
             case Constants.C2S_R4L2_BUZZ:
                 writeToClient(Constants.S2C_R4L2_BUZZ, activeThreadId);
+                break;*/
+            case Constants.C2S_R4L2_ANS:
+                checkUserAnswer(Integer.parseInt(data.getFirst()));
+                break;
+            case Constants.C2S_R4L2_BUZZ:
+                writeToAllClientsExcept(Constants.S2C_R4L2_BUZZ, activeThreadId);
+                int time = 5; // 5 seconds
+                timer = new Timer(lb_timer,time,this,1);
+                break;
+            case Constants.C2S_R4LX_TMUP:
+                for (UserDataLevel2 ud : level2Users)
+                    if (ud.getThreadId() == activeThreadId)
+                        ud.setRound4Points(-1);
+                writeToClient(Constants.S2C_R4L2_SCR, packageData(getLevel2User(activeThreadId).getRound4Points()), activeThreadId);
                 break;
         }
     }
@@ -310,5 +401,9 @@ public class Level2Controller extends Round4Controller implements Initializable,
         fp_choices.setVgap(10);
     }
 
+    @Override
+    public void takeNotice() {
+
+    }
 }
 

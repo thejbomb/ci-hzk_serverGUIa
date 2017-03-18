@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -16,7 +21,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane fx:id="ap_root" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round2.Level3Controller">
+<AnchorPane fx:id="ap_root" prefWidth="800.0" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round2.Level3Controller">
     <children>
         <TabPane fx:id="tp_mainTab" side="RIGHT" tabClosingPolicy="UNAVAILABLE" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
@@ -257,9 +262,7 @@
         <GridPane fx:id="gp_score" onMouseEntered="#handleMouseClick" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
-                <ColumnConstraints hgrow="SOMETIMES" percentWidth="35.0" />
-                <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
-                <ColumnConstraints hgrow="SOMETIMES" percentWidth="35.0" />
+                <ColumnConstraints hgrow="SOMETIMES" percentWidth="90.0" />
                 <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
                 <ColumnConstraints />
             <ColumnConstraints />
@@ -267,12 +270,7 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-                <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
-                <RowConstraints fillHeight="false" vgrow="SOMETIMES" />
+                <RowConstraints fillHeight="false" percentHeight="75.0" vgrow="SOMETIMES" />
                 <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
                 <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
             </rowConstraints>
@@ -287,92 +285,21 @@
                         </ToolBar>
                     </children>
                 </AnchorPane>
-                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="2">
-                    <left>
-                        <Label fx:id="lb_question1_st" styleClass="label-scoreQuestion" text="QUESTION_1" BorderPane.alignment="CENTER" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer1" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="3">
-                    <left>
-                        <Label fx:id="lb_question2_st" styleClass="label-scoreQuestion" text="QUESTION_2" BorderPane.alignment="CENTER" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer2" alignment="CENTER_RIGHT" columnHalignment="RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="4">
-                    <left>
-                        <Label fx:id="lb_question3_st" styleClass="label-scoreQuestion" text="QUESTION_3" BorderPane.alignment="CENTER" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer3" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="5">
-                    <left>
-                        <Label fx:id="lb_question4_st" styleClass="label-scoreQuestion" text="QUESTION_4" BorderPane.alignment="CENTER" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer4" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="6">
-                    <left>
-                        <Label fx:id="lb_question5_st" styleClass="label-scoreQuestion" text="QUESTION_5" BorderPane.alignment="CENTER" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer5" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="2">
-                    <left>
-                        <Label fx:id="lb_question6_st" styleClass="label-scoreQuestion" text="QUESTION_6" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer6" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="3">
-                    <left>
-                        <Label fx:id="lb_question7_st" styleClass="label-scoreQuestion" text="QUESTION_7" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer7" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="4">
-                    <left>
-                        <Label fx:id="lb_question8_st" styleClass="label-scoreQuestion" text="QUESTION_8" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer8" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="5">
-                    <left>
-                        <Label fx:id="lb_question9_st" styleClass="label-scoreQuestion" text="QUESTION_9" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer9" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <BorderPane GridPane.columnIndex="3" GridPane.rowIndex="6">
-                    <left>
-                        <Label fx:id="lb_question10_st" styleClass="label-scoreQuestion" text="QUESTION_10" />
-                    </left>
-                    <right>
-                        <FlowPane fx:id="fp_answer10" alignment="CENTER_RIGHT" BorderPane.alignment="CENTER" />
-                    </right>
-                </BorderPane>
-                <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="7">
+            <ScrollPane prefHeight="1133.0" prefWidth="800.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <content>
+                  <VBox fx:id="question" layoutX="92.0" layoutY="14.0">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
+               </content>
+            </ScrollPane>
+            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                <children>
-                  <HBox alignment="CENTER" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="800.0">
                      <children>
-                            <Label fx:id="lb_total" alignment="CENTER" styleClass="label-scoreTotalLabel" text="Points:" textAlignment="CENTER" wrapText="true" />
-                        <TextField fx:id="tf_totalPoints" alignment="CENTER" onKeyReleased="#handleKeyboard" prefWidth="120.0" styleClass="text-field-scorePoint" text="0" />
+                        <Label fx:id="lb_total" alignment="CENTER_RIGHT" styleClass="label-scoreTotalLabel" text="Total:" wrapText="true" />
+                        <Label fx:id="lb_pointTotal" styleClass="label-scoreTotalPoint" text="TOTAL_POINTS" />
                      </children>
                   </HBox>
                </children>

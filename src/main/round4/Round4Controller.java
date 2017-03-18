@@ -73,7 +73,6 @@ public class Round4Controller extends MainController implements Initializable, R
     private Label lb_roundLevel3_en;
     @FXML
     private AnchorPane ap_parent;
-
     @FXML
     private Button bt_scoreboard;
 
@@ -131,6 +130,7 @@ public class Round4Controller extends MainController implements Initializable, R
         }else if(e.getSource() == bt_scoreboard){
             hide();
             scoreboardController.setCurrentRound(MainController.getNextRound());
+
             scoreboardController.show();
         }
     }

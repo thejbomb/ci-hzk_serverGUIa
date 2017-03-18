@@ -285,7 +285,7 @@ public class Level3Controller extends Round1Controller implements Initializable,
 
         points = new LinkedList<>();
 
-        for(int i = 0; i < Main.R1L1_DATA.QUESTIONS.size(); i++) {
+        for(int i = 0; i < Main.R1L3_DATA.QUESTIONS.size(); i++) {
             HBox hbox = new HBox();
             VBox vbox = new VBox();
             vbox.setAlignment(Pos.CENTER);

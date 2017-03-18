@@ -9,7 +9,7 @@ public class Level3DataStructure {
     public final ArrayList<String> EXAMPLES;
     public final ArrayList<String> QUESTIONS;
     public final ArrayList<String> ANSWERS;
-    public static final int NUM_OF_QUESTIONS = 10;
+    public static final int NUM_OF_QUESTIONS = 20;
 
     public Level3DataStructure(String cnInstruction, String enInstruction, int timeLimit, ArrayList<String> examples, ArrayList<String> questions, ArrayList<String> answers) {
         INSTRUCTION_ZH = cnInstruction;

@@ -69,13 +69,8 @@ public class Level3Controller extends Round3Controller implements Initializable,
     private FlowPane fp_answers;
     @FXML
     private FlowPane fp_roots;
-    @FXML
-    private FlowPane fp_chars;
 
     private LinkedList<Label> roots;
-    private LinkedList<Label> roots_st;
-    private LinkedList<Label> chars;
-    private LinkedList<Label> chars_st;
     private LinkedList<TextField> points;
     private LinkedList<Label> answers;
 
@@ -178,8 +173,6 @@ public class Level3Controller extends Round3Controller implements Initializable,
             lb_timer.setVisible(true);
             for (Label q : roots)
                 q.setVisible(true);
-            for (Label c : chars)
-                c.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
             //LinkedList<String> choices = new LinkedList<>(Main.R3L3_DATA.ANSWERS);
             for (UserDataLevel3 ud : level3Users) {
@@ -220,13 +213,6 @@ public class Level3Controller extends Round3Controller implements Initializable,
             label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
             fp_roots.getChildren().add(label);
         }
-        for (int i = 0; i < chars.size(); i++) {
-            chars.get(i).setText(Main.R3L3_DATA.CHARS.get(i));
-            Label label = new Label();
-            label.setText(Main.R3L3_DATA.CHARS.get(i));
-            label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
-            fp_chars.getChildren().add(label);
-        }
         lb_pointTotal.setText("0");
     }
 
@@ -249,15 +235,9 @@ public class Level3Controller extends Round3Controller implements Initializable,
     public void initialize(URL location, ResourceBundle resources) {
 
         roots = new LinkedList<>();
-        for(int i = 0; i < 9; i++) {
+        for(int i = 0; i < Main.R3L3_DATA.ROOTS.size(); i++) {
             Label label = new Label();
             roots.add(label);
-        }
-
-        chars = new LinkedList<>();
-        for (int i = 0; i < 18; i++) {
-            Label label = new Label();
-            chars.add(label);
         }
 
         answers = new LinkedList<>();
@@ -273,8 +253,6 @@ public class Level3Controller extends Round3Controller implements Initializable,
         tp_mainTab.setVisible(true);
         lb_timer.setVisible(false);
         for (Label question : roots)
-            question.setVisible(false);
-        for (Label question : chars)
             question.setVisible(false);
         bt_startTimer.setVisible(true);
     }

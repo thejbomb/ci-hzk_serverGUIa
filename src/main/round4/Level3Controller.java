@@ -1,6 +1,5 @@
 package main.round4;
 
-import data.UserDataLevel1;
 import data.UserDataLevel3;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -110,7 +109,7 @@ public class Level3Controller extends Round4Controller implements Initializable,
 
     private void initComboBox() {
         LinkedList<String> studentName = new LinkedList<>();
-        for (UserDataLevel1 ud : level1Users) {
+        for (UserDataLevel3 ud : level3Users) {
             studentName.add(ud.getUSER_NAME());
         }
         ObservableList<String> name = FXCollections.observableArrayList(studentName);
