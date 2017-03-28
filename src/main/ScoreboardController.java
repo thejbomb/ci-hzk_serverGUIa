@@ -197,7 +197,7 @@ public class ScoreboardController implements Initializable {
         TableColumn scoreColumn4 = (TableColumn) tb_level1Score.getColumns().get(3);
         TableColumn scoreColumn5 = (TableColumn) tb_level1Score.getColumns().get(4);
         nameColumn.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, String>("USER_NAME"));
-        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round1Points"));
+        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round1TotalPoints"));
         scoreColumn2.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round2TotalPoints"));
         scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round3TotalPoints"));
         scoreColumn4.setCellValueFactory(new PropertyValueFactory<UserDataLevel1, Integer>("round4Points"));
@@ -213,7 +213,7 @@ public class ScoreboardController implements Initializable {
         scoreColumn4 = (TableColumn) tb_level2Score.getColumns().get(3);
         scoreColumn5 = (TableColumn) tb_level2Score.getColumns().get(4);
         nameColumn.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, String>("USER_NAME"));
-        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round1Points"));
+        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round1TotalPoints"));
         scoreColumn2.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round2TotalPoints"));
         scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round3TotalPoints"));
         scoreColumn4.setCellValueFactory(new PropertyValueFactory<UserDataLevel2, Integer>("round4Points"));
@@ -229,7 +229,7 @@ public class ScoreboardController implements Initializable {
         scoreColumn4 = (TableColumn) tb_level3Score.getColumns().get(3);
         scoreColumn5 = (TableColumn) tb_level3Score.getColumns().get(4);
         nameColumn.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, String>("USER_NAME"));
-        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round1Points"));
+        scoreColumn1.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round1TotalPoints"));
         scoreColumn2.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round2TotalPoints"));
         scoreColumn3.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round3TotalPoints"));
         scoreColumn4.setCellValueFactory(new PropertyValueFactory<UserDataLevel3, Integer>("round4Points"));
@@ -238,6 +238,11 @@ public class ScoreboardController implements Initializable {
         tb_level3Name.setItems(userList3);
         tb_level3Score.setItems(userList3);
 
+    }
+
+    public void print() {
+        System.out.println("First" + level1Users.get(0).getRound1TotalPoints());
+        System.out.println("Second" + level1Users.get(1).getRound1TotalPoints());
     }
 
     public void show() {

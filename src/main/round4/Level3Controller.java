@@ -299,7 +299,7 @@ public class Level3Controller extends Round4Controller implements Initializable,
         setData();
 
         tp_mainTab.setVisible(true);
-        lb_timer.setText("5");
+        lb_timer.setText("10");
         lb_timer.setVisible(false);
         lb_instruction.setVisible(false);
         bt_startTimer.setVisible(true);

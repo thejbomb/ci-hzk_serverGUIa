@@ -322,7 +322,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
                 break;
             case Constants.C2S_R4L1_BUZZ:
                 writeToAllClientsExcept(Constants.S2C_R4L1_BUZZ, activeThreadId);
-                int time = 5; // 5 seconds
+                int time = 10; // 5 seconds
                 timer = new Timer(lb_timer,time,this,1);
                 break;
             case Constants.C2S_R4LX_TMUP:
@@ -352,7 +352,7 @@ public class Level1Controller extends Round4Controller implements Initializable,
         setData();
 
         tp_mainTab.setVisible(true);
-        lb_timer.setText("5");
+        lb_timer.setText("10");
         lb_timer.setVisible(false);
         lb_instruction.setVisible(false);
         bt_startTimer.setVisible(true);

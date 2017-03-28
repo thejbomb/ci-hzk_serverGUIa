@@ -71,7 +71,7 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private static int currentRound = Constants.ROUND1;
+    private static int currentRound = Constants.ROUND3;
 
     private int userLevel = 0;
 
@@ -81,9 +81,9 @@ public class MainController implements Initializable, ClientHandlerInterface {
         else if (currentRound == Constants.ROUND2)
             currentRound = Constants.ROUND3;
         else if (currentRound == Constants.ROUND3)
-            currentRound = Constants.ROUND4;
-        else if (currentRound == Constants.ROUND4)
             currentRound = Constants.ROUND5;
+        //else if (currentRound == Constants.ROUND4)
+            //currentRound = Constants.ROUND5;
         return currentRound;
     }
 
@@ -297,12 +297,12 @@ public class MainController implements Initializable, ClientHandlerInterface {
         for (UserDataLevel1 ud : level1Users)
             if (ud.getThreadId() != threadId)
                 sendCommandToClient(command, ud.getThreadId());
-        /*for (UserDataLevel2 ud : level2Users)
+        for (UserDataLevel2 ud : level2Users)
             if (ud.getThreadId() != threadId)
                 sendCommandToClient(command, ud.getThreadId());
         for (UserDataLevel3 ud : level3Users)
             if (ud.getThreadId() != threadId)
-                sendCommandToClient(command, ud.getThreadId());*/
+                sendCommandToClient(command, ud.getThreadId());
     }
 
     // write command to a group of user

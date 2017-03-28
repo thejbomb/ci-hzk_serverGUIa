@@ -187,6 +187,7 @@ public class Level3Controller extends Round1Controller implements Initializable,
                         answers.get(i).getChildren().clear();
                         for (String pl : ud.getRound1Answers()[i]) {
                             Label label = new Label(pl);
+                            label.setStyle("-fx-font: bold 20pt KaiTi; -fx-text-fill: rgb(0,0,150)");
                             answers.get(i).getChildren().addAll(label);
                         }
                         points.get(i).setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().get(i)));
@@ -280,9 +281,7 @@ public class Level3Controller extends Round1Controller implements Initializable,
         questions.add(lb_question10);
 
         questions_st = new LinkedList<>();
-
         answers = new LinkedList<>();
-
         points = new LinkedList<>();
 
         for(int i = 0; i < Main.R1L3_DATA.QUESTIONS.size(); i++) {

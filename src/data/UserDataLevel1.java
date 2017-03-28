@@ -42,6 +42,7 @@ public class UserDataLevel1 extends UserData {
             round1Points.add(total);
         }
 
+        round1TotalPoints = round1Points.getLast();
     }
 
     public void setRound1Answers(LinkedList<String> answers) {

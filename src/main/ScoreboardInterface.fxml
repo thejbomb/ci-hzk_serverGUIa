@@ -264,6 +264,7 @@
                </children>
             </AnchorPane>
             <BorderPane fx:id="bp_start" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Button fx:id="print" mnemonicParsing="false" onAction="#print" text="Button" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
    </children>

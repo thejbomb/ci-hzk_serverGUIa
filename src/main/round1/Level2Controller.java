@@ -188,6 +188,7 @@ public class Level2Controller extends Round1Controller implements Initializable,
                         answers.get(i).getChildren().clear();
                         for (String l : ud.getRound1Answers()[i]) {
                             Label label = new Label(l);
+                            label.setStyle("-fx-font: bold 20pt KaiTi; -fx-text-fill: rgb(0,0,150)");
                             answers.get(i).getChildren().addAll(label);
                         }
                         points.get(i).setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().get(i)));

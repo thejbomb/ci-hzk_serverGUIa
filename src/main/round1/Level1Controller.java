@@ -187,6 +187,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
                         answers.get(i).getChildren().clear();
                         for (String pl : ud.getRound1Answers()[i]) {
                             Label label = new Label(pl);
+                            label.setStyle("-fx-font: bold 20pt KaiTi; -fx-text-fill: rgb(0,0,150)");
                             answers.get(i).getChildren().addAll(label);
                         }
                         points.get(i).setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().get(i)));
@@ -225,6 +226,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
                         ud.setPointRound1((points.get(i).getText().compareTo("") == 0) ? 0 : Integer.parseInt(points.get(i).getText()), i);
                     lb_pointTotal.setText(Integer.toString(ud.getRound1Points().getLast()));
                     //writeToClient(Constants.S2C_R1L1_SCR);
+
                     writeToClient(Constants.S2C_R1L1_SCR, packageData(ud.getRound1Points().getLast()), ud.getThreadId());
 
                 }

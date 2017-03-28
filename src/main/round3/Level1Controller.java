@@ -176,7 +176,7 @@ public class Level1Controller extends Round3Controller implements Initializable,
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
             //LinkedList<String> choices = new LinkedList<>(Main.R3L1_DATA.ANSWERS);
             for (UserDataLevel1 ud : level1Users) {
-                if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
+                if (ud.isOnline() && ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     Label label = new Label(ud.getRound3Answers().toString());
                     label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
                     fp_answers.getChildren().addAll(label);
@@ -244,9 +244,6 @@ public class Level1Controller extends Round3Controller implements Initializable,
 
         points = new LinkedList<>();
         points.add(tf_point3);
-
-
-//        System.out.println("Randomized answer order: " + randomizedAnswers);
 
         setData();
 
