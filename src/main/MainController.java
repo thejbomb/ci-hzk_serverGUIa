@@ -71,15 +71,15 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     protected long activeThreadId = -1;
 
-    private static int currentRound = Constants.ROUND3;
+    private static int currentRound = Constants.ROUND1;
 
     private int userLevel = 0;
 
     public static int getNextRound() {
         if(currentRound == Constants.ROUND1)
-            currentRound = Constants.ROUND2;
-        else if (currentRound == Constants.ROUND2)
             currentRound = Constants.ROUND3;
+        //else if (currentRound == Constants.ROUND2)
+            //currentRound = Constants.ROUND3;
         else if (currentRound == Constants.ROUND3)
             currentRound = Constants.ROUND5;
         //else if (currentRound == Constants.ROUND4)
@@ -259,13 +259,13 @@ public class MainController implements Initializable, ClientHandlerInterface {
     }
 
     private void sendDataToAllClient(int command, LinkedList<String> data) {
-        System.out.println("M DATA SET: " + data);
+        //System.out.println("M DATA SET: " + data);
         MainController.clientHandler.sendDataToAllClients(command, data);
     }
 
 
     public void writeToClient(int command) {
-        System.out.println("M TO: command = " + Integer.toHexString(command) + " | levelData = ");
+        //System.out.println("M TO: command = " + Integer.toHexString(command) + " | levelData = ");
         switch (command) {
             default:
                 sendCommandToAllClients(command);
@@ -275,25 +275,25 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     // write command and data to all clients
     public void writeToClient(int command, LinkedList<String> data) {
-        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
+        //System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
         sendDataToAllClient(command, data);
     }
 
     // write command and data to client on threadId
     public void writeToClient(int command, LinkedList<String> data, long threadId) {
-        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
+        //System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = " + data);
         sendDataToClient(command, data, threadId);
     }
 
     // write command to client on threadId
     public void writeToClient(int command, long threadId) {
-        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
+        //System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
         sendCommandToClient(command, threadId);
     }
 
     // write command to all clients except for client on threadId
     public void writeToAllClientsExcept(int command, long threadId) {
-        System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
+        //System.out.println("M To Client: command = " + Integer.toHexString(command) + " | data = ");
         for (UserDataLevel1 ud : level1Users)
             if (ud.getThreadId() != threadId)
                 sendCommandToClient(command, ud.getThreadId());
@@ -367,8 +367,8 @@ public class MainController implements Initializable, ClientHandlerInterface {
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
-        System.out.println("M FROM: command = " + command + " | data = " + data);
-        System.out.println("Current round = " + currentRound);
+        //System.out.println("M FROM: command = " + command + " | data = " + data);
+        //System.out.println("Current round = " + currentRound);
         switch (command) {
             case Constants.C2S_R2L3_SEED:
                 for (UserDataLevel3 ud : level3Users) {

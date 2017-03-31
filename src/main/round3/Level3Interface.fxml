@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 
-<AnchorPane fx:id="ap_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round3.Level3Controller">
+<AnchorPane fx:id="ap_root" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="background" stylesheets="@Level3Style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.round3.Level3Controller">
    <children>
       <TabPane fx:id="tp_mainTab" side="RIGHT" tabClosingPolicy="UNAVAILABLE" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <tabs>
@@ -16,21 +16,6 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="100.0" />
-                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
-                           </columnConstraints>
-                           <rowConstraints>
-                              <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-                              <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints vgrow="SOMETIMES" />
-                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-                           </rowConstraints>
                            <children>
                               <BorderPane fx:id="bp_start" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="3">
                                  <center>
@@ -68,6 +53,25 @@
                                  </children>
                               </AnchorPane>
                            </children>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints vgrow="SOMETIMES" />
+                              <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                              <RowConstraints />
+                           </rowConstraints>
                         </GridPane>
                      </children>
                   </AnchorPane>
@@ -76,19 +80,6 @@
          </tabs>
       </TabPane>
       <GridPane fx:id="gp_instruction" layoutX="20.0" layoutY="20.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
-            <ColumnConstraints hgrow="SOMETIMES" />
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-         </rowConstraints>
          <children>
             <BorderPane GridPane.columnIndex="1" GridPane.rowIndex="5">
                <center>
@@ -97,7 +88,7 @@
             </BorderPane>
             <AnchorPane GridPane.columnIndex="1">
                <children>
-                  <Label alignment="CENTER" styleClass="label-instructionLevel" text="初级 Beginner Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" text="高级 Advance Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -118,13 +109,6 @@
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="4">
                <children>
                   <GridPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
                      <children>
                         <AnchorPane>
                            <children>
@@ -137,12 +121,17 @@
                            </children>
                         </AnchorPane>
                      </children>
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
                   </GridPane>
                </children>
             </AnchorPane>
          </children>
-      </GridPane>
-      <GridPane fx:id="gp_example" layoutX="20.0" layoutY="20.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
             <ColumnConstraints hgrow="SOMETIMES" />
@@ -151,10 +140,13 @@
          <rowConstraints>
             <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints vgrow="SOMETIMES" />
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
-            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
+      </GridPane>
+      <GridPane fx:id="gp_example" layoutX="20.0" layoutY="20.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
@@ -178,32 +170,25 @@
             </BorderPane>
             <AnchorPane GridPane.columnIndex="1">
                <children>
-                  <Label alignment="CENTER" styleClass="label-instructionLevel" text="初级 Beginner Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                  <Label alignment="CENTER" text="高级 Advance Level" textAlignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
          </children>
-      </GridPane>
-      <GridPane fx:id="gp_score" onMouseEntered="#handleMouseClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" percentWidth="70.0" />
-            <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" percentWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
             <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
          </columnConstraints>
          <rowConstraints>
+            <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="15.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" percentHeight="25.0" vgrow="SOMETIMES" />
-            <RowConstraints fillHeight="false" percentHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
             <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
          </rowConstraints>
+      </GridPane>
+      <GridPane fx:id="gp_score" onMouseEntered="#handleMouseClick" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ScrollPane prefHeight="415.0" prefWidth="696.0" GridPane.columnIndex="2" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-               <content>
-                  <FlowPane fx:id="fp_roots" hgap="10.0" prefHeight="0.0" prefWidth="1350.0" vgap="3.0" />
-               </content>
-            </ScrollPane>
             <AnchorPane GridPane.columnSpan="5">
                <children>
                   <ToolBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -219,30 +204,45 @@
                   <Label fx:id="lb_question1_st" styleClass="label-scoreQuestion" text="Roots:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
             </AnchorPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <children>
-                  <Label fx:id="lb_question3_st" styleClass="label-scoreQuestion" text="Answers:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-               </children>
-            </AnchorPane>
             <AnchorPane GridPane.columnIndex="2" GridPane.rowIndex="4">
                <children>
                   <Label fx:id="lb_total" alignment="CENTER_RIGHT" layoutX="563.0" layoutY="40.0" styleClass="label-scoreTotalLabel" text="Total:" wrapText="true" />
                </children>
             </AnchorPane>
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <AnchorPane GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+               <children>
+                  <Label fx:id="lb_question3_st" styleClass="label-scoreQuestion" text="Answers:" wrapText="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children>
+            </AnchorPane>
             <Label fx:id="lb_pointTotal" styleClass="label-scoreTotalPoint" text="TOTAL_POINTS" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <TextField fx:id="tf_point3" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" GridPane.columnIndex="3" GridPane.rowIndex="3" />
             <ScrollPane prefHeight="826.0" prefWidth="1120.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <content>
                   <FlowPane fx:id="fp_answers" hgap="10.0" prefWidth="1350.0" vgap="3.0" />
                </content>
             </ScrollPane>
+            <TextField fx:id="tf_point3" onKeyReleased="#handleKeyboard" styleClass="text-field-scorePoint" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <ScrollPane prefHeight="415.0" prefWidth="696.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+               <content>
+                  <FlowPane fx:id="fp_roots" hgap="10.0" prefHeight="0.0" prefWidth="1350.0" vgap="3.0" />
+               </content>
+            </ScrollPane>
          </children>
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="70.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="5.0" />
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints percentHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
       </GridPane>
    </children>
-   <stylesheets>
-      <URL value="@Level3Style.css" />
-   </stylesheets>
 </AnchorPane>

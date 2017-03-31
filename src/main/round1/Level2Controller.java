@@ -13,6 +13,9 @@ import javafx.scene.layout.*;
 import main.Main;
 import tool.Constants;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -170,7 +173,28 @@ public class Level2Controller extends Round1Controller implements Initializable,
 
     }
 
-
+    public void record(String name) {
+        File file = new File("round1lvl2.txt");
+        FileWriter writer = null;
+        try{
+            writer = new FileWriter(file);
+            writer.write(name);
+            for(int i = 0; i < questions_st.size(); i++) {
+                String s;
+                String l = "";
+                s = questions_st.get(i).getText() + ": ";
+                for(int j = 0; j < answers.get(i).getChildren().size(); j++) {
+                    l = l + ((Label)answers.get(i).getChildren().get(j)).getText();
+                }
+                l = l.replaceAll("[, ]","");
+                s = s + l + "  ";
+                writer.write(s);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void handleMouseClick(MouseEvent e) {
@@ -194,6 +218,7 @@ public class Level2Controller extends Round1Controller implements Initializable,
                         points.get(i).setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().get(i)));
                     }
                     lb_pointTotal.setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().getLast()));
+                    record(ud.getUSER_NAME());
                 }
             }
         } else if (e.getSource() == bt_home) {

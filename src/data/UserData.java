@@ -99,7 +99,7 @@ public class UserData {
     public void setThreadId(long id) {
         threadId = id;
         isOnline = true;
-        System.out.println("User with ID " + USER_ID + " threadId is " + threadId);
+        //System.out.println("User with ID " + USER_ID + " threadId is " + threadId);
     }
 
     public int getRound1TotalPoints() {

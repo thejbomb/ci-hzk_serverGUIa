@@ -176,7 +176,7 @@ public class Level3Controller extends Round3Controller implements Initializable,
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
             //LinkedList<String> choices = new LinkedList<>(Main.R3L3_DATA.ANSWERS);
             for (UserDataLevel3 ud : level3Users) {
-                if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
+                if (ud.isOnline() && ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     Label label = new Label(ud.getRound3Answers().toString());
                     label.setStyle("-fx-font: bold 30pt KaiTi; -fx-text-fill: rgb(0,255,0)");
                     fp_answers.getChildren().addAll(label);
@@ -224,7 +224,7 @@ public class Level3Controller extends Round3Controller implements Initializable,
                     if (ud.getThreadId() == activeThreadId)
                         ud.setRound3Answers(data);
                 }
-                System.out.println(level3Users.getFirst().getRound3Answers());
+                //System.out.println(level3Users.getFirst().getRound3Answers());
                 break;
         }
 

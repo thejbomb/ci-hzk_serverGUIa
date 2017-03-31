@@ -14,6 +14,10 @@ import javafx.scene.layout.*;
 import main.Main;
 import tool.Constants;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -182,7 +186,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
                 q.setVisible(true);
         } else if (e.getSource() == gp_score && cb_users.getValue() != null) {
             for (UserDataLevel1 ud : level1Users) {
-                if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
+                if (ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     for (int i = 0; i < answers.size(); i++) {
                         answers.get(i).getChildren().clear();
                         for (String pl : ud.getRound1Answers()[i]) {
@@ -193,6 +197,7 @@ public class Level1Controller extends Round1Controller implements Initializable,
                         points.get(i).setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().get(i)));
                     }
                     lb_pointTotal.setText((ud.getRound1Points() == null) ? "0" : Integer.toString(ud.getRound1Points().getLast()));
+                    record(Integer.toString(ud.getUSER_ID()));
                 }
             }
         } else if (e.getSource() == bt_home) {
@@ -206,6 +211,30 @@ public class Level1Controller extends Round1Controller implements Initializable,
             hideExample();
             hide();
             round1Controller.show();
+        }
+
+    }
+
+    public void record(String name) {
+        File file = new File("round1lvl1.txt");
+        FileWriter writer = null;
+        try{
+            writer = new FileWriter(file);
+            writer.write(name);
+            for(int i = 0; i < questions_st.size(); i++) {
+                String s;
+                String l = "";
+                s = questions_st.get(i).getText() + ": ";
+                for(int j = 0; j < answers.get(i).getChildren().size(); j++) {
+                    l = l + ((Label)answers.get(i).getChildren().get(j)).getText();
+                }
+                l = l.replaceAll("[, ]","");
+                s = s + l + "  ";
+                writer.write(s);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

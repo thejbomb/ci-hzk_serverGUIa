@@ -15,6 +15,9 @@ import javafx.scene.layout.GridPane;
 import main.Main;
 import tool.Constants;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -182,6 +185,7 @@ public class Level1Controller extends Round3Controller implements Initializable,
                     fp_answers.getChildren().addAll(label);
                     tf_point3.setText((ud.getRound3Points() == null) ? "0" : Integer.toString(ud.getRound3Points().getLast()));
                     lb_pointTotal.setText((ud.getRound3Points() == null) ? "0" : Integer.toString(ud.getRound3Points().getLast()));
+                    record(ud.getUSER_ID());
                 }
             }
         } else if (e.getSource() == bt_home) {
@@ -195,6 +199,27 @@ public class Level1Controller extends Round3Controller implements Initializable,
             hideExample();
             hide();
             round3Controller.show();
+        }
+    }
+
+    public void record(int name) {
+        File file = new File("round3lvl1.txt");
+        FileWriter writer = null;
+        try{
+            writer = new FileWriter(file);
+            writer.write(name);
+            for(int i = 0; i < fp_answers.getChildren().size(); i++) {
+                String s = "";
+                String l = "";
+                for(int j = 0; j < fp_answers.getChildren().size(); j++) {
+                    l = l + ((Label)fp_answers.getChildren().get(j)).getText();
+                }
+                s = s + l + "  ";
+                writer.write(s);
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -224,7 +249,7 @@ public class Level1Controller extends Round3Controller implements Initializable,
                     if (ud.getThreadId() == activeThreadId)
                         ud.setRound3Answers(data);
                 }
-                System.out.println(level1Users.getFirst().getRound3Answers());
+                //System.out.println(level1Users.getFirst().getRound3Answers());
                 break;
         }
 

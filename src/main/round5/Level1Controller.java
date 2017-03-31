@@ -19,6 +19,9 @@ import main.Main;
 import main.round2.Round2Controller;
 import tool.Constants;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -166,6 +169,7 @@ public class Level1Controller extends Round5Controller implements Initializable 
             for (UserDataLevel1 ud : level1Users) {
                 if (ud.getUSER_NAME() != null && ud.getUSER_NAME().compareTo((String) cb_users.getValue()) == 0) {
                     updateAnswerLabels(ud);
+                    record(Integer.toString(ud.getUSER_ID()));
                 }
             }
         } else if (e.getSource() == bt_home) {
@@ -179,6 +183,26 @@ public class Level1Controller extends Round5Controller implements Initializable 
             hideExample();
             hide();
             round5Controller.show();
+        }
+    }
+
+    public void record(String name) {
+        File file = new File("round5lvl1.txt");
+        FileWriter writer = null;
+        try{
+            writer = new FileWriter(file);
+            writer.write(name + ": ");
+                String s = "";
+                String l = "";
+                for(int j = 0; j < fp_answers.getChildren().size(); j++) {
+                    l = l + ((Label)fp_answers.getChildren().get(j)).getText() + " ";
+                }
+                s = s + l + "  ";
+                writer.write(s);
+
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -229,7 +253,7 @@ public class Level1Controller extends Round5Controller implements Initializable 
                         user.setRound5Points(1);
                     user.setRound5PointState(finalI, 1); // 1 = correct answer
                     lb_pointTotal.setText(Integer.toString(user.getRound5Points()));
-                    System.out.println("Current total points: " + user.getRound5Points());
+                    //System.out.println("Current total points: " + user.getRound5Points());
                     label2.setGraphic(imageView);
                     imageView.setVisible(true);
                     String userName = (String) cb_users.getValue();
@@ -244,7 +268,7 @@ public class Level1Controller extends Round5Controller implements Initializable 
                     label2.setGraphic(imageView2);
                     imageView2.setVisible(true);
                     lb_pointTotal.setText(Integer.toString(user.getRound5Points()));
-                    System.out.println("Current total points: " + user.getRound5Points());
+                    //System.out.println("Current total points: " + user.getRound5Points());
                     String userName = (String) cb_users.getValue();
                     for (UserDataLevel1 ud : level1Users)
                         if (ud.getUSER_NAME().compareTo(userName) == 0)
@@ -268,7 +292,7 @@ public class Level1Controller extends Round5Controller implements Initializable 
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
-        System.out.println("R5L1 FROM command = : " + command + " | data = " + data);
+        //System.out.println("R5L1 FROM command = : " + command + " | data = " + data);
         switch (command) {
             case Constants.C2S_R5L1_ANS:
                 for (UserDataLevel1 ud : level1Users) {

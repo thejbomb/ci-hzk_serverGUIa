@@ -199,7 +199,7 @@ public class Round3Controller extends MainController implements Initializable, R
 
     @Override
     public void handleClientData(int command, LinkedList<String> data) {
-        System.out.println("R2 FROM: command = " + command + " | data = " + data);
+        //System.out.println("R2 FROM: command = " + command + " | data = " + data);
         switch (command) {
             default:
                 ap_level1InterfaceController.handleClientData(command, data);
@@ -220,7 +220,7 @@ public class Round3Controller extends MainController implements Initializable, R
             ap_root.setVisible(true);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
-            System.out.println(ex.getMessage() + " " + getClass());
+            //System.out.println(ex.getMessage() + " " + getClass());
         }
         thread.interrupt();
     }

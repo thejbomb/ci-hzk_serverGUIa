@@ -163,7 +163,7 @@ public class UserDataLevel3 extends UserData {
 
     public void setRound3Answers(LinkedList<String> answers) {
         round3Answers = answers;
-        System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 3 are " + round3Answers);
+        System.out.println("User " + USER_ID + " answers for round 3 are " + round3Answers);
     }
 
     public void setPointRound2(int point, int index) {
@@ -217,7 +217,7 @@ public class UserDataLevel3 extends UserData {
             }
         }
 
-        System.out.println("User on thread " + threadId + " with ID " + USER_ID + " answers for round 5 are " + round5Answers);
+        System.out.println("User" + USER_ID + " answers for round 5 are " + round5Answers);
     }
 
     public void setSeed(LinkedList<String> data) {

@@ -224,7 +224,7 @@ public class Level2Controller extends Round3Controller implements Initializable,
                     if (ud.getThreadId() == activeThreadId)
                         ud.setRound3Answers(data);
                 }
-                System.out.println(level2Users.getFirst().getRound3Answers());
+                //System.out.println(level2Users.getFirst().getRound3Answers());
                 break;
         }
 

@@ -220,7 +220,7 @@ public class Round5Controller extends MainController implements Initializable, R
             ap_root.setVisible(true);
         } catch (InterruptedException ex) {
             ex.printStackTrace();
-            System.out.println(ex.getMessage() + " " + getClass());
+            //System.out.println(ex.getMessage() + " " + getClass());
         }
         thread.interrupt();
     }

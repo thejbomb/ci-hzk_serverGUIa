@@ -11,12 +11,12 @@
 }
 
 .label-title-zh {
-    -fx-font: bold 80pt "KaiTi";
+    -fx-font: bold 60pt "KaiTi";
     -fx-text-fill: rgb(255,0,0);
 }
 
 .label-title-en {
-    -fx-font: bold 35pt "Bell MT";
+    -fx-font: bold 25pt "Bell MT";
     -fx-text-fill: rgb(255,0,0);
 }
 
